@@ -16,14 +16,14 @@
       </ion-list>
       <ion-row>
         <ion-col>
-          <ion-button float-right size="small" color="dark" fill="clear" (click)="navigateToForgetPassword()">{{ forgetPassword }}</ion-button>
-          <ion-button expand="full" color="primary" block (click)="navigateToMain()">{{ signIn }}</ion-button>
+          <ion-button float-right size="small" color="dark" fill="clear" href="/forget-password" routerDirection="forward">{{ forgetPassword }}</ion-button>
+          <ion-button expand="full" color="primary" block href="/main" routerDirection="forward">{{ signIn }}</ion-button>
         </ion-col>
       </ion-row>
     
       <ion-row>
           <ion-col text-center style="position: absolute; bottom: 0px; left: 0px;">
-            <ion-button color="dark" fill="clear" (click)="navigateToNewUser()">{{ createAccount }}</ion-button>
+            <ion-button color="dark" fill="clear" href="/new-user" routerDirection="forward">{{ createAccount }}</ion-button>
           </ion-col>
       </ion-row>
     </ion-content>

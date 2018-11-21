@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +13,7 @@ export class LoginPage implements OnInit {
   createAccount: string;
   forgetPassword: string;
 
-  constructor(private router: Router) {
+  constructor() {
     this.username = Constants.Username;
     this.password = Constants.Password;
     this.signIn = Constants.SignIn;
@@ -24,17 +23,5 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit LoginPage');
-  }
-
-  navigateToNewUser() {
-    this.router.navigate(['/new-user']);
-  }
-
-  navigateToForgetPassword() {
-    this.router.navigate(['/forget-password']);
-  }
-
-  navigateToMain() {
-    this.router.navigate(['/main']);
   }
 }
