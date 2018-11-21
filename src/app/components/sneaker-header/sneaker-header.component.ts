@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Constants } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'sneaker-header',
   templateUrl: './sneaker-header.component.html',
-  styleUrls: ['./sneaker-header.component.scss']
+  styleUrls: ['./sneaker-header.component.scss'],
 })
 export class SneakerHeaderComponent implements OnInit {
+  appName: string;
 
-  constructor() { }
+  constructor() {
+    this.appName = Constants.AppName;
+  }
 
   ngOnInit() {
   }
