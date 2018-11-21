@@ -9,3 +9,19 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+
+//Android
+.md ion-button {
+  text-transform: none;
+}
+
+//iOS
+.ios ion-button {
+  text-transform: none;
+}
+
+//Windows
+.wp ion-button {
+  text-transform: none;
+}
