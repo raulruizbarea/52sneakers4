@@ -1,0 +1,30 @@
+<ion-header>
+    <sneaker-header></sneaker-header>
+  </ion-header>
+
+
+  <ion-content padding>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">{{ username }}</ion-label>
+          <ion-input type="text" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">{{ password }}</ion-label>
+          <ion-input type="password" value=""></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-row>
+        <ion-col>
+          <ion-button float-right size="small" color="dark" fill="clear" (click)="navigateToForgetPassword()">{{ forgetPassword }}</ion-button>
+          <ion-button expand="full" color="primary" block (click)="navigateToMain()">{{ signIn }}</ion-button>
+        </ion-col>
+      </ion-row>
+    
+      <ion-row>
+          <ion-col text-center style="position: absolute; bottom: 0px; left: 0px;">
+            <ion-button color="dark" fill="clear" (click)="navigateToNewUser()">{{ createAccount }}</ion-button>
+          </ion-col>
+      </ion-row>
+    </ion-content>
+    

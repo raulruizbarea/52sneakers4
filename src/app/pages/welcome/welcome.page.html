@@ -2,6 +2,29 @@
     <sneaker-header></sneaker-header>
 </ion-header>
 
-<ion-content padding>
-    
+<ion-content>
+<ion-slides pager="true" paginationType=“bullets”>
+    <ion-slide *ngFor="let slide of slides" #slides>
+        <ion-toolbar>
+            <ion-button float-right color="primary" fill="clear" (click)="last()">{{ skip }}</ion-button>
+        </ion-toolbar>
+        <img [src]="slide.image"/>
+        <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+        <p [innerHTML]="slide.description"></p>
+    </ion-slide>
+    <ion-slide>
+        <ion-toolbar>
+        </ion-toolbar>
+        <img src="https://images.pexels.com/photos/1341358/pexels-photo-1341358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"/>
+        <h2 class="slide-title">{{ readyTo }}</h2>
+        <ion-button fill="clear" color="primary" (click)="navigateToLogin()">
+            {{ continue }}
+            <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+    </ion-slide>
+</ion-slides>
 </ion-content>
+
+<ion-footer>
+    <sneaker-footer></sneaker-footer>
+</ion-footer>
