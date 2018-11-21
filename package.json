@@ -9,12 +9,14 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "populate-db": "./node_modules/.bin/ts-node ./populate-db.ts"
   },
   "private": true,
   "dependencies": {
     "@angular/common": "~7.0.0",
     "@angular/core": "~7.0.0",
+    "@angular/fire": "^5.1.0",
     "@angular/forms": "~7.0.0",
     "@angular/http": "~7.0.0",
     "@angular/platform-browser": "~7.0.0",
@@ -25,6 +27,8 @@
     "@ionic-native/status-bar": "5.0.0-beta.21",
     "@ionic/angular": "4.0.0-beta.16",
     "core-js": "^2.5.4",
+    "firebase": "^5.5.9",
+    "grpc": "^1.16.1",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
@@ -38,9 +42,9 @@
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
     "@ionic/angular-toolkit": "~1.2.0",
-    "@types/node": "~10.12.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~10.12.0",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -49,6 +53,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "node-sass": "^4.10.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
