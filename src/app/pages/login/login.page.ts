@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsersService } from 'src/app/shared/model/users.service';
 import { User } from 'src/app/shared/model/user';
 import { tap } from 'rxjs/operators';
@@ -15,9 +15,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
   form: FormGroup;
-
-  @Input()
-  initialValue: any;
+  submitted = false;
 
   // allUsers: User[];
   user: User;
@@ -37,8 +35,8 @@ export class LoginPage implements OnInit {
     this.forgetPassword = Constants.ForgetPassword;
 
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required])]
     });
   }
 
@@ -57,16 +55,23 @@ export class LoginPage implements OnInit {
   */
 
   login() {
-    const formValue = this.form.value;
+    if (this.form.valid) {
+      const formValue = this.form.value;
 
-    this.usersService.findUserByEmail(formValue.email).pipe(
-      tap(console.log))
-      .subscribe(
-        user => {
-          this.user = user;
-          this.checkUser(this.user);
-        },
-        err => alert(`Error finding user ${err}`));
+      this.usersService.findUserByEmail(formValue.email).pipe(
+        tap(console.log))
+        .subscribe(
+          user => {
+            this.user = user;
+            this.checkUser(this.user);
+          },
+          err => alert(`Error finding user ${err}`));
+    } else {
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field);
+        control.markAsDirty({ onlySelf: true });
+      });
+    }
   }
 
   checkUser(user: User) {
@@ -82,14 +87,16 @@ export class LoginPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Error',
-      message: 'El password no coincidex.',
+      message: 'Usuari o password invalid.',
       buttons: ['OK']
     });
 
     await alert.present();
   }
 
-  reset() {
-    this.form.reset();
+  isErrorVisible(field: string, error: string) {
+    return this.form.controls[field].dirty
+            && this.form.controls[field].errors &&
+            this.form.controls[field].errors[error];
   }
 }
