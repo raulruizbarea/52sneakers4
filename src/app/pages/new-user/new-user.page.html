@@ -3,31 +3,33 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating">{{ email }}</ion-label>
-      <ion-input [(ngModel)]="user.email" type="text" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">{{ password }}</ion-label>
-      <ion-input type="password" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">{{ passwordRepeat }}</ion-label>
-      <ion-input type="password" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">{{ name }}</ion-label>
-      <ion-input [(ngModel)]="user.name" type="text" value=""></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">{{ surnames }}</ion-label>
-      <ion-input [(ngModel)]="user.surnames" type="text" value=""></ion-input>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="form">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">{{ email }}</ion-label>
+        <ion-input formControlName="email" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ password }}</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ passwordRepeat }}</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ name }}</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ surnames }}</ion-label>
+        <ion-input formControlName="surnames" type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
   <ion-row>
     <ion-col>
-      <ion-button color="primary" expand="full" (click)="addUser(user)">{{ createAccount }}</ion-button>
+      <ion-button color="primary" expand="full" (click)="save(form)">{{ createAccount }}</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
