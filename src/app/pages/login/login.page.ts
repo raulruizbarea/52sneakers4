@@ -63,7 +63,12 @@ export class LoginPage implements OnInit {
         .subscribe(
           user => {
             this.user = user;
-            this.checkUser(this.user);
+            if (this.user !== undefined) {
+              this.checkUser(this.user);
+            } else {
+              this.presentAlert();
+              this.form.controls['password'].reset();
+            }
           },
           err => alert(`Error finding user ${err}`));
     } else {
@@ -75,6 +80,7 @@ export class LoginPage implements OnInit {
   }
 
   checkUser(user: User) {
+    console.log(user);
     const formValue = this.form.value;
     if (user.password === Md5.hashStr(formValue.password)) {
       this.router.navigateByUrl('/main');

@@ -28,7 +28,7 @@ export class UsersService {
     return this.db.list('users', ref => ref.orderByChild('email').equalTo(email)).snapshotChanges().pipe(
       // map(changes => changes[0]),
       tap(console.log),
-      filter(changes => changes && changes.length > 0),
+      // filter(changes => changes && changes.length > 0),
       map(changes => {
         return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
       map(changes => changes[0])
