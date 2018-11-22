@@ -80,7 +80,6 @@ export class LoginPage implements OnInit {
   }
 
   checkUser(user: User) {
-    console.log(user);
     const formValue = this.form.value;
     if (user.password === Md5.hashStr(formValue.password)) {
       this.router.navigateByUrl('/main');
