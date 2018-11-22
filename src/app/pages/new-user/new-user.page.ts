@@ -31,7 +31,8 @@ export class NewUserPage implements OnInit {
         name:  ['', Validators.required],
         surnames:  ['', Validators.required],
         email:  ['', Validators.required],
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        confirm: ['', Validators.required]
     });
    }
 
@@ -49,5 +50,10 @@ export class NewUserPage implements OnInit {
             },
             err => alert(`Error creating user ${err}`)
         );
+  }
+
+  isPasswordMatch() {
+    const val = this.form.value;
+    return val && val.password && val.password === val.confirm;
   }
 }
