@@ -15,21 +15,30 @@ import { UsersService } from './shared/model/users.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { firebaseConfig } from 'src/environments/firebase.config';
 import { AngularFireModule } from '@angular/fire';
+import { SafeUrlPipe } from './shared/security/safe-url.pipe';
+import { AuthService } from './shared/security/auth.service';
+import { AuthGuard } from './shared/security/auth.guard';
+import { HttpModule } from '@angular/http';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SafeUrlPipe],
   entryComponents: [],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     ComponentsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    HttpModule],
   providers: [
     UsersService,
+    AuthService,
+    AuthGuard,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
