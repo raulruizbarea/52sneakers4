@@ -4,23 +4,24 @@
 
 
   <ion-content padding>
+    <form [formGroup]="form" autocomplete="off" novalidate>
       <ion-list>
         <ion-item>
-          <ion-label position="floating">{{ username }}</ion-label>
-          <ion-input type="text" value=""></ion-input>
+          <ion-label position="floating">{{ email }}</ion-label>
+          <ion-input formControlName="email" type="text"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">{{ password }}</ion-label>
-          <ion-input type="password" value=""></ion-input>
+          <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
       </ion-list>
       <ion-row>
         <ion-col>
           <ion-button float-right size="small" color="dark" fill="clear" href="/forget-password" routerDirection="forward">{{ forgetPassword }}</ion-button>
-          <ion-button expand="full" color="primary" block href="/main" routerDirection="forward">{{ signIn }}</ion-button>
+          <ion-button [disabled]="!form.valid" expand="full" color="primary" block (click)="login()">{{ signIn }}</ion-button>
         </ion-col>
       </ion-row>
-    
+    </form>
       <ion-row>
           <ion-col text-center style="position: absolute; bottom: 0px; left: 0px;">
             <ion-button color="dark" fill="clear" href="/new-user" routerDirection="forward">{{ createAccount }}</ion-button>
