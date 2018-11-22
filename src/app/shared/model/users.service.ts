@@ -2,14 +2,13 @@ import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from './user';
 import { Observable, Subject } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, filter } from 'rxjs/operators';
 import { FirebaseApp } from '@angular/fire';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
   sdkDb: any;
 
   constructor(private db: AngularFireDatabase, @Inject(FirebaseApp) fb: FirebaseApp) {
@@ -17,9 +16,22 @@ export class UsersService {
   }
 
   findAllUsers(): Observable<User[]> {
-    return this.db.list('users').valueChanges().pipe(
+    return this.db.list('users').snapshotChanges().pipe(
       tap(console.log),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
       map(User.fromJsonList)
+    );
+  }
+
+  findUserByEmail(email: string): Observable<User> {
+    return this.db.list('users', ref => ref.orderByChild('email').equalTo(email)).snapshotChanges().pipe(
+      // map(changes => changes[0]),
+      tap(console.log),
+      filter(changes => changes && changes.length > 0),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(changes => changes[0])
     );
   }
 
@@ -50,5 +62,5 @@ export class UsersService {
         );
 
     return subject.asObservable();
-}
+  }
 }
