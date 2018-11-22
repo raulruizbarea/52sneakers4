@@ -10,11 +10,26 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 
+import {ReactiveFormsModule} from '@angular/forms';
+import { UsersService } from './shared/model/users.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { firebaseConfig } from 'src/environments/firebase.config';
+import { AngularFireModule } from '@angular/fire';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, ComponentsModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    ComponentsModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    ReactiveFormsModule],
   providers: [
+    UsersService,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
