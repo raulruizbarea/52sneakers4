@@ -3,6 +3,8 @@ import { Constants } from 'src/app/constants/app.constants';
 import { UsersService } from 'src/app/shared/model/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Md5} from 'ts-md5/dist/md5';
+import { AuthService } from 'src/app/shared/security/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-user',
@@ -19,7 +21,10 @@ export class NewUserPage implements OnInit {
   email: string;
   createAccount: string;
 
-  constructor(private fb: FormBuilder, private usersService: UsersService) {
+  constructor(private router: Router,
+              private fb: FormBuilder,
+              private authService: AuthService,
+              private usersService: UsersService) {
     this.password = Constants.Password;
     this.passwordRepeat = Constants.PasswordRepeat;
     this.name = Constants.Name;
@@ -43,13 +48,21 @@ export class NewUserPage implements OnInit {
   save(form) {
     this.form.value.password = Md5.hashStr(this.form.value.password);
 
-    this.usersService.createNewUser(form.value)
-        .subscribe(
-            () => {
-                console.log('User created succesfully.');
-            },
-            err => alert(`Error creating user ${err}`)
-        );
+    this.authService.signUp(this.form.value.email, this.form.value.password)
+            .subscribe(
+                () => {
+                    console.log('Firebase: User created successfully.');
+                    this.usersService.createNewUser(form.value)
+                            .subscribe(
+                                () => {
+                                    console.log('User created succesfully.');
+                                    this.router.navigateByUrl('/home');
+                                },
+                                err => console.log(`Error creating user ${err}`)
+                            );
+                },
+                err => console.log(`Firebase: Error creating user ${err}`)
+            );
   }
 
   isPasswordMatch() {
