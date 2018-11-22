@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { UsersService } from 'src/app/shared/model/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-new-user',
@@ -39,6 +40,8 @@ export class NewUserPage implements OnInit {
   }
 
   save(form) {
+    this.form.value.password = Md5.hashStr(this.form.value.password);
+
     this.usersService.createNewUser(form.value)
         .subscribe(
             () => {
