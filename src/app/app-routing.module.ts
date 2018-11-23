@@ -10,6 +10,7 @@ const routes: Routes = [
   },
   { path: 'home',
     loadChildren: './pages/home/home.module#HomePageModule',
+    canActivate: [AuthGuard],
   },
   {
     path: 'welcome',
@@ -22,6 +23,11 @@ const routes: Routes = [
   {
     path: 'new-user',
     loadChildren: './pages/new-user/new-user.module#NewUserPageModule'
+  },
+  {
+    path: 'news',
+    loadChildren: './pages/news/news.module#NewsPageModule',
+    canActivate: [AuthGuard],
   },
 ];
 
