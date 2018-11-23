@@ -43,16 +43,6 @@ export class LoginPage implements OnInit {
     console.log('ngOnInit LoginPage');
   }
 
-  /*
-  findUsers() {
-    this.usersService.findAllUsers().pipe(
-      tap(console.log))
-      .subscribe(
-          users => this.allUsers = users
-      );
-  }
-  */
-
   login() {
     if (this.form.valid) {
       const formValue = this.form.value;
