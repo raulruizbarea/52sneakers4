@@ -35,12 +35,11 @@ export class UsersService {
     );
   }
 
-  createNewUser(user: any): Observable<any> {
+  createNewUser(uid: string, user: any): Observable<any> {
     const userToSave = Object.assign({}, user);
-    const newUserKey = this.sdkDb.ref().child('users').push().key;
     const dataToSave = {};
 
-    dataToSave['users/' + newUserKey] = userToSave;
+    dataToSave['users/' + uid] = userToSave;
 
     return this.firebaseUpdate(dataToSave);
   }
