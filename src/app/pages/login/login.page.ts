@@ -4,7 +4,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { UsersService } from 'src/app/shared/model/users.service';
 import { User } from 'src/app/shared/model/user';
 import { tap } from 'rxjs/operators';
-import { Md5 } from 'ts-md5';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/security/auth.service';
@@ -18,7 +17,6 @@ export class LoginPage implements OnInit {
   form: FormGroup;
   submitted = false;
 
-  // allUsers: User[];
   user: User;
 
   email: string;
@@ -37,7 +35,7 @@ export class LoginPage implements OnInit {
 
     this.form = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required])]
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }
 
@@ -65,7 +63,7 @@ export class LoginPage implements OnInit {
           user => {
             this.user = user;
             if (this.user !== undefined) {
-              this.checkUser(this.user);
+              this.doLogin();
             } else {
               this.presentAlert();
               this.form.controls['password'].reset();
@@ -80,13 +78,12 @@ export class LoginPage implements OnInit {
     }
   }
 
-  checkUser(user: User) {
+  doLogin() {
     const formValue = this.form.value;
-
-    this.authService.login(formValue.email, Md5.hashStr(formValue.password))
+    this.authService.login(formValue.email, formValue.password)
           .subscribe(
               () => {
-                this.router.navigate(['/main']);
+                this.router.navigate(['/home']);
               },
               err => {
                 this.presentAlert();
