@@ -41,6 +41,12 @@ export class AuthService {
 
     return subject.asObservable();
   }
+  
+  resetPassword(email) {
+    return this.afAuth.auth.sendPasswordResetEmail(email)
+      .then(() => console.log("Email sent"))
+      .catch((error) => console.log(error))
+  }
 
   logout() {
     this.afAuth.auth.signOut();
