@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/model/users.service';
 import { User } from 'src/app/shared/model/user';
 import { tap } from 'rxjs/operators';

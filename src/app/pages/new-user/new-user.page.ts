@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { UsersService } from 'src/app/shared/model/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {Md5} from 'ts-md5/dist/md5';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { Router } from '@angular/router';
 
@@ -46,17 +45,18 @@ export class NewUserPage implements OnInit {
   }
 
   save(form) {
-    this.form.value.password = Md5.hashStr(this.form.value.password);
+    this.form.removeControl('confirm');
 
     this.authService.signUp(this.form.value.email, this.form.value.password)
             .subscribe(
-                () => {
+                res => {
                     console.log('Firebase: User created successfully.');
-                    this.usersService.createNewUser(form.value)
+                    this.form.removeControl('password');
+                    this.usersService.createNewUser(this.authService.authInfo$.value.$uid, this.form.value)
                             .subscribe(
                                 () => {
                                     console.log('User created succesfully.');
-                                    this.router.navigateByUrl('/main');
+                                    this.router.navigateByUrl('/home');
                                 },
                                 err => console.log(`Error creating user ${err}`)
                             );
