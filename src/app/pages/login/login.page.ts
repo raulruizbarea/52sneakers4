@@ -7,6 +7,7 @@ import { tap } from 'rxjs/operators';
 import { Md5 } from 'ts-md5';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/shared/security/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginPage implements OnInit {
   createAccount: string;
   forgetPassword: string;
 
-  constructor(private fb: FormBuilder, private usersService: UsersService,
+  constructor(private fb: FormBuilder, private usersService: UsersService, private authService: AuthService,
     private router: Router, public alertController: AlertController) {
     this.email = Constants.Email;
     this.password = Constants.Password;
@@ -70,7 +71,7 @@ export class LoginPage implements OnInit {
               this.form.controls['password'].reset();
             }
           },
-          err => alert(`Error finding user ${err}`));
+          err => console.log(`Error finding user ${err}`));
     } else {
       Object.keys(this.form.controls).forEach(field => {
         const control = this.form.get(field);
@@ -81,12 +82,17 @@ export class LoginPage implements OnInit {
 
   checkUser(user: User) {
     const formValue = this.form.value;
-    if (user.password === Md5.hashStr(formValue.password)) {
-      this.router.navigateByUrl('/main');
-    } else {
-      this.presentAlert();
-      this.form.controls['password'].reset();
-    }
+
+    this.authService.login(formValue.email, Md5.hashStr(formValue.password))
+          .subscribe(
+              () => {
+                this.router.navigate(['/main']);
+              },
+              err => {
+                this.presentAlert();
+                this.form.controls['password'].reset();
+              }
+          );
   }
 
   async presentAlert() {
