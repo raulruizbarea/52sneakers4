@@ -29,7 +29,14 @@ const routes: Routes = [
     loadChildren: './pages/news/news.module#NewsPageModule',
     canActivate: [AuthGuard],
   },
-  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule', canActivate: [AuthGuard], },
+  {
+    path: 'profile',
+    loadChildren: './pages/profile/profile.module#ProfilePageModule',
+    canActivate: [AuthGuard],
+  },
+  { path: 'ForgetPassword',
+    loadChildren: './pages/forget-password/forget-password.module#ForgetPasswordPageModule',
+  },
 ];
 
 @NgModule({
