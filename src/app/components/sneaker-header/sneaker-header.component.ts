@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { AuthInfo } from 'src/app/shared/security/auth-info';
 import { AuthService } from 'src/app/shared/security/auth.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'sneaker-header',
@@ -12,8 +13,12 @@ export class SneakerHeaderComponent implements OnInit {
   appName: string;
   authInfo: AuthInfo;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private afAuth: AngularFireAuth) {
     this.appName = Constants.AppName;
+  }
+
+  isLoggedIn() {
+    return this.afAuth.auth.currentUser;
   }
 
   ngOnInit() {

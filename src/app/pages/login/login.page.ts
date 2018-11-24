@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsersService } from 'src/app/shared/model/users.service';
 import { User } from 'src/app/shared/model/user';
-import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/security/auth.service';
+import { AuthInfo } from 'src/app/shared/security/auth-info';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginPage implements OnInit {
   createAccount: string;
   forgetPassword: string;
 
-  constructor(private fb: FormBuilder, private usersService: UsersService, private authService: AuthService,
+  constructor(private fb: FormBuilder, private authService: AuthService,
     private router: Router, public alertController: AlertController) {
     this.email = Constants.Email;
     this.password = Constants.Password;

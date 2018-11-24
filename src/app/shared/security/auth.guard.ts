@@ -11,7 +11,7 @@ import 'rxjs/add/operator/take';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private afAuth: AngularFireAuth, private authService: AuthService, private router: Router) {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
 
   }
 

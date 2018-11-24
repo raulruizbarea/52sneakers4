@@ -1,0 +1,21 @@
+<ion-menu>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>{{ menuTitle }}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+          <ion-item ion-item tappable *ngFor="let p of pages;  let i=index" (click)="openPage(p, i);">
+            <ion-icon [name]="p.icon"></ion-icon>
+            {{p.title}} 
+          </ion-item>
+        </ion-list>
+      </ion-content>
+      <ion-footer>
+        <ion-toolbar>
+          <ion-title tappable (click)="logout()" text-center>{{ disconnect }}</ion-title>
+        </ion-toolbar>
+      </ion-footer>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
