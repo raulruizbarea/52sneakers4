@@ -46,40 +46,23 @@ export class LoginPage implements OnInit {
   login() {
     if (this.form.valid) {
       const formValue = this.form.value;
-
-      this.usersService.findUserByEmail(formValue.email).pipe(
-        tap(console.log))
-        .subscribe(
-          user => {
-            this.user = user;
-            if (this.user !== undefined) {
-              this.doLogin();
-            } else {
-              this.presentAlert();
-              this.form.controls['password'].reset();
-            }
-          },
-          err => console.log(`Error finding user ${err}`));
+      this.authService.login(formValue.email, formValue.password)
+          .subscribe(
+              () => {
+                this.router.navigate(['/home']);
+              },
+              err => {
+                console.log(`Error finding user ${err}`);
+                this.presentAlert();
+                this.form.controls['password'].reset();
+              }
+          );
     } else {
       Object.keys(this.form.controls).forEach(field => {
         const control = this.form.get(field);
         control.markAsDirty({ onlySelf: true });
       });
     }
-  }
-
-  doLogin() {
-    const formValue = this.form.value;
-    this.authService.login(formValue.email, formValue.password)
-          .subscribe(
-              () => {
-                this.router.navigate(['/home']);
-              },
-              err => {
-                this.presentAlert();
-                this.form.controls['password'].reset();
-              }
-          );
   }
 
   async presentAlert() {
