@@ -27,16 +27,16 @@ export class AuthService {
     const subject = new Subject<any>();
 
     promise
-        .then(res => {
+    .then(res => {
                 const authInfo = new AuthInfo(this.afAuth.auth.currentUser.uid);
                 this.authInfo$.next(authInfo);
                 subject.next(res);
                 subject.complete();
             },
             err => {
-                this.authInfo$.error(err);
-                subject.error(err);
-                subject.complete();
+              // this.authInfo$.error(err);
+              subject.error(err);
+              subject.complete();
             });
 
     return subject.asObservable();
