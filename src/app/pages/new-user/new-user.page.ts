@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { UsersService } from 'src/app/shared/model/users.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { Router } from '@angular/router';
 
@@ -32,11 +32,11 @@ export class NewUserPage implements OnInit {
     this.createAccount = Constants.CreateAccount;
 
     this.form = this.fb.group({
-        name:  ['', Validators.required],
-        surnames:  ['', Validators.required],
-        email:  ['', Validators.required],
-        password: ['', Validators.required],
-        confirm: ['', Validators.required]
+        name:  ['', Validators.compose([Validators.required])],
+        surnames:  ['', Validators.compose([Validators.required])],
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+        confirm: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
    }
 
@@ -45,28 +45,63 @@ export class NewUserPage implements OnInit {
   }
 
   save(form) {
-    this.form.removeControl('confirm');
+    if (this.form.valid && this.form.controls['password'].value === this.form.controls['confirm'].value) {
 
     this.authService.signUp(this.form.value.email, this.form.value.password)
             .subscribe(
                 res => {
                     console.log('Firebase: User created successfully.');
-                    this.form.removeControl('password');
+                    this.removePasswordAndConfirm();
                     this.usersService.createNewUser(this.authService.authInfo$.value.$uid, this.form.value)
                             .subscribe(
                                 () => {
                                     console.log('User created succesfully.');
                                     this.router.navigateByUrl('/home');
                                 },
-                                err => console.log(`Error creating user ${err}`)
+                                err => {
+                                  console.log(`Error creating user ${err}`);
+                                  this.addPasswordAndConfirm();
+                                }
                             );
                 },
-                err => console.log(`Firebase: Error creating user ${err}`)
+                err => {
+                  console.log(`Firebase: Error creating user ${err}`);
+                  this.addPasswordAndConfirm();
+                }
             );
+    } else {
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field);
+        control.markAsDirty({ onlySelf: true });
+      });
+    }
+  }
+
+  addPasswordAndConfirm() {
+    this.form.addControl('password', new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])));
+    this.form.addControl('confirm', new FormControl('', Validators.compose([Validators.required, Validators.minLength(6)])));
+  }
+
+  removePasswordAndConfirm() {
+    this.form.removeControl('password');
+    this.form.removeControl('confirm');
   }
 
   isPasswordMatch() {
     const val = this.form.value;
-    return val && val.password && val.password === val.confirm;
+    if (val.confirm) {
+      return val && val.confirm && val.password && val.password === val.confirm;
+    } else {
+      return true;
+    }
+  }
+
+  isErrorVisible(field: string, error: string) {
+    if (!this.form.controls[field]) {
+      return false;
+    }
+    return this.form.controls[field].dirty
+            && this.form.controls[field].errors &&
+            this.form.controls[field].errors[error];
   }
 }

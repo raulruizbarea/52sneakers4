@@ -5,31 +5,61 @@
 <ion-content padding>
   <form [formGroup]="form">
     <ion-list>
+        <ion-item>
+            <ion-label position="floating">{{ name }}</ion-label>
+            <ion-input formControlName="name" type="text"></ion-input>
+          </ion-item>
+          <div class="field-error-message" *ngIf="isErrorVisible('name','required')">
+              El nom és obligatori.
+            </div>
+          <ion-item>
+            <ion-label position="floating">{{ surnames }}</ion-label>
+            <ion-input formControlName="surnames" type="text"></ion-input>
+          </ion-item>
+          <div class="field-error-message" *ngIf="isErrorVisible('surnames','required')">
+              Els cognoms són obligatoris.
+            </div>
+
       <ion-item>
         <ion-label position="floating">{{ email }}</ion-label>
         <ion-input formControlName="email" type="text"></ion-input>
       </ion-item>
+      <div class="field-error-message" *ngIf="isErrorVisible('email','required')">
+        El email és obligatori.
+      </div>
+      <div class="field-error-message" *ngIf="isErrorVisible('email','email')">
+        Email no vàlid.
+      </div>
       <ion-item>
         <ion-label position="floating">{{ password }}</ion-label>
         <ion-input formControlName="password" type="password"></ion-input>
       </ion-item>
+      <div class="field-error-message" *ngIf="isErrorVisible('password','required')">
+        El password és obligatori.
+      </div>
+      <div class="field-error-message" *ngIf="isErrorVisible('password','minlength')">
+        El password amb longitud mínima de 6.
+      </div>
       <ion-item>
         <ion-label position="floating">{{ passwordRepeat }}</ion-label>
         <ion-input formControlName="confirm" type="password"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">{{ name }}</ion-label>
-        <ion-input formControlName="name" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">{{ surnames }}</ion-label>
-        <ion-input formControlName="surnames" type="text"></ion-input>
-      </ion-item>
+      <div class="field-error-message" *ngIf="isErrorVisible('confirm','required')">
+        La confirmació és obligatoria.
+      </div>
+      <div class="field-error-message" *ngIf="isErrorVisible('confirm','minlength')">
+        La confirmació amb longitud mínima de 6.
+      </div>
+
+      <div class="field-error-message" *ngIf="!isPasswordMatch()">
+        Els passwords no coincideixen.
+      </div>
+      
     </ion-list>
   </form>
   <ion-row>
     <ion-col>
-      <ion-button color="primary" expand="full" (click)="save(form)" [disabled]="!isPasswordMatch()">{{ createAccount }}</ion-button>
+      <ion-button color="primary" expand="full" (click)="save(form)">{{ createAccount }}</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
