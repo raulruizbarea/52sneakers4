@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/shared/security/auth.service';
 
 @Component({
   selector: 'app-news',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPage implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     console.log('ngOnInit NewsPage');
+    this.logout();
   }
-
+  logout() {
+    this.authService.logout();
+  }
 }
