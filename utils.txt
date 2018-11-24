@@ -1,0 +1,13 @@
+this.usersService.findUserByEmail(formValue.email).pipe(
+  tap(console.log))
+  .subscribe(
+    user => {
+      this.user = user;
+      if (this.user !== undefined) {
+        this.doLogin();
+      } else {
+        this.presentAlert();
+        this.form.controls['password'].reset();
+      }
+    },
+    err => console.log(`Error finding user ${err}`));

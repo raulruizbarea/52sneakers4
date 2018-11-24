@@ -20,6 +20,7 @@ import { AuthService } from './shared/security/auth.service';
 import { AuthGuard } from './shared/security/auth.guard';
 import { HttpModule } from '@angular/http';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ComponentsModule,
+    CommonModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
