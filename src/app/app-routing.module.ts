@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren: './pages/profile/profile.module#ProfilePageModule',
     canActivate: [AuthGuard],
   },
-  { path: 'ForgetPassword',
+  { path: 'forget-password',
     loadChildren: './pages/forget-password/forget-password.module#ForgetPasswordPageModule',
   },
 ];
