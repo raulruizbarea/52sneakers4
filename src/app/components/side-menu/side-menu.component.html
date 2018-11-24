@@ -5,17 +5,23 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
+
         <ion-list>
-          <ion-item ion-item tappable *ngFor="let p of pages;  let i=index" (click)="openPage(p, i);">
-            <ion-icon [name]="p.icon"></ion-icon>
-            {{p.title}} 
+            <ion-menu-toggle auto-hide="false">
+          <ion-item button tappable *ngFor="let p of pages;  let i=index" (click)="openPage(p, i);">
+            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-label>{{p.title}}</ion-label>
           </ion-item>
+          </ion-menu-toggle>
         </ion-list>
+
       </ion-content>
+
       <ion-footer>
         <ion-toolbar>
           <ion-title tappable (click)="logout()" text-center>{{ disconnect }}</ion-title>
         </ion-toolbar>
       </ion-footer>
+
   </ion-menu>
   <ion-router-outlet main></ion-router-outlet>
