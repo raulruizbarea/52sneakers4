@@ -52,4 +52,7 @@ export const Constants = {
 
   //  Search
   Search: 'Cerca',
+
+  // News
+  ReadMore: 'Llegir més',
 };
