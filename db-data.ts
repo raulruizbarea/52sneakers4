@@ -1,30 +1,34 @@
 export const dbData = {
   'news': [
     {
-      'name': 'Títol 1',
-      'description': 'Descripció curta 1',
+      'title': 'A Lorem ipsum dolor sit amet. 1',
+      'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor' +
+                     ' sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       'longDescription': 'Descripció llarga 1',
-      'date': '2018/11/11',
+      'date': '11/11/2013',
       'author': 'Raul Ruiz',
-      'url': 'https://images.pexels.com/photos/1153838/pexels-photo-1153838.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+      'urlImage': 'https://images.pexels.com/photos/1153838/pexels-photo-1153838.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
       'show': true,
     },
     {
-        'name': 'Títol 2',
-        'description': 'Descripció curta 2',
-        'longDescription': 'Descripció llarga 2',
-        'date': '2018/11/12',
+        'title': 'B Lorem ipsum dolor sit amet. 2',
+        'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor' +
+                     ' sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      'longDescription': 'Descripció llarga 2',
+        'date': '12/11/2018',
         'author': 'Raul Ruiz',
-        'url': 'https://images.pexels.com/photos/48262/pexels-photo-48262.jpeg?cs=srgb&dl=after-the-rain-footwear-jump-48262.jpg&fm=jpg',
-        'show': true,
+        'urlImage': 'https://images.pexels.com/photos/48262/pexels-photo-48262.jpeg?' +
+                    'cs=srgb&dl=after-the-rain-footwear-jump-48262.jpg&fm=jpg',
+        'show': false,
       },
       {
-        'name': 'Títol 3',
-        'description': 'Descripció curta 3',
+        'title': 'C Lorem ipsum dolor sit amet. 3',
+        'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor' +
+                     ' sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         'longDescription': 'Descripció llarga 3',
-        'date': '2018/11/13',
+        'date': '12/13/2015',
         'author': 'Raul Ruiz',
-        'url': 'https://images.pexels.com/photos/998883/pexels-photo-998883.jpeg?cs=srgb&dl=close-up-color-daylight-998883.jpg&fm=jpg',
+        'urlImage': 'https://images.pexels.com/photos/998883/pexels-photo-998883.jpeg?cs=srgb&dl=close-up-color-daylight-998883.jpg&fm=jpg',
         'show': true,
       },
   ],

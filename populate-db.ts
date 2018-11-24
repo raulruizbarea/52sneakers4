@@ -12,15 +12,15 @@ const newsRef = database().ref('news');
 const sneakersRef = database().ref('sneakers');
 
 dbData.news.forEach( newJson => {
-  console.log('adding new', newJson.name);
+  console.log('adding new', newJson.title);
 
   const newRef = newsRef.push({
-    name: newJson.name,
+    title: newJson.title,
     description: newJson.description,
     longDescription: newJson.longDescription,
     date: newJson.date,
     author: newJson.author,
-    url: newJson.url,
+    urlImage: newJson.urlImage,
     show: newJson.show,
   });
 
