@@ -1,18 +1,18 @@
 <ion-menu>
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>{{ menuTitle }}</ion-title>
+        <ion-title text-center>{{ menuTitle }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
 
         <ion-list>
-            <ion-menu-toggle auto-hide="false">
+           
           <ion-item button tappable *ngFor="let p of pages;  let i=index" (click)="openPage(p, i);">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
             <ion-label>{{p.title}}</ion-label>
           </ion-item>
-          </ion-menu-toggle>
+         
         </ion-list>
 
       </ion-content>
