@@ -62,4 +62,7 @@ export const Constants = {
   EmailSent: 'Email enviat correctament.',
   SubscriptionsOffers: 'T\'enviarem extraordinaries ofertes i noves sneakers cada setmana!',
   WhichEmail: 'Quin és el teu email?',
+  Send: 'Enviar',
+  CompleteName: 'Nom complet',
+  Comments: 'Comentaris',
 };

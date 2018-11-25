@@ -1,6 +1,34 @@
-<ion-header>
-  Contact
-</ion-header>
-<ion-content>
-  Va por ti Pau!
-</ion-content>
+<ion-content color="primary">
+    <sneaker-modal-header modalTitle="{{modalTitle}}"></sneaker-modal-header>
+    
+    <form padding [formGroup]="form">
+        <ion-list>
+                <ion-item color="primary">
+                    <ion-label position="floating">{{ name }}</ion-label>
+                <ion-input formControlName="name" type="text"></ion-input>
+                </ion-item>
+                <div class="field-error-message" *ngIf="isErrorVisible('name','required')">
+                    El nom complet és obligatori.
+                </div>
+                <ion-item color="primary">
+                    <ion-label position="floating">{{ email }}</ion-label>
+                    <ion-input formControlName="email" type="text"></ion-input>
+                </ion-item>
+                <div class="field-error-message" *ngIf="isErrorVisible('email','required')">
+                El email és obligatori.
+                </div>
+                <div class="field-error-message" *ngIf="isErrorVisible('email','email')">
+                Email no vàlid.
+                </div>
+                <ion-item color="primary">
+                    <ion-label position="floating">{{ comments }}</ion-label>
+                    <ion-textarea rows="6" formControlName="text"></ion-textarea>
+                </ion-item>
+                <div class="field-error-message" *ngIf="isErrorVisible('text','required')">
+                El comentari és obligatori.
+                </div>
+        </ion-list>
+      </form>
+
+      <ion-button color="light" padding expand="full" (click)="save(form)">{{ send }}</ion-button>
+  </ion-content>
