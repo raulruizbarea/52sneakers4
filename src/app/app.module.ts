@@ -21,6 +21,8 @@ import { AuthGuard } from './shared/security/auth.guard';
 import { HttpModule } from '@angular/http';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CommonModule } from '@angular/common';
+import { SubscriptionPageModule } from './pages/subscription/subscription.module';
+import { ContactPageModule } from './pages/contact/contact.module';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { CommonModule } from '@angular/common';
     IonicModule.forRoot(),
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpModule],
+    HttpModule,
+    ContactPageModule,
+    SubscriptionPageModule],
   providers: [
     UsersService,
     AuthService,
