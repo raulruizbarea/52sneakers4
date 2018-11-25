@@ -11,3 +11,6 @@ this.usersService.findUserByEmail(formValue.email).pipe(
       }
     },
     err => console.log(`Error finding user ${err}`));
+
+
+     this.allNews = news.sort((a, b) => a.title.localeCompare(b.title));

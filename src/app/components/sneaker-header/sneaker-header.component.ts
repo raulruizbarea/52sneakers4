@@ -3,6 +3,7 @@ import { Constants } from 'src/app/constants/app.constants';
 import { AuthInfo } from 'src/app/shared/security/auth-info';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'sneaker-header',
@@ -10,7 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./sneaker-header.component.scss'],
 })
 export class SneakerHeaderComponent implements OnInit {
-  appName: string;
+  @Input() appName: string;
   authInfo: AuthInfo;
 
   constructor(private authService: AuthService, private afAuth: AngularFireAuth) {

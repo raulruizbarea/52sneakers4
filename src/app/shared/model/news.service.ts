@@ -23,4 +23,15 @@ export class NewsService {
       map(News.fromJsonList)
     );
   }
+
+  findNewsByKey(key: string): Observable<News> {
+    return this.db.list('news', ref => ref.orderByKey().equalTo(key)).snapshotChanges().pipe(
+      // map(changes => changes[0]),
+      tap(console.log),
+      // filter(changes => changes && changes.length > 0),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(changes => changes[0])
+    );
+  }
 }
