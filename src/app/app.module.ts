@@ -23,6 +23,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CommonModule } from '@angular/common';
 import { SubscriptionPageModule } from './pages/subscription/subscription.module';
 import { ContactPageModule } from './pages/contact/contact.module';
+import { SubscriptionsService } from './shared/model/subscriptions.service';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ContactPageModule } from './pages/contact/contact.module';
     SubscriptionPageModule],
   providers: [
     UsersService,
+    SubscriptionsService,
     AuthService,
     AuthGuard,
     StatusBar,

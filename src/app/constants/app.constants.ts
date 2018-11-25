@@ -59,4 +59,7 @@ export const Constants = {
   // Modal
   SubscribeUnsubscribe: 'Subscriu',
   SampleEmail: 'example@gmail.com',
+  EmailSent: 'Email enviat correctament.',
+  SubscriptionsOffers: 'T\'enviarem extraordinaries ofertes i noves sneakers cada setmana!',
+  WhichEmail: 'Quin és el teu email?',
 };
