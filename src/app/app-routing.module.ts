@@ -30,6 +30,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'news/:id',
+    loadChildren: './pages/news-detail/news-detail.module#NewsDetailPageModule',
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'profile',
     loadChildren: './pages/profile/profile.module#ProfilePageModule',
     canActivate: [AuthGuard],
