@@ -1,0 +1,22 @@
+<ion-content color="primary">
+  <sneaker-modal-header modalTitle="{{modalTitle}}"></sneaker-modal-header>
+  <form padding [formGroup]="form">
+      <ion-list>
+        <ion-item color="primary" lines="none">
+            <ion-label position="floating">{{ name }}</ion-label>
+        </ion-item>
+     
+        <ion-item color="primary" lines="none">
+          <ion-input text-center placeholder="{{sampleEmail}}" formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <div class="field-error-message" *ngIf="isErrorVisible('email','required')">
+          El email és obligatori.
+        </div>
+        <div class="field-error-message" *ngIf="isErrorVisible('email','email')">
+          Email no vàlid.
+        </div>
+       
+      </ion-list>
+    </form>
+    <ion-button color="light" padding expand="full" (click)="save(form)">{{ subscription }}</ion-button>
+</ion-content>
