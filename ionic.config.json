@@ -1,5 +1,7 @@
 {
   "name": "52sneakers",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
