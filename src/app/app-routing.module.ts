@@ -42,6 +42,16 @@ const routes: Routes = [
   { path: 'forget-password',
     loadChildren: './pages/forget-password/forget-password.module#ForgetPasswordPageModule',
   },
+  {
+    path: 'subscription',
+    loadChildren: './pages/subscription/subscription.module#SubscriptionPageModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'contact',
+    loadChildren: './pages/contact/contact.module#ContactPageModule',
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

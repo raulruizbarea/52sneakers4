@@ -4,10 +4,12 @@ import { SneakerFooterComponent } from './sneaker-footer/sneaker-footer.componen
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-modal-header.component';
 
 @NgModule({
   declarations: [
     SneakerHeaderComponent,
+    SneakerModalHeaderComponent,
     SneakerFooterComponent,
     SideMenuComponent
   ],
@@ -17,6 +19,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
   ],
   exports: [
     SneakerHeaderComponent,
+    SneakerModalHeaderComponent,
     SneakerFooterComponent,
     SideMenuComponent]
 })

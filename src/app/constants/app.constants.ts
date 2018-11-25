@@ -55,4 +55,8 @@ export const Constants = {
 
   // News
   ReadMore: 'Llegir més',
+
+  // Modal
+  SubscribeUnsubscribe: 'Subscriu',
+  SampleEmail: 'example@gmail.com',
 };
