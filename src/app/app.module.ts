@@ -26,7 +26,12 @@ import { ContactPageModule } from './pages/contact/contact.module';
 import { SubscriptionsService } from './shared/model/subscriptions.service';
 import { EmailService } from './shared/model/email.service';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { SneakerService } from './shared/model/sneaker.service';
 
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [AppComponent, SafeUrlPipe],
@@ -47,6 +52,7 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
   providers: [
     UsersService,
     SubscriptionsService,
+    SneakerService,
     AuthService,
     AuthGuard,
     EmailComposer,
