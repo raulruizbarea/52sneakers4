@@ -1,0 +1,15 @@
+<ion-row>
+  <ion-col *ngFor="let sneaker of sneakers" size="6">
+      <ion-card>
+          <ion-card-content>
+        <img [src]="sneaker?.urlImage" />
+        <ion-card-header>
+          <ion-card-subtitle>{{ sneaker.name }}</ion-card-subtitle>
+        </ion-card-header>
+        <p text-end class="sneaker-description">{{ sneaker.description }}</p>
+        <p text-end class="sneaker-price"><b>{{ sneaker.price | currency: 'EUR':'symbol':undefined:'es'}}</b></p>
+        </ion-card-content>
+      </ion-card>
+
+  </ion-col>
+</ion-row>

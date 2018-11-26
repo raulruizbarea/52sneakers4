@@ -6,6 +6,8 @@
 
 <ion-content>
   <slider></slider>
+
+  <sneaker-cards-list *ngIf="filtered" [sneakers]="filtered"></sneaker-cards-list>
 </ion-content>
 
 <ion-footer>

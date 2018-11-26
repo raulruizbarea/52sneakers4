@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Sneaker } from 'src/app/shared/model/sneaker';
+import { SneakerService } from 'src/app/shared/model/sneaker.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  allSneakers: Sneaker[];
+  filtered: Sneaker[];
 
-  constructor(private router: Router) { }
+  constructor(private sneakerService: SneakerService) { }
 
   ngOnInit() {
       console.log('ngOnInit HomePage');
-      // this.router.navigate(['/news']);
+      this.sneakerService.findAllSneakers().pipe(
+        tap(console.log))
+        .subscribe(
+            sneakers => this.allSneakers = this.filtered = sneakers
+        );
+  }
+
+  search(search: string) {
+    // this.filtered = this.allSneakers.filter(sneaker => sneaker.description.includes(search) );
   }
 }
