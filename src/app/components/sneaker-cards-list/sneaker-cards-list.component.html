@@ -1,7 +1,15 @@
 <ion-row>
   <ion-col *ngFor="let sneaker of sneakers" size="6">
+      
       <ion-card>
+          <ion-fab vertical="top" horizontal="end" slot="fixed">
+              <ion-fab-button>
+                  <ion-icon name="heart-empty"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+      
           <ion-card-content>
+            
         <img [src]="sneaker?.urlImage" />
         <ion-card-header>
           <ion-card-subtitle>{{ sneaker.name }}</ion-card-subtitle>
