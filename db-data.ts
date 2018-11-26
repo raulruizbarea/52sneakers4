@@ -36,6 +36,8 @@ export const dbData = {
   'sneakers': [
     {
       'name': 'Nike Air MAX',
+      'urlImage': 'https://images.pexels.com/photos/66259/sports-shoes-running-shoes-sneakers-marathon-shoes-66259.jpeg' +
+                  '?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       'description': 'Air MAX descripció',
       'longDescription': 'Air MAX descripció llarga',
       'date': '2018/09/01',
@@ -64,6 +66,7 @@ export const dbData = {
     },
     {
       'name': 'Converse',
+      'urlImage': 'https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       'description': 'Converse MAX descripció',
       'longDescription': 'Converse MAX descripció llarga',
       'date': '2018/10/10',
@@ -84,6 +87,7 @@ export const dbData = {
     },
     {
       'name': 'Adidas Air MAX',
+      'urlImage': 'https://images.pexels.com/photos/267294/pexels-photo-267294.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       'description': 'Adidas MAX descripció',
       'longDescription': 'Adidas MAX descripció llarga',
       'date': '2018/11/11',
