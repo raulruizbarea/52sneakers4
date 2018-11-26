@@ -24,6 +24,8 @@ import { CommonModule } from '@angular/common';
 import { SubscriptionPageModule } from './pages/subscription/subscription.module';
 import { ContactPageModule } from './pages/contact/contact.module';
 import { SubscriptionsService } from './shared/model/subscriptions.service';
+import { EmailService } from './shared/model/email.service';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 
 @NgModule({
@@ -47,9 +49,11 @@ import { SubscriptionsService } from './shared/model/subscriptions.service';
     SubscriptionsService,
     AuthService,
     AuthGuard,
+    EmailComposer,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    EmailService,
   ],
   bootstrap: [AppComponent]
 })
