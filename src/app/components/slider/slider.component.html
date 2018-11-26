@@ -1,0 +1,17 @@
+<ion-row>
+  <ion-col no-padding>
+    <ion-slides #slides pager="true" [options]="slideOpts" class="custom-bullets">
+      <ion-slide>
+        <ion-img src="https://images.pexels.com/photos/786003/pexels-photo-786003.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></ion-img>
+      </ion-slide>
+      <ion-slide> 
+        <ion-img src="https://images.pexels.com/photos/1124466/pexels-photo-1124466.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></ion-img>
+      </ion-slide>
+      <ion-slide>
+        <ion-img src="https://images.pexels.com/photos/573315/pexels-photo-573315.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"></ion-img>
+      </ion-slide>
+    </ion-slides>
+    <div class="swiper-button-next swiper-button-white" (click)="nextSlide()"></div>
+    <div class="swiper-button-prev swiper-button-white" (click)="prevSlide()"></div>
+  </ion-col>
+</ion-row>

@@ -1,0 +1,16 @@
+ion-img {
+  width: 100vw;
+}
+
+ion-slide {
+  height: 250px;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--bullet-background-active);
+}
+
+.custom-bullets {
+  --bullet-background: #fff;
+  --bullet-background-active: white;
+}

@@ -5,13 +5,15 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-modal-header.component';
+import { SliderComponent } from './slider/slider.component';
 
 @NgModule({
   declarations: [
     SneakerHeaderComponent,
     SneakerModalHeaderComponent,
     SneakerFooterComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    SliderComponent
   ],
   imports: [
     IonicModule,
@@ -21,6 +23,7 @@ import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-moda
     SneakerHeaderComponent,
     SneakerModalHeaderComponent,
     SneakerFooterComponent,
+    SliderComponent,
     SideMenuComponent]
 })
 export class ComponentsModule {}
