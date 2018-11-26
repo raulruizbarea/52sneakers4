@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Sneaker } from './sneaker';
+import { Sneaker } from '../shared/model/sneaker';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { AngularFireDatabase } from 'angularfire2/database';

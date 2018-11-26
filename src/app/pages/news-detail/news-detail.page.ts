@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { News } from 'src/app/shared/model/news';
 import { ActivatedRoute } from '@angular/router';
-import { NewsService } from 'src/app/shared/model/news.service';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news-detail',

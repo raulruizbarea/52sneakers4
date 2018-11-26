@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
-import { UsersService } from 'src/app/shared/model/users.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-new-user',

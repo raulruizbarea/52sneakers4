@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from '@angular/fire';
-import { News } from './news';
+import { News } from '../shared/model/news';
 import { tap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 

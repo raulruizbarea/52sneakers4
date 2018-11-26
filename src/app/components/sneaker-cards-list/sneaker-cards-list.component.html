@@ -4,7 +4,7 @@
       <ion-card>
           <ion-fab vertical="top" horizontal="end" slot="fixed">
               <ion-fab-button>
-                  <ion-icon name="heart-empty"></ion-icon>
+                  <ion-icon (click)="doLike(sneaker.$key)" name="heart-empty"></ion-icon>
               </ion-fab-button>
             </ion-fab>
       

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { SubscriptionsService } from 'src/app/shared/model/subscriptions.service';
+import { SubscriptionsService } from 'src/app/services/subscriptions.service';
 import {formatDate} from '@angular/common';
 import { tap } from 'rxjs/operators';
 import { Subscriptions } from 'src/app/shared/model/subscriptions';

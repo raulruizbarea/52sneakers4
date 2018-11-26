@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 
 import {ReactiveFormsModule} from '@angular/forms';
-import { UsersService } from './shared/model/users.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { firebaseConfig } from 'src/environments/firebase.config';
 import { AngularFireModule } from '@angular/fire';
@@ -23,13 +22,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { CommonModule } from '@angular/common';
 import { SubscriptionPageModule } from './pages/subscription/subscription.module';
 import { ContactPageModule } from './pages/contact/contact.module';
-import { SubscriptionsService } from './shared/model/subscriptions.service';
-import { EmailService } from './shared/model/email.service';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
-import { SneakerService } from './shared/model/sneaker.service';
 
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
+import { UsersService } from './services/users.service';
+import { SubscriptionsService } from './services/subscriptions.service';
+import { SneakerService } from './services/sneaker.service';
+import { EmailService } from './services/email.service';
 
 registerLocaleData(localeEs, 'es');
 

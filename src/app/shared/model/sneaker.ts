@@ -10,7 +10,7 @@ export class Sneaker {
     public sizes: string,
     public categories: string,
     public sports: string,
-    public urlImage: string
+    public urlImage: string,
     ) {
 
   }

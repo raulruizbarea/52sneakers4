@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from '@angular/fire';
-import { Subscriptions } from './subscriptions';
+import { Subscriptions } from '../shared/model/subscriptions';
 import { map, tap, filter } from 'rxjs/operators';
 
 @Injectable({

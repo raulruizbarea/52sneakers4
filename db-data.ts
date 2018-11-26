@@ -40,7 +40,7 @@ export const dbData = {
                   '?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       'description': 'Air MAX descripció',
       'longDescription': 'Air MAX descripció llarga',
-      'date': '2018/09/01',
+      'date': '01/09/2018',
       'price': 170.75,
       'brand':  'Nike',
       'sizes':  {
@@ -69,7 +69,7 @@ export const dbData = {
       'urlImage': 'https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       'description': 'Converse MAX descripció',
       'longDescription': 'Converse MAX descripció llarga',
-      'date': '2018/10/10',
+      'date': '10/10/2018',
       'price': 90,
       'brand':  'Converse',
       'sizes':  {
@@ -90,7 +90,7 @@ export const dbData = {
       'urlImage': 'https://images.pexels.com/photos/267294/pexels-photo-267294.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
       'description': 'Adidas MAX descripció',
       'longDescription': 'Adidas MAX descripció llarga',
-      'date': '2018/11/11',
+      'date': '11/11/2018',
       'price': 55.20,
       'brand':  'Adidas',
       'sizes':  {
@@ -100,6 +100,25 @@ export const dbData = {
       },
       'categories': {
         'Dona': true,
+      },
+      'sports': {
+        'Running': true,
+        'Training': true,
+      },
+    },
+    {
+      'name': 'PUMA',
+      'urlImage': '',
+      'description': 'PUMA descripció',
+      'longDescription': 'PUMA descripció llarga',
+      'date': '2018/11/11',
+      'price': 60,
+      'brand':  'Puma',
+      'sizes':  {
+        '38': true,
+      },
+      'categories': {
+        'Home': true,
       },
       'sports': {
         'Running': true,

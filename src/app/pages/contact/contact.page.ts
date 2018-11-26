@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EmailService } from 'src/app/shared/model/email.service';
-import { EmailComposer } from '@ionic-native/email-composer/ngx';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-contact',

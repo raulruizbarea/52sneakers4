@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from 'src/app/shared/model/news.service';
-import { News } from 'src/app/shared/model/news';
 import { tap, map } from 'rxjs/operators';
 import { Constants } from 'src/app/constants/app.constants';
+import { News } from 'src/app/shared/model/news';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news',

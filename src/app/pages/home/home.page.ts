@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Sneaker } from 'src/app/shared/model/sneaker';
-import { SneakerService } from 'src/app/shared/model/sneaker.service';
 import { tap } from 'rxjs/operators';
+import { SneakerService } from 'src/app/services/sneaker.service';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +19,11 @@ export class HomePage implements OnInit {
       this.sneakerService.findAllSneakers().pipe(
         tap(console.log))
         .subscribe(
-            sneakers => this.allSneakers = this.filtered = sneakers
+            sneakers => {
+              this.allSneakers = this.filtered = sneakers;
+            }
         );
+
   }
 
   search(search: string) {
