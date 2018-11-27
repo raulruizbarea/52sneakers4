@@ -4,6 +4,7 @@ import { SneakerService } from 'src/app/services/sneaker.service';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { FirebaseAuth } from '@angular/fire';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'sneaker-cards-list',
@@ -13,7 +14,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class SneakerCardsListComponent implements OnInit {
   @Input() sneakers: Sneaker[];
 
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private sneakerService: SneakerService) { }
 
   ngOnInit() {
     // console.log(this.sneakers);
@@ -22,5 +23,14 @@ export class SneakerCardsListComponent implements OnInit {
   doLike(key) {
     console.log('like: ' + key);
     console.log(this.afAuth.auth.currentUser.uid);
+    this.sneakerService.createNewLike(key, this.afAuth.auth.currentUser.uid,
+      formatDate(new Date(), 'MM/dd/yyyy', 'en').toString()).subscribe(
+      () => {
+          console.log('Like created succesfully.');
+      },
+      err => {
+        console.log(`Error creating like`);
+      }
+    );
   }
 }

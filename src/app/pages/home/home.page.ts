@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sneaker } from 'src/app/shared/model/sneaker';
 import { tap } from 'rxjs/operators';
 import { SneakerService } from 'src/app/services/sneaker.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomePage implements OnInit {
   allSneakers: Sneaker[];
   filtered: Sneaker[];
 
-  constructor(private sneakerService: SneakerService) { }
+  constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
       console.log('ngOnInit HomePage');
@@ -21,6 +22,10 @@ export class HomePage implements OnInit {
         .subscribe(
             sneakers => {
               this.allSneakers = this.filtered = sneakers;
+              this.allSneakers.forEach(sneaker => {
+                sneaker.like = true;
+                console.log(sneaker);
+              });
             }
         );
 

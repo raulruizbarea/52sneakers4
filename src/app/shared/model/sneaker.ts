@@ -11,6 +11,7 @@ export class Sneaker {
     public categories: string,
     public sports: string,
     public urlImage: string,
+    public like?: boolean,
     ) {
 
   }
