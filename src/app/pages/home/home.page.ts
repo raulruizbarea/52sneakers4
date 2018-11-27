@@ -21,11 +21,19 @@ export class HomePage implements OnInit {
         tap(console.log))
         .subscribe(
             sneakers => {
-              this.allSneakers = this.filtered = sneakers;
+              this.allSneakers = sneakers;
               this.allSneakers.forEach(sneaker => {
-                sneaker.like = true;
-                console.log(sneaker);
+                  sneaker.like = this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid);
+                  /*
+                this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid).subscribe(
+                  like => {
+                    sneaker.like = like;
+                    console.log(sneaker.like);
+                  }
+                );*/
               });
+              // console.log(this.allSneakers);
+              this.filtered = this.allSneakers;
             }
         );
 

@@ -27,18 +27,27 @@ export class SneakerService {
   createNewLike(sneakerKey: string, userKey: string, data: any): Observable<any> {
     const dataToSave = {};
 
-    dataToSave['sneakersPerUser/' + userKey + '/' + sneakerKey + '/date'] = data;
-    dataToSave['usersPerSneaker/' + sneakerKey + '/' + userKey + '/date'] = data;
+    dataToSave['sneakersPerUser/' + userKey + '/' + sneakerKey + '/dateLike'] = data;
+    dataToSave['usersPerSneaker/' + sneakerKey + '/' + userKey + '/dateLike'] = data;
 
     return this.firebaseUpdate(dataToSave);
   }
 
-  findLike(sneakerKey: string, userKey: string): any {
-    // return this.db.list('usersPerSneaker/' + sneakerKey + '/' + userKey);
-    this.sdkDb.ref('usersPerSneaker/' + sneakerKey).child(userKey).once('value', function(snapshot) {
-      const exists = (snapshot.val() !== null);
-      return exists;
-    });
+  isLike(sneakerKey: string, userKey: string): any {
+    this.sdkDb.ref().child('usersPerSneaker/' + sneakerKey + '/' + userKey).on('value',
+      snap => {
+        // console.log('Received usersPerSneaker with a given Sneaker Id and User Id', snap.val());
+
+        if (snap.val()) {
+          if (snap.val().dateLike) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      });
   }
 
   firebaseUpdate(dataToSave) {
