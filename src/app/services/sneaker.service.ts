@@ -24,13 +24,34 @@ export class SneakerService {
     );
   }
 
-  createNewLike(sneakerKey: string, userKey: string, data: any): Observable<any> {
-    const dataToSave = {};
+  createLike(sneakerKey: string, userKey: string, data: any) {
+    this.db.object('sneakersPerUser/' + userKey + '/' + sneakerKey).update({ dateLike: data }).then(() => {
+        console.log('Like sneakersPerUser created succesfully.');
+    },
+    err => {
+      console.log(`Error creating like sneakersPerUser`);
+    });
+    this.db.object('usersPerSneaker/' + sneakerKey + '/' + userKey).update({ dateLike: data }).then(() => {
+      console.log('Like usersPerSneaker created succesfully.');
+    },
+    err => {
+      console.log(`Error creating like usersPerSneaker`);
+    });
+  }
 
-    dataToSave['sneakersPerUser/' + userKey + '/' + sneakerKey + '/dateLike'] = data;
-    dataToSave['usersPerSneaker/' + sneakerKey + '/' + userKey + '/dateLike'] = data;
-
-    return this.firebaseUpdate(dataToSave);
+  deleteLike(sneakerKey: string, userKey: string) {
+    this.db.object('sneakersPerUser/' + userKey + '/' + sneakerKey + '/dateLike').remove().then(() => {
+      console.log('Like sneakersPerUser deleted succesfully.');
+    },
+    err => {
+      console.log(`Error deleting like sneakersPerUser`);
+    });
+    this.db.object('usersPerSneaker/' + sneakerKey + '/' + userKey + '/dateLike').remove().then(() => {
+      console.log('Like usersPerSneaker deleted succesfully.');
+    },
+    err => {
+      console.log(`Error deleting like usersPerSneaker`);
+    });
   }
 
   isLike(sneakerKey: string, userKey: string): Observable<any> {

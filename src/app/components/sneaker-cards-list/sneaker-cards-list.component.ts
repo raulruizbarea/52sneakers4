@@ -23,16 +23,15 @@ export class SneakerCardsListComponent implements OnInit {
   doLike(key) {
     console.log('like: ' + key);
     console.log(this.afAuth.auth.currentUser.uid);
-    this.sneakerService.createNewLike(key, this.afAuth.auth.currentUser.uid,
-      formatDate(new Date(), 'MM/dd/yyyy', 'en').toString()).subscribe(
-      () => {
-          console.log('Like created succesfully.');
-      },
-      err => {
-        console.log(`Error creating like`);
-      }
-    );
+    const like = this.sneakers.find(query => query.$key === key).like;
 
-    this.sneakers.find(query => query.$key === key).like = true;
+    if (like) {
+      this.sneakerService.deleteLike(key, this.afAuth.auth.currentUser.uid);
+    } else {
+      this.sneakerService.createLike(key, this.afAuth.auth.currentUser.uid,
+        formatDate(new Date(), 'MM/dd/yyyy', 'en').toString());
+    }
+
+    this.sneakers.find(query => query.$key === key).like = !like;
   }
 }
