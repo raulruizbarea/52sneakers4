@@ -2,12 +2,14 @@
   <ion-col *ngFor="let sneaker of sneakers" size="6">
       
       <ion-card>
+       
           <ion-fab vertical="top" horizontal="end" slot="fixed">
-              <ion-fab-button>
-                  <ion-icon *ngIf="!sneaker.like" (click)="doLike(sneaker.$key)" name="heart-empty"></ion-icon>
-                  <ion-icon *ngIf="sneaker.like" (click)="doLike(sneaker.$key)" name="heart"></ion-icon>
+              <ion-fab-button  (click)="doLike(sneaker.$key)">
+                  <ion-icon *ngIf="!sneaker.like" name="heart-empty"></ion-icon>
+                  <ion-icon *ngIf="sneaker.like" name="heart"></ion-icon>
               </ion-fab-button>
             </ion-fab>
+         
       
           <ion-card-content>
             
@@ -18,6 +20,7 @@
         <p text-end class="sneaker-description">{{ sneaker.description }}</p>
         <p text-end class="sneaker-price"><b>{{ sneaker.price | currency: 'EUR':'symbol':undefined:'es'}}</b></p>
         </ion-card-content>
+     
       </ion-card>
 
   </ion-col>
