@@ -14,3 +14,35 @@ this.usersService.findUserByEmail(formValue.email).pipe(
 
 
      this.allNews = news.sort((a, b) => a.title.localeCompare(b.title));
+
+
+     =====
+
+     this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).subscribe(
+      values => console.log(values)
+    );
+
+     findAllSneakersWithLike(userKey: string): Observable<Sneaker[]> {
+    return this.db.list('sneakers').snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(changes => changes.forEach(sneaker => {
+        console.log('Sneaker: ' + sneaker);
+        this.db.object('usersPerSneaker/' + sneaker.$key + '/' + userKey + '/dateLike')
+          .snapshotChanges()
+            .subscribe(action => {
+            // console.log(action.type);
+            // console.log(action.key);
+            // console.log(action.payload.val());
+            if (action.key) {
+              sneaker.like = true;
+            } else {
+              sneaker.like = false;
+            }
+          });
+        console.log(changes);
+      }),
+      ),
+    );
+  }

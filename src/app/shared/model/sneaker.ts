@@ -20,7 +20,7 @@ export class Sneaker {
     return array.map(Sneaker.fromJson);
   }
 
-  static fromJson({$key, name, description, longDescription, date, price, brand, sizes, categories, sports, urlImage}): Sneaker {
-    return new Sneaker($key, name, description, longDescription, date, price, brand, sizes, categories, sports, urlImage);
+  static fromJson({$key, name, description, longDescription, date, price, brand, sizes, categories, sports, urlImage, like}): Sneaker {
+    return new Sneaker($key, name, description, longDescription, date, price, brand, sizes, categories, sports, urlImage, like);
   }
 }

@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/shared/security/auth.service';
 import { FirebaseAuth } from '@angular/fire';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { formatDate } from '@angular/common';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'sneaker-cards-list',
@@ -21,8 +22,6 @@ export class SneakerCardsListComponent implements OnInit {
   }
 
   doLike(key) {
-    console.log('like: ' + key);
-    console.log(this.afAuth.auth.currentUser.uid);
     const like = this.sneakers.find(query => query.$key === key).like;
 
     if (like) {
