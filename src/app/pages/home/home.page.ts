@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
                 this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid).subscribe(
                   like => {
                     sneaker.like = like;
-                    console.log(sneaker.like);
+                    // console.log(sneaker.like);
                   }
                 );
               });
