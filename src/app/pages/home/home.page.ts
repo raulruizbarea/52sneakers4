@@ -23,14 +23,13 @@ export class HomePage implements OnInit {
             sneakers => {
               this.allSneakers = sneakers;
               this.allSneakers.forEach(sneaker => {
-                  sneaker.like = this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid);
-                  /*
+                  // sneaker.like = this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid);
                 this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid).subscribe(
                   like => {
                     sneaker.like = like;
                     console.log(sneaker.like);
                   }
-                );*/
+                );
               });
               // console.log(this.allSneakers);
               this.filtered = this.allSneakers;

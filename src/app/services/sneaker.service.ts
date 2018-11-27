@@ -33,21 +33,21 @@ export class SneakerService {
     return this.firebaseUpdate(dataToSave);
   }
 
-  isLike(sneakerKey: string, userKey: string): any {
+  isLike(sneakerKey: string, userKey: string): Observable<any> {
+    const subject = new Subject();
+    let exists = false;
     this.sdkDb.ref().child('usersPerSneaker/' + sneakerKey + '/' + userKey).on('value',
       snap => {
         // console.log('Received usersPerSneaker with a given Sneaker Id and User Id', snap.val());
-
         if (snap.val()) {
           if (snap.val().dateLike) {
-            return true;
-          } else {
-            return false;
+             exists = true;
           }
-        } else {
-          return false;
         }
+        subject.next(exists);
+        subject.complete();
       });
+      return subject.asObservable();
   }
 
   firebaseUpdate(dataToSave) {
