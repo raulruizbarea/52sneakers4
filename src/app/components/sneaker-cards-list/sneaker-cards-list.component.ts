@@ -32,5 +32,7 @@ export class SneakerCardsListComponent implements OnInit {
         console.log(`Error creating like`);
       }
     );
+
+    this.sneakers.find(query => query.$key === key).like = true;
   }
 }
