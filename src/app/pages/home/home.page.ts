@@ -18,15 +18,17 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit HomePage');
+  }
 
+  search(search: string) {
+    // this.filtered = this.allSneakers.filter(sneaker => sneaker.description.includes(search) );
+  }
+
+  ionViewWillEnter() {
     this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
       tap(console.log))
       .subscribe(sneakers => {
          this.allSneakers = this.filtered = sneakers;
       });
-  }
-
-  search(search: string) {
-    // this.filtered = this.allSneakers.filter(sneaker => sneaker.description.includes(search) );
   }
 }
