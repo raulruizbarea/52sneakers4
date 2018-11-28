@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Sneaker } from '../shared/model/sneaker';
 import { Observable, Subject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, switchMap } from 'rxjs/operators';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from '@angular/fire';
 
@@ -78,6 +78,33 @@ export class SneakerService {
     );
 
     return subject.asObservable();
+  }
+
+  getFavs(userKey: string): Observable<Sneaker[]> {
+    return this.db.list('sneakers').snapshotChanges().pipe(
+      tap(console.log),
+      switchMap(changes => {
+        return changes.map(c => {
+          const data = c.payload.val() as Sneaker;
+          data.$key = c.payload.key;
+          // like: true,
+          // this.db.object('usersPerSneaker/' + data.$key + '/' + userKey + '/dateLike')
+          //  .snapshotChanges().subscribe(value => data.like = ((value.key) ? true : false));
+          // data.like =
+          // console.log(this.db.list('usersPerSneaker/' + data.$key + '/' + userKey + '/dateLike', query =>
+          //  query.orderByChild('dateLike').equalTo(null)).snapshotChanges());
+          this.sdkDb.ref('usersPerSneaker/' + data.$key + '/' + userKey).once('value')
+            .then(function(snapshot) {
+              const hasDateLike = snapshot.hasChild('dateLike');
+              // console.log('Like: ' + hasDateLike);
+              data.like = hasDateLike;
+            });
+          return data;
+        });
+      }),
+       // tap(console.log),
+       // map(Sneaker.fromJsonList)
+    );
   }
 
   createLike(sneakerKey: string, userKey: string, data: any) {

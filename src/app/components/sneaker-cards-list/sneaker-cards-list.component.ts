@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/shared/security/auth.service';
 import { FirebaseAuth } from '@angular/fire';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { formatDate } from '@angular/common';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sneaker-cards-list',
@@ -32,5 +32,10 @@ export class SneakerCardsListComponent implements OnInit {
     }
 
     this.sneakers.find(query => query.$key === key).like = !like;
+
+    this.sneakerService.getFavs(this.afAuth.auth.currentUser.uid).pipe(
+      tap(console.log))
+      .map(Sneaker.fromJson)
+      .subscribe(values => console.log(values));
   }
 }
