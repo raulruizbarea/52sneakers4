@@ -52,6 +52,46 @@ export class SneakerService {
     return subject.asObservable();
   }
 
+  findSneakerByKey(key: string): Observable<Sneaker> {
+    return this.db.list('sneakers', ref => ref.orderByKey().equalTo(key)).snapshotChanges().pipe(
+      // map(changes => changes[0]),
+      tap(console.log),
+      // filter(changes => changes && changes.length > 0),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(changes => changes[0])
+    );
+  }
+
+  findSneakerByKeyWithLike(key: string, userKey: string): Observable<{}> {
+    const subject = new Subject();
+
+    this.db.list('sneakers', ref => ref.orderByKey().equalTo(key)).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => {
+          const data = c.payload.val() as Sneaker;
+          data.$key = c.payload.key;
+          this.sdkDb.ref('usersPerSneaker/' + data.$key + '/' + userKey).once('value')
+            .then(function(snapshot) {
+              const hasDateLike = snapshot.hasChild('dateLike');
+              data.like = hasDateLike;
+            });
+          return data;
+        });
+      }),
+      map(changes => changes[0])
+    ).subscribe(values => {
+      subject.next(values);
+      subject.complete();
+    }, err => {
+        subject.error(err);
+        subject.complete();
+    });
+
+    return subject.asObservable();
+  }
+
   createLike(sneakerKey: string, userKey: string, data: any) {
     this.db.object('sneakersPerUser/' + userKey + '/' + sneakerKey).update({ dateLike: data }).then(() => {
         console.log('Like sneakersPerUser created succesfully.');

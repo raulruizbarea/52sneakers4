@@ -1,0 +1,19 @@
+ion-fab {
+    top: 0;
+    right: 0;
+    z-index: 5;
+  }
+  
+  ion-fab-button {
+    --height: 30px;
+    --width: 30px;
+    --color: var(--ion-color-danger);
+    --color-activated: var(--ion-color-danger);
+    --color-focused: var(--ion-color-danger);
+    --box-shadow: transparent;
+    --background: transparent;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --border-color: transparent;
+    --ripple-color: transparent;
+  }
