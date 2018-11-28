@@ -1,7 +1,9 @@
 <ion-header>
-  <sneaker-search-header></sneaker-search-header>
+  <sneaker-modal-header modalTitle="{{modalTitle}}"></sneaker-modal-header>
 </ion-header>
 <ion-content color="primary">
+  <ion-searchbar [(ngModel)]="searchTerm" text-start color="light" placeholder="{{modalTitle}}" (ionChange)="search()"></ion-searchbar>
+
   <ion-list>
     <ion-list-header color="primary">
       <ion-label>{{searchByName}}</ion-label>

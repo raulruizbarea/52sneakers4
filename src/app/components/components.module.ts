@@ -7,7 +7,6 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-modal-header.component';
 import { SliderComponent } from './slider/slider.component';
 import { SneakerCardsListComponent } from './sneaker-cards-list/sneaker-cards-list.component';
-import { SneakerSearchHeaderComponent } from './sneaker-search-header/sneaker-search-header.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { FormsModule } from '@angular/forms';
     SideMenuComponent,
     SliderComponent,
     SneakerCardsListComponent,
-    SneakerSearchHeaderComponent,
   ],
   imports: [
     IonicModule,
@@ -31,7 +29,6 @@ import { FormsModule } from '@angular/forms';
     SneakerFooterComponent,
     SliderComponent,
     SideMenuComponent,
-    SneakerCardsListComponent,
-    SneakerSearchHeaderComponent]
+    SneakerCardsListComponent]
 })
 export class ComponentsModule {}

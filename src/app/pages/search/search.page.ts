@@ -15,10 +15,12 @@ export class SearchPage implements OnInit {
   searchByName: string;
   allSneakers: Sneaker[];
   searched: Sneaker[];
+  searchTerm: string;
 
   constructor(private modalCtrl: ModalController, private sneakerService: SneakerService) {
     this.modalTitle = Constants.Search;
     this.searchByName = Constants.SearchByName;
+    this.searchTerm = '';
    }
 
   ngOnInit() {
@@ -35,7 +37,8 @@ export class SearchPage implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  search(search: string) {
-    this.searched = this.allSneakers.filter(sneaker => sneaker.name.includes(search) );
+  search() {
+    console.log(this.searchTerm);
+    this.searched = this.allSneakers.filter(sneaker => sneaker.name.toLowerCase().includes(this.searchTerm.toLowerCase()) );
   }
 }
