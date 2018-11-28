@@ -30,6 +30,7 @@ import { UsersService } from './services/users.service';
 import { SubscriptionsService } from './services/subscriptions.service';
 import { SneakerService } from './services/sneaker.service';
 import { EmailService } from './services/email.service';
+import { SearchPageModule } from './pages/search/search.module';
 
 registerLocaleData(localeEs, 'es');
 
@@ -48,7 +49,8 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     HttpModule,
     ContactPageModule,
-    SubscriptionPageModule],
+    SubscriptionPageModule,
+    SearchPageModule],
   providers: [
     UsersService,
     SubscriptionsService,

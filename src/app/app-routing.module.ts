@@ -57,6 +57,11 @@ const routes: Routes = [
     loadChildren: './pages/sneaker/sneaker.module#SneakerPageModule',
     canActivate: [AuthGuard],
   },
+  {
+    path: 'search',
+    loadChildren: './pages/search/search.module#SearchPageModule',
+    canActivate: [AuthGuard],
+  },
 
 ];
 

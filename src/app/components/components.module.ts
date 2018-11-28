@@ -7,6 +7,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-modal-header.component';
 import { SliderComponent } from './slider/slider.component';
 import { SneakerCardsListComponent } from './sneaker-cards-list/sneaker-cards-list.component';
+import { SneakerSearchHeaderComponent } from './sneaker-search-header/sneaker-search-header.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SneakerCardsListComponent } from './sneaker-cards-list/sneaker-cards-li
     SneakerFooterComponent,
     SideMenuComponent,
     SliderComponent,
-    SneakerCardsListComponent
+    SneakerCardsListComponent,
+    SneakerSearchHeaderComponent,
   ],
   imports: [
     IonicModule,
@@ -27,6 +29,7 @@ import { SneakerCardsListComponent } from './sneaker-cards-list/sneaker-cards-li
     SneakerFooterComponent,
     SliderComponent,
     SideMenuComponent,
-    SneakerCardsListComponent]
+    SneakerCardsListComponent,
+    SneakerSearchHeaderComponent]
 })
 export class ComponentsModule {}
