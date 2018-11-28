@@ -52,6 +52,12 @@ const routes: Routes = [
     loadChildren: './pages/contact/contact.module#ContactPageModule',
     canActivate: [AuthGuard],
   },
+  {
+    path: 'sneaker/:id',
+    loadChildren: './pages/sneaker/sneaker.module#SneakerPageModule',
+    canActivate: [AuthGuard],
+  },
+
 ];
 
 @NgModule({
