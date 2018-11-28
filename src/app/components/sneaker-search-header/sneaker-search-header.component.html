@@ -2,5 +2,5 @@
     <ion-buttons slot="start">
         <ion-button fill="clear" (click)="doCancel()">{{ cancel }}</ion-button>
       </ion-buttons>
-  <ion-searchbar text-start color="light" placeholder="{{search}}"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" no-padding text-start color="light" placeholder="{{search}}" (ionInput)="setFilteredItems()"></ion-searchbar>
 </ion-toolbar>

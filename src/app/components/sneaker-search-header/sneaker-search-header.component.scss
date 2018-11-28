@@ -1,3 +1,9 @@
 ion-toolbar {
   border-bottom: 2px solid white;
 }
+
+ion-searchbar , .searchbar-input-container, .searchbar-input {
+  height: 35px !important;
+  min-height: 35px !important;
+  --min-height: 35px !important;
+}
