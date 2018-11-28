@@ -155,6 +155,21 @@ export class SneakerService {
       return subject.asObservable();
   }
 
+  isLike2(sneakerKey: string, userKey: string): Observable<any> {
+    const subject = new Subject();
+    let exists = false;
+
+    this.sdkDb.ref('usersPerSneaker/' + sneakerKey + '/' + userKey).once('value')
+            .then(function(snapshot) {
+              const hasDateLike = snapshot.hasChild('dateLike');
+              // console.log('Like: ' + hasDateLike);
+              exists = hasDateLike;
+              subject.next(exists);
+              subject.complete();
+            });
+      return subject.asObservable();
+  }
+
   firebaseUpdate(dataToSave) {
     const subject = new Subject();
 
