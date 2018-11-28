@@ -3,6 +3,7 @@ import { Sneaker } from 'src/app/shared/model/sneaker';
 import { tap } from 'rxjs/operators';
 import { SneakerService } from 'src/app/services/sneaker.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { log } from 'src/app/helpers/helpers';
 
 @Component({
   selector: 'app-home',
@@ -16,26 +17,13 @@ export class HomePage implements OnInit {
   constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-      console.log('ngOnInit HomePage');
-      this.sneakerService.findAllSneakers().pipe(
-        tap(console.log))
-        .subscribe(
-            sneakers => {
-              this.allSneakers = sneakers;
-              this.allSneakers.forEach(sneaker => {
-                  // sneaker.like = this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid);
-                this.sneakerService.isLike(sneaker.$key,  this.afAuth.auth.currentUser.uid).subscribe(
-                  like => {
-                    sneaker.like = like;
-                    // console.log(sneaker.like);
-                  }
-                );
-              });
-              // console.log(this.allSneakers);
-              this.filtered = this.allSneakers;
-            }
-        );
+    console.log('ngOnInit HomePage');
 
+    this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
+      tap(console.log))
+      .subscribe(sneakers => {
+         this.allSneakers = this.filtered = sneakers;
+      });
   }
 
   search(search: string) {

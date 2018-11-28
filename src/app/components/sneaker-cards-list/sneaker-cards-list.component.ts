@@ -1,11 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Sneaker } from 'src/app/shared/model/sneaker';
 import { SneakerService } from 'src/app/services/sneaker.service';
-import { AuthService } from 'src/app/shared/security/auth.service';
-import { FirebaseAuth } from '@angular/fire';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { formatDate } from '@angular/common';
-import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'sneaker-cards-list',
@@ -18,7 +15,7 @@ export class SneakerCardsListComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth, private sneakerService: SneakerService) { }
 
   ngOnInit() {
-    // console.log(this.sneakers);
+     // console.log(this.sneakers);
   }
 
   doLike(key) {
@@ -32,10 +29,5 @@ export class SneakerCardsListComponent implements OnInit {
     }
 
     this.sneakers.find(query => query.$key === key).like = !like;
-
-    this.sneakerService.getFavs(this.afAuth.auth.currentUser.uid).pipe(
-      tap(console.log))
-      .map(Sneaker.fromJson)
-      .subscribe(values => console.log(values));
   }
 }
