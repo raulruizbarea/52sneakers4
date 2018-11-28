@@ -1,4 +1,13 @@
-<ion-content color="primary">
+<ion-header>
   <sneaker-search-header></sneaker-search-header>
-
+</ion-header>
+<ion-content color="primary">
+  <ion-list>
+    <ion-list-header color="primary">
+      <ion-label>{{searchByName}}</ion-label>
+    </ion-list-header>
+    <ion-item color="primary" *ngFor="let sneaker of searched">
+      <ion-label>{{sneaker?.name}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -24,6 +24,15 @@ export class SneakerService {
     );
   }
 
+  findAllSneakersNameDesc(): Observable<Sneaker[]> {
+    return this.db.list('sneakers', ref => ref.orderByChild('name')).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(Sneaker.fromJsonList)
+    );
+  }
+
   findAllSneakersWithLike(userKey: string): Observable<{}> {
     const subject = new Subject();
 
