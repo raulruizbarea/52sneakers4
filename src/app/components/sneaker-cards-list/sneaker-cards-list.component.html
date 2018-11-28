@@ -4,7 +4,7 @@
       <ion-card>
        
           <ion-fab vertical="top" horizontal="end" slot="fixed">
-              <ion-fab-button  (click)="doLike(sneaker.$key)">
+              <ion-fab-button translucent="true"  (click)="doLike(sneaker.$key)">
                   <ion-icon *ngIf="!sneaker.like" name="heart-empty"></ion-icon>
                   <ion-icon *ngIf="sneaker.like" name="heart"></ion-icon>
               </ion-fab-button>
