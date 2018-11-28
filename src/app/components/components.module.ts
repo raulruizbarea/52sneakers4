@@ -8,6 +8,7 @@ import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-moda
 import { SliderComponent } from './slider/slider.component';
 import { SneakerCardsListComponent } from './sneaker-cards-list/sneaker-cards-list.component';
 import { SneakerSearchHeaderComponent } from './sneaker-search-header/sneaker-search-header.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SneakerSearchHeaderComponent } from './sneaker-search-header/sneaker-se
   ],
   imports: [
     IonicModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   exports: [
     SneakerHeaderComponent,
