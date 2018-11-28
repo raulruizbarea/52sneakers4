@@ -1,6 +1,6 @@
 <ion-row>
   <ion-col *ngFor="let sneaker of sneakers" size="6">
-      
+ 
       <ion-card>
        
           <ion-fab vertical="top" horizontal="end" slot="fixed">
@@ -11,7 +11,7 @@
             </ion-fab>
          
       
-          <ion-card-content>
+          <ion-card-content  (click)="goToSneaker(sneaker.$key)">
             
         <img [src]="sneaker?.urlImage" />
         <ion-card-header>

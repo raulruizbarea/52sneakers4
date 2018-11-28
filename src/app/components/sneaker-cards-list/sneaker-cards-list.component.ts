@@ -3,6 +3,7 @@ import { Sneaker } from 'src/app/shared/model/sneaker';
 import { SneakerService } from 'src/app/services/sneaker.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { formatDate } from '@angular/common';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'sneaker-cards-list',
@@ -12,7 +13,8 @@ import { formatDate } from '@angular/common';
 export class SneakerCardsListComponent implements OnInit {
   @Input() sneakers: Sneaker[];
 
-  constructor(private afAuth: AngularFireAuth, private sneakerService: SneakerService) { }
+  constructor(private afAuth: AngularFireAuth, private sneakerService: SneakerService,
+    private navCtrl: NavController) { }
 
   ngOnInit() {
      // console.log(this.sneakers);
@@ -29,5 +31,10 @@ export class SneakerCardsListComponent implements OnInit {
     }
 
     this.sneakers.find(query => query.$key === key).like = !like;
+  }
+
+  goToSneaker(id) {
+    // console.log('test');
+    this.navCtrl.navigateForward('/sneaker/' + id);
   }
 }
