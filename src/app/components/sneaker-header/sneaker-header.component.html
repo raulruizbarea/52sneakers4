@@ -10,4 +10,12 @@
   <ion-title padding="false">
     {{ appName }}
   </ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="navigateToSearch()">
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+    <ion-button (click)="navigateToCart()">
+      <ion-icon slot="icon-only" name="cart"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-toolbar>
