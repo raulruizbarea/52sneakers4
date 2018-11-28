@@ -1,3 +1,6 @@
 <ion-toolbar color="primary" text-center>
-  <ion-searchbar  color="light" showCancelButton="true" placeholder="{{search}}" (ionCancel)="doCancel()"></ion-searchbar>
+    <ion-buttons slot="start">
+        <ion-button fill="clear" (click)="doCancel()">{{ cancel }}</ion-button>
+      </ion-buttons>
+  <ion-searchbar text-start color="light" placeholder="{{search}}"></ion-searchbar>
 </ion-toolbar>
