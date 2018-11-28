@@ -65,4 +65,7 @@ export const Constants = {
   Send: 'Enviar',
   CompleteName: 'Nom complet',
   Comments: 'Comentaris',
+
+  // Search
+  SearchByName: 'Cerca per nom',
 };
