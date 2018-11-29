@@ -31,6 +31,8 @@ import { SubscriptionsService } from './services/subscriptions.service';
 import { SneakerService } from './services/sneaker.service';
 import { EmailService } from './services/email.service';
 import { SearchPageModule } from './pages/search/search.module';
+import { FilterPageModule } from './pages/filter/filter.module';
+import { LoginGuard } from './shared/security/login.guard';
 
 registerLocaleData(localeEs, 'es');
 
@@ -50,13 +52,15 @@ registerLocaleData(localeEs, 'es');
     HttpModule,
     ContactPageModule,
     SubscriptionPageModule,
-    SearchPageModule],
+    SearchPageModule,
+    FilterPageModule],
   providers: [
     UsersService,
     SubscriptionsService,
     SneakerService,
     AuthService,
     AuthGuard,
+    LoginGuard,
     EmailComposer,
     StatusBar,
     SplashScreen,

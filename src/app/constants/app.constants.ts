@@ -68,4 +68,8 @@ export const Constants = {
 
   // Search
   SearchByName: 'Cerca per nom',
+
+  // Filter
+  Filter: 'Filtre',
+  Filters: 'Filters',
 };
