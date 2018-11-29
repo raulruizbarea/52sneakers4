@@ -111,7 +111,7 @@ export const dbData = {
       'urlImage': '',
       'description': 'PUMA descripció',
       'longDescription': 'PUMA descripció llarga',
-      'date': '2018/11/11',
+      'date': '11/11/2018',
       'price': 60,
       'brand':  'Puma',
       'sizes':  {
