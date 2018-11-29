@@ -38,11 +38,11 @@ const routes: Routes = [
             component: ProfilePage,
             loadChildren: './../profile/profile.module#ProfilePageModule'
           },
-          {
+          // {
             // path: 'cart',
             // outlet: 'cart',
             // loadChildren: './../cart/cart.module#CartPageModule'
-          },
+          // },
       ]
   },
   {

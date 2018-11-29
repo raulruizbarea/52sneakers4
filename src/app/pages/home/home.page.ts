@@ -29,6 +29,14 @@ export class HomePage implements OnInit {
     console.log('ngOnInit HomePage');
   }
 
+  ionViewDidEnter() {
+    console.log('ionViewDidEnter HomePage');
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad HomePage');
+  }
+
   ionViewWillEnter() {
     this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
       tap(console.log))

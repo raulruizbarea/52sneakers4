@@ -9,43 +9,29 @@ const routes: Routes = [
     redirectTo: 'welcome',
     pathMatch: 'full',
   },
-  { path: 'home',
-    loadChildren: './pages/home/home.module#HomePageModule',
-    canActivate: [AuthGuard],
-  },
   {
     path: 'welcome',
     loadChildren: './pages/welcome/welcome.module#WelcomePageModule',
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule',
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'new-user',
     loadChildren: './pages/new-user/new-user.module#NewUserPageModule',
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'news',
-    loadChildren: './pages/news/news.module#NewsPageModule',
-    canActivate: [AuthGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'news/:id',
     loadChildren: './pages/news-detail/news-detail.module#NewsDetailPageModule',
     canActivate: [AuthGuard],
   },
-  {
-    path: 'profile',
-    loadChildren: './pages/profile/profile.module#ProfilePageModule',
-    canActivate: [AuthGuard],
-  },
   { path: 'forget-password',
     loadChildren: './pages/forget-password/forget-password.module#ForgetPasswordPageModule',
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'subscription',
@@ -63,13 +49,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'search',
-    loadChildren: './pages/search/search.module#SearchPageModule',
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'filter',
-    loadChildren: './pages/filter/filter.module#FilterPageModule',
+    path: 'main',
+    loadChildren: './pages/tabs/tabs.module#TabsPageModule',
     canActivate: [AuthGuard],
   },
 
