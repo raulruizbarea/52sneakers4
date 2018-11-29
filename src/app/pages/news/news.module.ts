@@ -11,7 +11,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
 const routes: Routes = [
   {
     path: '',
-    component: NewsPage
+    component: NewsPage,
+    outlet: 'news',
   }
 ];
 
