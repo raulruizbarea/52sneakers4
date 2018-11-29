@@ -1,10 +1,9 @@
 import { Constants } from 'src/app/constants/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { Sneaker } from 'src/app/shared/model/sneaker';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { SneakerService } from 'src/app/services/sneaker.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { log } from 'src/app/helpers/helpers';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +32,8 @@ export class HomePage implements OnInit {
   ionViewWillEnter() {
     this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
       tap(console.log))
+      .pipe(
+        map(sneakers => sneakers.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
       .subscribe(sneakers => {
          this.allSneakers = this.filtered = sneakers;
       });
@@ -59,6 +60,8 @@ export class HomePage implements OnInit {
   doRefresh(refresher) {
     this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
       tap(console.log))
+      .pipe(
+        map(sneakers => sneakers.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
       .subscribe(sneakers => {
          this.allSneakers = this.filtered = sneakers;
          const valueSegment = this.segmentValue;

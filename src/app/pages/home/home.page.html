@@ -9,7 +9,7 @@
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
   <slider></slider>
-  <ion-segment padding [(ngModel)]="segmentValue">
+  <ion-segment [(ngModel)]="segmentValue">
     <ion-segment-button checked value="{{all}}" (ionSelect)="filterAll()">
       {{all}}
     </ion-segment-button>
