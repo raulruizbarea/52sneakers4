@@ -10,12 +10,14 @@
   <ion-title padding="false">
     {{ appName }}
   </ion-title>
-  <ion-buttons slot="end">
+  <ion-buttons *ngIf="isLoggedIn()" slot="end">
     <ion-button (click)="navigateToSearch()">
       <ion-icon slot="icon-only" name="search"></ion-icon>
     </ion-button>
     <ion-button (click)="navigateToCart()">
-      <ion-icon slot="icon-only" name="cart"></ion-icon>
+      <ion-icon class="sneaker-icon-cart" slot="icon-only" name="cart">
+      </ion-icon>
+      <ion-badge color="dark">3</ion-badge>
     </ion-button>
   </ion-buttons>
 </ion-toolbar>

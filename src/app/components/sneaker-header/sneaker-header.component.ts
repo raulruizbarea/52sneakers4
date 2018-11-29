@@ -27,6 +27,7 @@ export class SneakerHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.authService.authInfo$.subscribe(authInfo =>  this.authInfo = authInfo);
+    // TODO: Check if the current user has items in the table "Order" with status "0" and update the badge
   }
 
   navigateToSearch() {
