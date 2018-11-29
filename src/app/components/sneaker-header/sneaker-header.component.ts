@@ -16,9 +16,12 @@ export class SneakerHeaderComponent implements OnInit {
   @Input() appName: string;
   authInfo: AuthInfo;
 
+  back: string;
+
   constructor(private authService: AuthService, private afAuth: AngularFireAuth,
     private navCtrl: NavController, private modalCtrl: ModalController) {
     this.appName = Constants.AppName;
+    this.back = Constants.Back;
   }
 
   isLoggedIn() {

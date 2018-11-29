@@ -39,6 +39,7 @@ export const Constants = {
   Running: 'Running',
   Basketball: 'Basket',
   Training: 'Training',
+  Back: 'Enrere',
 
   //  Profile
   Save: 'Desar',
