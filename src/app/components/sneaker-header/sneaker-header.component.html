@@ -1,7 +1,7 @@
 <ion-toolbar color="primary" text-center>
   <ion-buttons slot="start">
     <ion-back-button text="{{back}}"></ion-back-button>
-    <ion-menu-toggle *ngIf="isLoggedIn()">
+    <ion-menu-toggle *ngIf="isLoggedIn() && !hideMenu">
         <ion-button>
           <ion-icon slot="icon-only" name="menu"></ion-icon>
         </ion-button>
@@ -10,7 +10,7 @@
   <ion-title padding="false">
     {{ appName }}
   </ion-title>
-  <ion-buttons *ngIf="isLoggedIn()" slot="end">
+  <ion-buttons *ngIf="isLoggedIn() && !hideRightMenu" slot="end">
     <ion-button (click)="navigateToSearch()">
       <ion-icon slot="icon-only" name="search"></ion-icon>
     </ion-button>
