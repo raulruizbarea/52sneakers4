@@ -24,7 +24,7 @@ export class LoginGuard implements CanActivate {
        .do(loggedIn => {
          if (loggedIn) {
            console.log('access granted');
-           this.router.navigate(['/home']);
+           this.router.navigate(['/main']);
          }
      });
    }
