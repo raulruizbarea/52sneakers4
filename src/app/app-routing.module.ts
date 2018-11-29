@@ -12,17 +12,17 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: './pages/welcome/welcome.module#WelcomePageModule',
-    // canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule',
-    // canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'new-user',
     loadChildren: './pages/new-user/new-user.module#NewUserPageModule',
-    // canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'news/:id',
@@ -31,7 +31,7 @@ const routes: Routes = [
   },
   { path: 'forget-password',
     loadChildren: './pages/forget-password/forget-password.module#ForgetPasswordPageModule',
-    // canActivate: [LoginGuard],
+    canActivate: [LoginGuard],
   },
   {
     path: 'subscription',
