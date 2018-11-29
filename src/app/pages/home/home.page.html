@@ -2,8 +2,6 @@
   <sneaker-header></sneaker-header>
 </ion-header>
 
-<side-menu></side-menu>
-
 <ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content></ion-refresher-content>
@@ -23,7 +21,3 @@
   
   <sneaker-cards-list *ngIf="filtered" [sneakers]="filtered"></sneaker-cards-list>
 </ion-content>
-
-<ion-footer>
-  <sneaker-footer></sneaker-footer>
-</ion-footer>

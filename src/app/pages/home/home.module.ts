@@ -16,7 +16,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     RouterModule.forChild([
       {
         path: '',
-        component: HomePage
+        component: HomePage,
+        outlet: 'home',
       }
     ])
   ],
