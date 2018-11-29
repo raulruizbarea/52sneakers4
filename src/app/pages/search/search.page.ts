@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Constants } from 'src/app/constants/app.constants';
 import { Sneaker } from 'src/app/shared/model/sneaker';
 import { SneakerService } from 'src/app/services/sneaker.service';
@@ -17,7 +17,8 @@ export class SearchPage implements OnInit {
   searched: Sneaker[];
   searchTerm: string;
 
-  constructor(private modalCtrl: ModalController, private sneakerService: SneakerService) {
+  constructor(private modalCtrl: ModalController, private sneakerService: SneakerService,
+    private navCtrl: NavController) {
     this.modalTitle = Constants.Search;
     this.searchByName = Constants.SearchByName;
     this.searchTerm = '';
@@ -40,5 +41,12 @@ export class SearchPage implements OnInit {
   search() {
     console.log(this.searchTerm);
     this.searched = this.allSneakers.filter(sneaker => sneaker.name.toLowerCase().includes(this.searchTerm.toLowerCase()) );
+  }
+
+  goToSneaker(id) {
+    // console.log('test');
+    this.navCtrl.navigateForward('/sneaker/' + id);
+    // this.navCtrl.navigateRoot('/sneaker/' + id);
+    this.doCancel();
   }
 }

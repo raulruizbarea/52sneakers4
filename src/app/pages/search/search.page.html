@@ -10,7 +10,10 @@
     <ion-list-header color="primary">
       <ion-label>{{searchByName}}</ion-label>
     </ion-list-header>
-    <ion-item color="primary" *ngFor="let sneaker of searched">
+    <ion-item (click)="goToSneaker(sneaker?.$key)" color="primary" *ngFor="let sneaker of searched">
+      <ion-thumbnail slot="start">
+        <img [src]="sneaker?.urlImage" />
+      </ion-thumbnail>
       <ion-label>{{sneaker?.name}}</ion-label>
     </ion-item>
   </ion-list>
