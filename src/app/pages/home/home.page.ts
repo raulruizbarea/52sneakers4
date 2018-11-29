@@ -36,6 +36,7 @@ export class HomePage implements OnInit {
         map(sneakers => sneakers.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
       .subscribe(sneakers => {
          this.allSneakers = this.filtered = sneakers;
+         this.setSegment(this.segmentValue);
       });
   }
 
@@ -64,19 +65,21 @@ export class HomePage implements OnInit {
         map(sneakers => sneakers.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
       .subscribe(sneakers => {
          this.allSneakers = this.filtered = sneakers;
-         const valueSegment = this.segmentValue;
-         // console.log(valueSegment);
-         if (valueSegment === this.tendencies) {
-            this.segmentValue = this.tendencies;
-            this.filterTendencies();
-         } else if (valueSegment === this.newArrivals) {
-          this.segmentValue = this.newArrivals;
-          this.filterNewArrivals();
-         } else {
-          this.segmentValue = this.all;
-          this.filterAll();
-         }
+         this.setSegment(this.segmentValue);
          refresher.target.complete();
       });
+  }
+
+  setSegment(valueSegment) {
+    if (valueSegment === this.tendencies) {
+      this.segmentValue = this.tendencies;
+      this.filterTendencies();
+    } else if (valueSegment === this.newArrivals) {
+      this.segmentValue = this.newArrivals;
+      this.filterNewArrivals();
+    } else {
+      this.segmentValue = this.all;
+      this.filterAll();
+    }
   }
 }
