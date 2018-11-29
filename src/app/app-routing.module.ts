@@ -67,6 +67,11 @@ const routes: Routes = [
     loadChildren: './pages/search/search.module#SearchPageModule',
     canActivate: [AuthGuard],
   },
+  {
+    path: 'filter',
+    loadChildren: './pages/filter/filter.module#FilterPageModule',
+    canActivate: [AuthGuard],
+  },
 
 ];
 
