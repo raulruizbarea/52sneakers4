@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
       this.authService.login(formValue.email, formValue.password)
           .subscribe(
               () => {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/main']);
               },
               err => {
                 console.log(`Error finding user ${err}`);

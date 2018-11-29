@@ -28,4 +28,16 @@ export class NewsPage implements OnInit {
             this.allNews = news;
           });
   }
+
+  doRefresh(refresher) {
+    this.newsService.findAllNews().pipe(
+      tap(console.log))
+      .pipe(
+        map(news => news.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
+      .subscribe(
+          news => {
+            this.allNews = news;
+            refresher.target.complete();
+          });
+  }
 }

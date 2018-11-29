@@ -56,7 +56,7 @@ export class NewUserPage implements OnInit {
                             .subscribe(
                                 () => {
                                     console.log('User created succesfully.');
-                                    this.router.navigateByUrl('/home');
+                                    this.router.navigateByUrl('/main');
                                 },
                                 err => {
                                   console.log(`Error creating user ${err}`);

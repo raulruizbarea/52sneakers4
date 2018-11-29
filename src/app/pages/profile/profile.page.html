@@ -1,13 +1,7 @@
 <ion-header>
-  <sneaker-header></sneaker-header>
+  <sneaker-header hideRightMenu="true"></sneaker-header>
 </ion-header>
 
-<side-menu></side-menu>
-
 <ion-content>
-  Va por ti Pau!
+    <ion-button (click)="logout()" text-center>{{ disconnect }}</ion-button>
 </ion-content>
-
-<ion-footer>
-  <sneaker-footer></sneaker-footer>
-</ion-footer>
