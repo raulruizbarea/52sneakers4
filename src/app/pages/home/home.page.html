@@ -5,8 +5,22 @@
 <side-menu></side-menu>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
   <slider></slider>
-
+  <ion-segment padding [(ngModel)]="segmentValue">
+    <ion-segment-button checked value="{{all}}" (ionSelect)="filterAll()">
+      {{all}}
+    </ion-segment-button>
+    <ion-segment-button value="{{tendencies}}" (ionSelect)="filterTendencies()">
+      {{tendencies}}
+    </ion-segment-button>
+    <ion-segment-button value="{{newArrivals}}" (ionSelect)="filterNewArrivals()">
+      {{newArrivals}}
+    </ion-segment-button>
+  </ion-segment>
+  
   <sneaker-cards-list *ngIf="filtered" [sneakers]="filtered"></sneaker-cards-list>
 </ion-content>
 

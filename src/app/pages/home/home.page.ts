@@ -1,3 +1,4 @@
+import { Constants } from 'src/app/constants/app.constants';
 import { Component, OnInit } from '@angular/core';
 import { Sneaker } from 'src/app/shared/model/sneaker';
 import { tap } from 'rxjs/operators';
@@ -11,17 +12,22 @@ import { log } from 'src/app/helpers/helpers';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  segmentValue: string;
   allSneakers: Sneaker[];
   filtered: Sneaker[];
+  all: string;
+  tendencies: string;
+  newArrivals: string;
 
-  constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) { }
+  constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) {
+    this.all = Constants.All;
+    this.tendencies = Constants.Tendencies;
+    this.newArrivals = Constants.NewArrivals;
+    this.segmentValue = Constants.All;
+   }
 
   ngOnInit() {
     console.log('ngOnInit HomePage');
-  }
-
-  search(search: string) {
-    // this.filtered = this.allSneakers.filter(sneaker => sneaker.description.includes(search) );
   }
 
   ionViewWillEnter() {
@@ -29,6 +35,45 @@ export class HomePage implements OnInit {
       tap(console.log))
       .subscribe(sneakers => {
          this.allSneakers = this.filtered = sneakers;
+      });
+  }
+
+  filterAll() {
+    this.filtered = this.allSneakers;
+  }
+
+  filterTendencies() {
+    // TODO think about filtering by tendencies
+  }
+
+  filterNewArrivals() {
+    const fromDate = new Date(Date.now());
+    fromDate.setDate(fromDate.getDate() - 7);
+
+    this.filtered = this.allSneakers.filter((item: Sneaker) => {
+      return new Date(item.date).getTime() >= fromDate.getTime() &&
+        new Date(item.date).getTime() <= new Date(Date.now()).getTime();
+  });
+  }
+
+  doRefresh(refresher) {
+    this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
+      tap(console.log))
+      .subscribe(sneakers => {
+         this.allSneakers = this.filtered = sneakers;
+         const valueSegment = this.segmentValue;
+         // console.log(valueSegment);
+         if (valueSegment === this.tendencies) {
+            this.segmentValue = this.tendencies;
+            this.filterTendencies();
+         } else if (valueSegment === this.newArrivals) {
+          this.segmentValue = this.newArrivals;
+          this.filterNewArrivals();
+         } else {
+          this.segmentValue = this.all;
+          this.filterAll();
+         }
+         refresher.target.complete();
       });
   }
 }

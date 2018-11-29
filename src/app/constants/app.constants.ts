@@ -73,4 +73,9 @@ export const Constants = {
   // Filter
   Filter: 'Filtre',
   Filters: 'Filters',
+
+  // Home
+  All: 'Totes',
+  Tendencies: 'Tendencies',
+  NewArrivals: 'Noves',
 };
