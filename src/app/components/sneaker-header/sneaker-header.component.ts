@@ -7,6 +7,7 @@ import { Input } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { SearchPage } from 'src/app/pages/search/search.page';
 import { Router } from '@angular/router';
+import { FilterPage } from 'src/app/pages/filter/filter.page';
 
 @Component({
   selector: 'sneaker-header',
@@ -42,8 +43,8 @@ export class SneakerHeaderComponent implements OnInit {
     this.openModal(SearchPage);
   }
 
-  navigateToCart() {
-    this.navCtrl.navigateForward('/cart');
+  navigateToFilter() {
+    this.openModal(FilterPage);
   }
 
   async openModal(comp) {

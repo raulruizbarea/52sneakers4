@@ -79,4 +79,6 @@ export const Constants = {
   Tendencies: 'Tendencies',
   NewArrivals: 'Noves',
   SneakerSold: 'Sneakers venudes',
+
+  Cart: 'Cistella',
 };

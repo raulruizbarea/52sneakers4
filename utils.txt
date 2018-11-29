@@ -46,3 +46,41 @@ this.usersService.findUserByEmail(formValue.email).pipe(
       ),
     );
   }
+
+
+  // TODO 
+  // brew install gradle
+  // ionic cordova build android
+
+
+// export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+
+# avdmanager, sdkmanager
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+
+# adb, logcat
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+
+# emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+For apksigner and zipalign, $ANDROID_SDK_ROOT/build-tools/<version> must also be added to PATH.
+
+// adb devices
+
+//https://gradle.org/install/
+  // brew install gradle
+
+
+
+  // ionic cordova build android --prod --release
+
+
+https://beta.ionicframework.com/docs/publishing/play-store
+  //  keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+
+// copy the keystore version
+
+//  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore HelloWorld-release-unsigned.apk alias_name
+
+//  zipalign -v 4 HelloWorld-release-unsigned.apk HelloWorld.apk
+// Making a developer account with Google Play costs $25 USD.
