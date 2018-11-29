@@ -1,0 +1,37 @@
+<ion-tabs>
+    <ion-tab active="true" tab="home">
+      <ion-router-outlet name="home"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="news">
+      <ion-router-outlet name="news"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="profile">
+      <ion-router-outlet name="profile"></ion-router-outlet>
+    </ion-tab>
+    <ion-tab tab="cart">
+      <ion-router-outlet name="cart"></ion-router-outlet>
+    </ion-tab>
+
+
+  <ion-tab-bar slot="bottom" color="primary">
+    <ion-tab-button tab="home" href="/main/tabs/(home:home)">
+      <ion-label>{{ home }}</ion-label>
+      <ion-icon name="home"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="news" href="/main/tabs/(news:news)">
+      <ion-label>{{ news }}</ion-label>
+      <ion-icon name="book"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile" href="/main/tabs/(profile:profile)">
+      <ion-label>{{ profile }}</ion-label>
+      <ion-icon name="person"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="cart" href="/main/tabs/(cart:cart)">
+      <ion-label>{{ cart }}</ion-label>
+      <ion-icon name="cart"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

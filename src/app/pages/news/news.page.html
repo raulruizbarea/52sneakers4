@@ -1,10 +1,12 @@
 <ion-header>
-  <sneaker-header></sneaker-header>
+  <sneaker-header hideRightMenu="true"></sneaker-header>
 </ion-header>
-  
-<side-menu></side-menu>
+
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row *ngFor="let news of allNews">
       <ion-col>
@@ -32,7 +34,3 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-
-<ion-footer>
-    <sneaker-footer></sneaker-footer>
-</ion-footer>
