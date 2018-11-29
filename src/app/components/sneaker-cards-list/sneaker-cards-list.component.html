@@ -4,21 +4,23 @@
       <ion-card>
        
           <ion-fab vertical="top" horizontal="end" slot="fixed">
-              <ion-fab-button translucent="true"  (click)="doLike(sneaker.$key)">
-                  <ion-icon *ngIf="!sneaker.like" name="heart-empty"></ion-icon>
-                  <ion-icon *ngIf="sneaker.like" name="heart"></ion-icon>
-              </ion-fab-button>
-            </ion-fab>
-         
+            <ion-fab-button translucent="true"  (click)="doLike(sneaker.$key)">
+                <ion-icon *ngIf="!sneaker.like" name="heart-empty"></ion-icon>
+                <ion-icon *ngIf="sneaker.like" name="heart"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        
       
-          <ion-card-content  (click)="goToSneaker(sneaker.$key)">
+        <ion-card-content  (click)="goToSneaker(sneaker.$key)">
             
-        <img [src]="sneaker?.urlImage" />
-        <ion-card-header>
-          <ion-card-subtitle>{{ sneaker.name }}</ion-card-subtitle>
-        </ion-card-header>
-        <p text-end class="sneaker-description">{{ sneaker.description }}</p>
-        <p text-end class="sneaker-price"><b>{{ sneaker.price | currency: 'EUR':'symbol':undefined:'es'}}</b></p>
+          <img [src]="sneaker?.urlImage" />
+          <ion-card-header>
+            <ion-card-subtitle>{{ sneaker.name }}</ion-card-subtitle>
+          </ion-card-header>
+          <p text-start class="sneaker-description">{{ sneaker.description }}</p>
+          <p text-start float-left class="sneaker-price"><b>{{ sneaker.date  | date:'dd/MM/yyyy' }}</b></p>
+          <p text-end float-right class="sneaker-price"><b>{{ sneaker.price | currency: 'EUR':'symbol':undefined:'es'}}</b></p>
+        
         </ion-card-content>
      
       </ion-card>
