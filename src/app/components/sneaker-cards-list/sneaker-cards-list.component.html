@@ -11,7 +11,7 @@
           </ion-fab>
         
       
-        <ion-card-content  (click)="goToSneaker(sneaker.$key)">
+        <ion-card-content href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward">
             
           <img [src]="sneaker?.urlImage" />
           <ion-card-header>

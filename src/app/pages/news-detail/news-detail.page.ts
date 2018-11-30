@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { News } from 'src/app/shared/model/news';
 import { ActivatedRoute } from '@angular/router';
@@ -9,16 +9,18 @@ import { NewsService } from 'src/app/services/news.service';
   templateUrl: './news-detail.page.html',
   styleUrls: ['./news-detail.page.scss'],
 })
-export class NewsDetailPage implements OnInit, OnDestroy {
+export class NewsDetailPage implements OnInit {
   news: News;
 
   constructor(private route: ActivatedRoute, private menuCtrl: MenuController, private newsService: NewsService) {
-    this.menuCtrl.enable(false);
-    console.log(this.route.snapshot.paramMap.get('id'));
+    // console.log(this.route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit() {
     console.log('ngOnInit NewsDetailPage');
+  }
+
+  ionViewWillEnter() {
     this.newsService.findNewsByKey(this.route.snapshot.paramMap.get('id')).subscribe(
       (news) => {
         this.news = news;
@@ -27,9 +29,5 @@ export class NewsDetailPage implements OnInit, OnDestroy {
         console.log(`Error finding news ${err}`);
       }
     );
-  }
-
-  ngOnDestroy() {
-    this.menuCtrl.enable(true);
   }
 }

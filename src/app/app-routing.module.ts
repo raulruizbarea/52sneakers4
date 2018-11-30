@@ -12,41 +12,21 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: './pages/welcome/welcome.module#WelcomePageModule',
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'login',
     loadChildren: './pages/login/login.module#LoginPageModule',
-    canActivate: [LoginGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'new-user',
     loadChildren: './pages/new-user/new-user.module#NewUserPageModule',
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'news/:id',
-    loadChildren: './pages/news-detail/news-detail.module#NewsDetailPageModule',
-    canActivate: [AuthGuard],
+    // canActivate: [LoginGuard],
   },
   { path: 'forget-password',
     loadChildren: './pages/forget-password/forget-password.module#ForgetPasswordPageModule',
-    canActivate: [LoginGuard],
-  },
-  {
-    path: 'subscription',
-    loadChildren: './pages/subscription/subscription.module#SubscriptionPageModule',
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'contact',
-    loadChildren: './pages/contact/contact.module#ContactPageModule',
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'sneaker/:id',
-    loadChildren: './pages/sneaker/sneaker.module#SneakerPageModule',
-    canActivate: [AuthGuard],
+    // canActivate: [LoginGuard],
   },
   {
     path: 'main',
@@ -58,6 +38,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [LoginGuard]
 })
 export class AppRoutingModule { }

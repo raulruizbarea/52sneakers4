@@ -14,6 +14,13 @@ import { ComponentsModule } from 'src/app/components/components.module';
 import { NewsPage } from '../news/news.page';
 import { ProfilePage } from '../profile/profile.page';
 import { NewsDetailPageModule } from '../news-detail/news-detail.module';
+import { NewsDetailPage } from '../news-detail/news-detail.page';
+import { SneakerPage } from '../sneaker/sneaker.page';
+import { SneakerPageModule } from '../sneaker/sneaker.module';
+import { ContactPage } from '../contact/contact.page';
+import { SubscriptionPage } from '../subscription/subscription.page';
+import { SubscriptionPageModule } from '../subscription/subscription.module';
+import { ContactPageModule } from '../contact/contact.module';
 
 const routes: Routes = [
   {
@@ -38,6 +45,26 @@ const routes: Routes = [
             component: ProfilePage,
             loadChildren: './../profile/profile.module#ProfilePageModule'
           },
+          {
+            path: 'news/:id',
+            outlet: 'news',
+            component: NewsDetailPage
+          },
+          {
+            path: 'sneaker/:id',
+            outlet: 'home',
+            component: SneakerPage
+          },
+          {
+            path: 'subscription',
+            outlet: 'profile',
+            component: SubscriptionPage,
+          },
+          {
+            path: 'contact',
+            outlet: 'profile',
+            component: ContactPage,
+          },
           // {
             // path: 'cart',
             // outlet: 'cart',
@@ -47,9 +74,9 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/main/tabs/(home:home)',
-    pathMatch: 'full'
-  }
+    redirectTo: '/tabs/(home:home)',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
@@ -61,6 +88,10 @@ const routes: Routes = [
     ProfilePageModule,
     NewsPageModule,
     ComponentsModule,
+    NewsDetailPageModule,
+    SneakerPageModule,
+    SubscriptionPageModule,
+    ContactPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]
