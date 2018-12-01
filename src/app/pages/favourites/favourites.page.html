@@ -3,5 +3,14 @@
 </ion-header>
 
 <ion-content>
-  Favourites
+  <ion-list>
+    <ion-list-header>
+      <ion-label>{{favourite}}</ion-label>
+    </ion-list-header>
+    <ion-item href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" *ngFor="let sneaker of sneakers">
+      <ion-thumbnail slot="start">
+        <img [src]="sneaker?.urlImage" />
+      </ion-thumbnail>
+    </ion-item>
+  </ion-list>
 </ion-content>

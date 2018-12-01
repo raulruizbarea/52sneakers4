@@ -194,4 +194,27 @@ export class SneakerService {
       ),
     );
   }
+
+  findAllSneakersLikedByUser(userKey: string): Observable<{}> {
+    const subject = new Subject();
+
+    this.db.list('sneakersPerUser/' + userKey).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => {
+          const data = c.payload.val() as Sneaker;
+          data.$key = c.payload.key;
+
+        });
+      }),
+    ).subscribe(values => {
+      subject.next(values);
+      subject.complete();
+    }, err => {
+        subject.error(err);
+        subject.complete();
+    });
+
+    return subject.asObservable();
+  }
 }
