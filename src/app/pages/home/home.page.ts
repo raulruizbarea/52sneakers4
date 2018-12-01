@@ -29,14 +29,6 @@ export class HomePage implements OnInit {
     console.log('ngOnInit HomePage');
   }
 
-  ionViewDidEnter() {
-    console.log('ionViewDidEnter HomePage');
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-
   ionViewWillEnter() {
     this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
       tap(console.log))
@@ -54,6 +46,7 @@ export class HomePage implements OnInit {
 
   filterTendencies() {
     // TODO think about filtering by tendencies
+    this.filtered = this.allSneakers.slice().sort((n1: Sneaker, n2: Sneaker) => n1.sneakerSold - n2.sneakerSold);
   }
 
   filterNewArrivals() {
