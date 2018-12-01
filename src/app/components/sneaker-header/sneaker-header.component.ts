@@ -4,9 +4,8 @@ import { AuthInfo } from 'src/app/shared/security/auth-info';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Input } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { SearchPage } from 'src/app/pages/search/search.page';
-import { Router } from '@angular/router';
 import { FilterPage } from 'src/app/pages/filter/filter.page';
 
 @Component({
@@ -16,18 +15,18 @@ import { FilterPage } from 'src/app/pages/filter/filter.page';
 })
 export class SneakerHeaderComponent implements OnInit {
   @Input() appName: string;
-  @Input() hideMenu: boolean;
-  @Input() hideRightMenu: boolean;
+  @Input() hideHomeMenu: boolean;
+  @Input() hideProfileMenu: boolean;
   authInfo: AuthInfo;
 
   back: string;
 
   constructor(private authService: AuthService, private afAuth: AngularFireAuth,
-    private navCtrl: NavController, private modalCtrl: ModalController, private router: Router) {
+    private modalCtrl: ModalController) {
     this.appName = Constants.AppName;
     this.back = Constants.Back;
-    this.hideMenu = false;
-    this.hideRightMenu = false;
+    this.hideHomeMenu = false;
+    this.hideProfileMenu = false;
   }
 
   isLoggedIn() {
