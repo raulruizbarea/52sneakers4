@@ -1,0 +1,54 @@
+ion-avatar  {     
+  width: 175px !important;
+  height: 175px !important;
+  margin: auto;
+  margin-top: 5px;
+  border: 2px solid black !important;
+  box-shadow: 0 0 0 2px hsl(0, 0%, 20%), 
+  0 0 0 3px hsl(0, 0%, 30%),
+  0 0 0 4px hsl(0, 0%, 40%),
+  0 0 0 5px hsl(0, 0%, 50%),
+  0 0 0 6px hsl(0, 0%, 60%), 
+  0 0 0 7px hsl(0, 0%, 70%), 
+  0 0 0 8px hsl(0, 0%, 80%), 
+  0 0 0 9px hsl(0, 0%, 90%),
+  0 0 0 10px hsl(0, 0%, 95%);
+}
+
+h3 {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ion-list {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+p.sneaker-disconnect {
+  text-decoration: underline;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+p ion-icon {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+ion-item ion-icon {
+  margin: 10px;
+}
+
+ion-grid {
+  height: 100%;
+
+  ion-row {
+    height: 50%;
+  }
+}

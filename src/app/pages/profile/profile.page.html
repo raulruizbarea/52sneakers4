@@ -3,5 +3,47 @@
 </ion-header>
 
 <ion-content>
-    <ion-button (click)="logout()" text-center>{{ disconnect }}</ion-button>
+  <ion-grid no-padding>
+    <ion-row align-items-stretch>
+      <ion-col align-self-center>
+    <ion-avatar>
+      <img src="https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+    </ion-avatar>
+    <h3 text-center>{{completeName}}</h3>
+    <p text-center>{{user?.email}}</p>
+    <!-- <ion-button fill="clear" (click)="logout()" text-center expand="full">{{ disconnect }}</ion-button>
+     -->
+    </ion-col>
+    </ion-row>
+  <ion-row align-items-stretch>
+    <ion-list>
+           
+      <ion-item button tappable color="light">
+        <ion-icon slot="start" name="heart" color="dark"></ion-icon>
+        <ion-label>{{favourites}}</ion-label>
+      </ion-item>
+
+      <ion-item button tappable color="light">
+        <ion-icon slot="start" name="timer" color="dark"></ion-icon>
+        <ion-label>{{history}}</ion-label>
+      </ion-item>
+
+      <ion-item button tappable color="light">
+        <ion-icon slot="start" name="notifications" color="dark"></ion-icon>
+        <ion-label>{{notification}}</ion-label>
+      </ion-item>
+
+      <ion-item button tappable color="light">
+        <ion-icon slot="start" name="wifi" color="dark"></ion-icon>
+        <ion-label>{{subscription}}</ion-label>
+      </ion-item>
+
+      <ion-item button tappable color="light">
+        <ion-icon slot="start" name="mail" color="dark"></ion-icon>
+        <ion-label>{{contact}}</ion-label>
+      </ion-item>
+      <p text-center tappable (click)="logout()" text-uppercase class="sneaker-disconnect"><ion-icon name="power" slot="start"></ion-icon>{{ disconnect }}</p>
+    </ion-list>
+  </ion-row>
+  </ion-grid>
 </ion-content>

@@ -63,6 +63,7 @@ export const dbData = {
         'Running': true,
         'Training': true,
       },
+      'sneakerSold': 0,
     },
     {
       'name': 'Converse',
@@ -84,6 +85,7 @@ export const dbData = {
       'sports': {
         'Training': true,
       },
+      'sneakerSold': 0,
     },
     {
       'name': 'Adidas Air MAX',
@@ -105,6 +107,7 @@ export const dbData = {
         'Running': true,
         'Training': true,
       },
+      'sneakerSold': 0,
     },
     {
       'name': 'PUMA',
@@ -124,6 +127,7 @@ export const dbData = {
         'Running': true,
         'Training': true,
       },
+      'sneakerSold': 0,
     },
   ]
 };

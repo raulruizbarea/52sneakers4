@@ -35,6 +35,17 @@ export class UsersService {
     );
   }
 
+  findUserById(id: string): Observable<User> {
+    return this.db.list('users', ref => ref.orderByKey().equalTo(id)).snapshotChanges().pipe(
+      // map(changes => changes[0]),
+      tap(console.log),
+      // filter(changes => changes && changes.length > 0),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(changes => changes[0])
+    );
+  }
+
   createNewUser(uid: string, user: any): Observable<any> {
     const userToSave = Object.assign({}, user);
     const dataToSave = {};

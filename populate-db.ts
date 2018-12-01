@@ -40,6 +40,7 @@ dbData.sneakers.forEach( sneakerJson => {
     categories: sneakerJson.categories,
     sports: sneakerJson.sports,
     urlImage: sneakerJson.urlImage,
+    sneakerSold: sneakerJson.sneakerSold,
   });
 
 });
