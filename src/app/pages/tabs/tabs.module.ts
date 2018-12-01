@@ -23,6 +23,8 @@ import { SubscriptionPageModule } from '../subscription/subscription.module';
 import { ContactPageModule } from '../contact/contact.module';
 import { CartPageModule } from '../cart/cart.module';
 import { CartPage } from '../cart/cart.page';
+import { FavouritesPage } from '../favourites/favourites.page';
+import { FavouritesPageModule } from '../favourites/favourites.module';
 
 const routes: Routes = [
   {
@@ -46,6 +48,11 @@ const routes: Routes = [
             outlet: 'profile',
             component: ProfilePage,
             loadChildren: './../profile/profile.module#ProfilePageModule'
+          },
+          {
+            path: 'favourites',
+            outlet: 'profile',
+            component: FavouritesPage,
           },
           {
             path: 'news/:id',
@@ -96,6 +103,7 @@ const routes: Routes = [
     SubscriptionPageModule,
     ContactPageModule,
     CartPageModule,
+    FavouritesPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]

@@ -33,7 +33,6 @@ const routes: Routes = [
     loadChildren: './pages/tabs/tabs.module#TabsPageModule',
     canActivate: [AuthGuard],
   },
-
 ];
 
 @NgModule({
