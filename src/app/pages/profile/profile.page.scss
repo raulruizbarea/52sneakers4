@@ -3,6 +3,7 @@ ion-avatar  {
   height: 175px !important;
   margin: auto;
   margin-top: 5px;
+  margin-bottom: 10px;
   border: 2px solid black !important;
   box-shadow: 0 0 0 2px hsl(0, 0%, 20%), 
   0 0 0 3px hsl(0, 0%, 30%),
@@ -16,12 +17,14 @@ ion-avatar  {
 }
 
 h3 {
-  margin-top: 10px;
+  margin-top: 0;
   margin-bottom: 0;
+  min-height: 26px;
 }
 
 p {
   margin: 0;
+  min-width: 18px;
 }
 
 ion-list {
