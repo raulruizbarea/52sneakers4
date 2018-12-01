@@ -18,6 +18,11 @@ export class LoginGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
 
+    if (this.afAuth.auth.currentUser !== null) {
+      this.router.navigateByUrl('/main/tabs/(home:home)');
+          return false;
+    }
+
     this.afAuth.authState
        .take(1)
        .map(user => !!user)
@@ -35,6 +40,6 @@ export class LoginGuard implements CanActivate {
           return true;
        }
      });
-     return false;
+     return true;
   }
 }
