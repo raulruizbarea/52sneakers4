@@ -33,12 +33,12 @@
         <ion-label>{{notification}}</ion-label>
       </ion-item>
 
-      <ion-item button tappable color="light">
+      <ion-item button tappable color="light" (click)="navigateToSubscription()">
         <ion-icon slot="start" name="wifi" color="dark"></ion-icon>
         <ion-label>{{subscription}}</ion-label>
       </ion-item>
 
-      <ion-item button tappable color="light">
+      <ion-item button tappable color="light" (click)="navigateToContact()">
         <ion-icon slot="start" name="mail" color="dark"></ion-icon>
         <ion-label>{{contact}}</ion-label>
       </ion-item>

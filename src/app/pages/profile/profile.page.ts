@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { tap } from 'rxjs/operators';
 import { User } from 'src/app/shared/model/user';
 import { Constants } from 'src/app/constants/app.constants';
+import { ModalController } from '@ionic/angular';
+import { ContactPage } from '../contact/contact.page';
+import { SubscriptionPage } from '../subscription/subscription.page';
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +23,8 @@ export class ProfilePage implements OnInit {
   history: string;
   notification: string;
 
-  constructor(private authService: AuthService, private usersService: UsersService, private afAuth: AngularFireAuth) {
+  constructor(private authService: AuthService, private usersService: UsersService,
+    private afAuth: AngularFireAuth, private modalCtrl: ModalController) {
     this.favourites = Constants.Favourites;
     this.disconnect = Constants.Disconnect;
     this.subscription = Constants.Subscription;
@@ -42,5 +45,21 @@ export class ProfilePage implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  navigateToContact() {
+    this.openModal(ContactPage);
+  }
+
+  navigateToSubscription() {
+    this.openModal(SubscriptionPage);
+  }
+
+  async openModal(comp) {
+    const modal = await this.modalCtrl.create({
+     component: comp,
+   });
+
+   return await modal.present();
   }
 }
