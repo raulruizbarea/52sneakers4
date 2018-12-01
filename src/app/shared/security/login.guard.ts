@@ -16,16 +16,25 @@ export class LoginGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> {
+    state: RouterStateSnapshot): boolean {
 
-      return this.afAuth.authState
+    this.afAuth.authState
        .take(1)
        .map(user => !!user)
        .do(loggedIn => {
          if (loggedIn) {
            console.log('access granted');
-           this.router.navigate(['/main']);
+           // this.router.navigate(['/main']);
+           this.router.navigateByUrl('/main/tabs/(home:home)');
          }
+     }).subscribe(value => {
+       if (value) {
+          this.router.navigateByUrl('/main/tabs/(home:home)');
+          return false;
+       } else {
+          return true;
+       }
      });
-   }
+     return false;
+  }
 }
