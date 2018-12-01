@@ -21,6 +21,8 @@ import { ContactPage } from '../contact/contact.page';
 import { SubscriptionPage } from '../subscription/subscription.page';
 import { SubscriptionPageModule } from '../subscription/subscription.module';
 import { ContactPageModule } from '../contact/contact.module';
+import { CartPageModule } from '../cart/cart.module';
+import { CartPage } from '../cart/cart.page';
 
 const routes: Routes = [
   {
@@ -65,11 +67,12 @@ const routes: Routes = [
             outlet: 'profile',
             component: ContactPage,
           },
-          // {
-            // path: 'cart',
-            // outlet: 'cart',
-            // loadChildren: './../cart/cart.module#CartPageModule'
-          // },
+          {
+            path: 'cart',
+            outlet: 'cart',
+            component: CartPage,
+            loadChildren: './../cart/cart.module#CartPageModule'
+          },
       ]
   },
   {
@@ -92,6 +95,7 @@ const routes: Routes = [
     SneakerPageModule,
     SubscriptionPageModule,
     ContactPageModule,
+    CartPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]
