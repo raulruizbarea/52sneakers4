@@ -11,10 +11,12 @@ import { SneakersPerUser } from 'src/app/shared/model/sneaker';
 })
 export class FavouritesPage implements OnInit {
   favourite: string;
+  noValues: string;
   sspu: SneakersPerUser[];
 
   constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) {
     this.favourite = Constants.FavouritesList;
+    this.noValues = Constants.NoFavourites;
    }
 
   ngOnInit() {

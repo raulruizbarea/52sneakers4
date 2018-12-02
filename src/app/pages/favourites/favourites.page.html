@@ -11,7 +11,9 @@
     <ion-list-header>
       <ion-label>{{favourite}}</ion-label>
     </ion-list-header>
-    <div >
+      <ion-item lines="none" *ngIf="!sspu || sspu.length === 0">
+          <ion-label>{{ noValues }}</ion-label>
+      </ion-item>
       <ion-item *ngFor="let sneakerUser of sspu" href="/main/tabs/(home:sneaker/{{sneakerUser?.$key}})" routerDirection="forward" >
         <ion-thumbnail slot="start">
           <img *ngIf="sneakerUser?.sneaker?.urlImage" [src]="sneakerUser?.sneaker?.urlImage" />
@@ -22,6 +24,5 @@
         <ion-label float-right>{{sneakerUser?.sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
       </ion-grid>
       </ion-item>
-    </div>
   </ion-list>
 </ion-content>

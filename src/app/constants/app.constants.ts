@@ -82,4 +82,6 @@ export const Constants = {
   SneakerSold: 'Sneakers venudes',
 
   Cart: 'Cistella',
+  NoValues: 'No s\'ha trobat cap resultat!',
+  NoFavourites: 'No tens cap sneaker afegida a favorits!',
 };
