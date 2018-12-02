@@ -1,9 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
-import { Sneaker } from '../shared/model/sneaker';
-import { Observable, Subject } from 'rxjs';
+import { Sneaker, SneakersPerUser } from '../shared/model/sneaker';
+import { Subject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from '@angular/fire';
+import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable({
   providedIn: 'root'
@@ -103,5 +105,22 @@ export class SneakerService {
     err => {
       console.log(`Error deleting like usersPerSneaker`);
     });
+  }
+
+  findAllSneakersLikedByUserKey(userKey: string): Observable<SneakersPerUser[]> {
+    return this.db.list('sneakersPerUser/' + userKey).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => {
+          const data = c.payload.val() as SneakersPerUser;
+          data.$key = c.payload.key;
+          this.sdkDb.ref('sneakers/' + data.$key).once('value')
+            .then(function(snapshot) {
+              data.sneaker = snapshot.val();
+            });
+          return data;
+        });
+      }),
+    );
   }
 }

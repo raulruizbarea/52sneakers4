@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { SneakerService } from 'src/app/services/sneaker.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { tap, map } from 'rxjs/operators';
-import { Sneaker } from 'src/app/shared/model/sneaker';
-import { Reorder } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { SneakersPerUser } from 'src/app/shared/model/sneaker';
 
 @Component({
   selector: 'app-favourites',
@@ -14,22 +11,28 @@ import { Observable } from 'rxjs';
 })
 export class FavouritesPage implements OnInit {
   favourite: string;
-  filtered: Observable<Sneaker[]>;
-  allSneakers: Sneaker[];
+  sspu: SneakersPerUser[];
 
   constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) {
     this.favourite = Constants.FavouritesList;
    }
 
   ngOnInit() {
-    this.filtered = this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid)
-      .map(sneakers => sneakers.sort((a: Sneaker, b: Sneaker) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+    this.sneakerService.findAllSneakersLikedByUserKey(this.afAuth.auth.currentUser.uid)
+    .map(sneakers => sneakers.sort((a, b) => new Date(b.likedDate).getTime() - new Date(a.likedDate).getTime()))
+    .subscribe(values => {
+      console.log(values);
+      this.sspu = values;
+    });
   }
 
   doRefresh(refresher) {
-      this.filtered = this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid)
-      .map(sneakers => sneakers.sort((a: Sneaker, b: Sneaker) => new Date(b.date).getTime() - new Date(a.date).getTime()));
-
-      this.filtered.subscribe(values => refresher.target.complete());
+    this.sneakerService.findAllSneakersLikedByUserKey(this.afAuth.auth.currentUser.uid)
+    .map(sneakers => sneakers.sort((a, b) => new Date(b.likedDate).getTime() - new Date(a.likedDate).getTime()))
+    .subscribe(values => {
+      // console.log(values);
+      this.sspu = values;
+      refresher.target.complete();
+    });
   }
 }
