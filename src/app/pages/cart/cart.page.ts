@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Constants } from 'src/app/constants/app.constants';
 
 @Component({
   selector: 'app-cart',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.page.scss'],
 })
 export class CartPage implements OnInit {
-
-  constructor() { }
+  pay: string;
+  constructor() {
+    this.pay = Constants.Pay;
+  }
 
   ngOnInit() {
   }

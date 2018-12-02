@@ -1,7 +1,21 @@
 <ion-header>
-  <sneaker-header hideHomeMenu="true" hideProfileMenu="true"></sneaker-header>
-</ion-header>
+    <sneaker-header hideHomeMenu="true" hideProfileMenu="true"></sneaker-header>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list lines="none">
+      <ion-list-header color="dark">
+        <ion-grid fixed="true">
+          <ion-row><ion-col>
+            <p class="sneaker-quantity">3 artícles</p>
+          </ion-col></ion-row>
+        <ion-row><ion-col text-end>
+          <p class="sneaker-total">TOTAL: 450 eur</p>
+        </ion-col></ion-row>
+      </ion-grid>
+      </ion-list-header>
+ 
+    </ion-list>
 
-<ion-content>
-  Cart
-</ion-content>
+    <ion-button color="dark" padding expand="full">{{ pay }}</ion-button>
+  </ion-content>
