@@ -45,8 +45,7 @@ export class HomePage implements OnInit {
   }
 
   filterTendencies() {
-    // TODO think about filtering by tendencies
-    this.filtered = this.allSneakers.slice().sort((n1: Sneaker, n2: Sneaker) => n1.sneakerSold - n2.sneakerSold);
+    this.filtered = this.allSneakers.slice().sort((n1: Sneaker, n2: Sneaker) => n2.sneakerSold - n1.sneakerSold);
   }
 
   filterNewArrivals() {
