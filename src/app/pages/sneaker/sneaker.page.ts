@@ -1,12 +1,13 @@
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Sneaker } from 'src/app/shared/model/sneaker';
 import { SneakerService } from 'src/app/services/sneaker.service';
-import { MenuController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { formatDate } from '@angular/common';
 import { Constants } from 'src/app/constants/app.constants';
+import { OrderService } from 'src/app/services/order.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sneaker',
@@ -19,9 +20,10 @@ export class SneakerPage implements OnInit {
   sizeTitle: string;
   sizes: string[];
   disableBtn: boolean;
+  sizeSneaker: string;
 
-  constructor(private route: ActivatedRoute, private menuCtrl: MenuController,
-    private afAuth: AngularFireAuth, private sneakerService: SneakerService) {
+  constructor(private route: ActivatedRoute, private orderService: OrderService,
+    private afAuth: AngularFireAuth, private sneakerService: SneakerService, private navCtrl: NavController) {
     // console.log(this.route.snapshot.paramMap.get('id'));
     this.addToCart = Constants.AddToCart;
     this.sizeTitle = Constants.Size;
@@ -54,9 +56,14 @@ export class SneakerPage implements OnInit {
   }
 
   canAdd($event) {
-    // console.log($event.target.value);
-    if ($event.target.value !== undefined && $event.target.value !== '') {
+    this.sizeSneaker = $event.target.value;
+    if (this.sizeSneaker !== undefined && this.sizeSneaker !== '') {
       this.disableBtn = false;
     }
+  }
+
+  addSneakerToCart() {
+    this.orderService.addSneakerToCart(this.sneaker.$key, this.afAuth.auth.currentUser.uid, this.sizeSneaker);
+    this.navCtrl.goBack();
   }
 }
