@@ -11,14 +11,14 @@
     <ion-list-header>
       <ion-label>{{favourite}}</ion-label>
     </ion-list-header>
-    <div *ngFor="let sneaker of filtered">
+    <div *ngFor="let sneaker of (filtered | async)">
       <ion-item *ngIf="sneaker.like" href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" >
         <ion-thumbnail slot="start">
           <img [src]="sneaker?.urlImage" />
         </ion-thumbnail>
         <ion-grid fixed="true">
         <ion-label class="sneaker-title">{{sneaker?.name}}</ion-label>
-        <ion-label float-left>{{sneaker?.dateLike  | date:'dd/MM/yyyy' }}</ion-label>
+        <ion-label float-left>{{sneaker?.likedDate  | date:'dd/MM/yyyy' }}</ion-label>
         <ion-label float-right>{{sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
       </ion-grid>
       </ion-item>

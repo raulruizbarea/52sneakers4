@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { tap, map } from 'rxjs/operators';
 import { Sneaker } from 'src/app/shared/model/sneaker';
 import { Reorder } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-favourites',
@@ -13,7 +14,7 @@ import { Reorder } from '@ionic/angular';
 })
 export class FavouritesPage implements OnInit {
   favourite: string;
-  filtered: Sneaker[];
+  filtered: Observable<Sneaker[]>;
   allSneakers: Sneaker[];
 
   constructor(private sneakerService: SneakerService, private afAuth: AngularFireAuth) {
@@ -21,29 +22,14 @@ export class FavouritesPage implements OnInit {
    }
 
   ngOnInit() {
-    this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
-      tap(console.log))
-      .pipe(
-        map(sneakers => sneakers.sort((a: Sneaker, b: Sneaker) => new Date(b.dateLike).getTime() - new Date(a.dateLike).getTime())))
-      .subscribe(sneakers => {
-         this.filtered = this.allSneakers = sneakers;
-         this.reorderSneakers();
-       });
+    this.filtered = this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid)
+      .map(sneakers => sneakers.sort((a: Sneaker, b: Sneaker) => new Date(b.date).getTime() - new Date(a.date).getTime()));
   }
 
   doRefresh(refresher) {
-    this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
-      tap(console.log))
-      .pipe(
-        map(sneakers => sneakers.sort((a: Sneaker, b: Sneaker) => new Date(b.dateLike).getTime() - new Date(a.dateLike).getTime())))
-      .subscribe(sneakers => {
-         this.filtered = this.allSneakers = sneakers;
-         this.reorderSneakers();
-         refresher.target.complete();
-      });
-  }
+      this.filtered = this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid)
+      .map(sneakers => sneakers.sort((a: Sneaker, b: Sneaker) => new Date(b.date).getTime() - new Date(a.date).getTime()));
 
-  reorderSneakers() {
-    this.filtered = this.allSneakers.slice().sort((n1: Sneaker, n2: Sneaker) => n1.sneakerSold - n2.sneakerSold);
+      this.filtered.subscribe(values => refresher.target.complete());
   }
 }
