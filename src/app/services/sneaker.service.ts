@@ -46,6 +46,9 @@ export class SneakerService {
             .then(function(snapshot) {
               const hasDateLike = snapshot.hasChild('dateLike');
               data.like = hasDateLike;
+              if (hasDateLike) {
+                data.dateLike = snapshot.val().dateLike;
+              }
             });
           return data;
         });
@@ -61,16 +64,26 @@ export class SneakerService {
     return subject.asObservable();
   }
 
-  findSneakerByKey(key: string): Observable<Sneaker> {
-    return this.db.list('sneakers', ref => ref.orderByKey().equalTo(key)).snapshotChanges().pipe(
+  /* findSneakerByKey(key: string): Observable<{}> {
+    const subject = new Subject();
+
+    this.db.list('sneakers', ref => ref.orderByKey().equalTo(key)).snapshotChanges().pipe(
       // map(changes => changes[0]),
       tap(console.log),
       // filter(changes => changes && changes.length > 0),
       map(changes => {
         return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
       map(changes => changes[0])
-    );
-  }
+    ).subscribe(values => {
+      subject.next(values);
+      subject.complete();
+    }, err => {
+        subject.error(err);
+        subject.complete();
+    });
+
+    return subject.asObservable();
+  } */
 
   findSneakerByKeyWithLike(key: string, userKey: string): Observable<{}> {
     const subject = new Subject();
@@ -170,41 +183,21 @@ export class SneakerService {
       return subject.asObservable();
   }
 
-  findAllSneakersWithLike2(userKey: string): Observable<Sneaker[]> {
-    return this.db.list('sneakers').snapshotChanges().pipe(
-      tap(console.log),
-      map(changes => {
-        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
-      map(changes => changes.forEach(sneaker => {
-        console.log('Sneaker: ' + sneaker);
-        this.db.object('usersPerSneaker/' + sneaker.$key + '/' + userKey + '/dateLike')
-          .snapshotChanges()
-            .subscribe(action => {
-            // console.log(action.type);
-            // console.log(action.key);
-            // console.log(action.payload.val());
-            if (action.key) {
-              sneaker.like = true;
-            } else {
-              sneaker.like = false;
-            }
-          });
-        console.log(changes);
-      }),
-      ),
-    );
-  }
-
   findAllSneakersLikedByUser(userKey: string): Observable<{}> {
     const subject = new Subject();
 
-    this.db.list('sneakersPerUser/' + userKey).snapshotChanges().pipe(
+    this.db.list('sneakers').snapshotChanges().pipe(
       tap(console.log),
       map(changes => {
         return changes.map(c => {
           const data = c.payload.val() as Sneaker;
           data.$key = c.payload.key;
-
+          this.sdkDb.ref('sneakersPerUser/' + userKey + '/' + data.$key).once('value')
+            .then(function(snapshot) {
+              const hasDateLike = snapshot.hasChild('dateLike');
+              data.like = hasDateLike;
+            });
+          return data;
         });
       }),
     ).subscribe(values => {

@@ -45,6 +45,7 @@ export const Constants = {
   Save: 'Desar',
   Notifications: 'Notificacions',
   Favourites: 'Favorits',
+  FavouritesList: 'Llista de favorits',
   History: 'Historial',
   Configuration: 'Configuration',
   Disconnect: 'Desconnectar',

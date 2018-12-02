@@ -3,14 +3,25 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
   <ion-list>
     <ion-list-header>
       <ion-label>{{favourite}}</ion-label>
     </ion-list-header>
-    <ion-item href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" *ngFor="let sneaker of sneakers">
-      <ion-thumbnail slot="start">
-        <img [src]="sneaker?.urlImage" />
-      </ion-thumbnail>
-    </ion-item>
+    <div *ngFor="let sneaker of filtered">
+      <ion-item *ngIf="sneaker.like" href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" >
+        <ion-thumbnail slot="start">
+          <img [src]="sneaker?.urlImage" />
+        </ion-thumbnail>
+        <ion-grid fixed="true">
+        <ion-label class="sneaker-title">{{sneaker?.name}}</ion-label>
+        <ion-label float-left>{{sneaker?.dateLike  | date:'dd/MM/yyyy' }}</ion-label>
+        <ion-label float-right>{{sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+      </ion-grid>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content>

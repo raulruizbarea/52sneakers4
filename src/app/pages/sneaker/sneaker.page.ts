@@ -24,17 +24,6 @@ export class SneakerPage implements OnInit, OnDestroy {
   ngOnInit() {
     console.log('ngOnInit SneakerPage');
 
-    /*
-    this.sneakerService.findSneakerByKey(this.route.snapshot.paramMap.get('id')).subscribe(
-      (sneaker) => {
-        this.sneaker = sneaker;
-      },
-      err => {
-        console.log(`Error finding sneaker ${err}`);
-      }
-    );
-    */
-
     this.sneakerService.findSneakerByKeyWithLike(this.route.snapshot.paramMap.get('id'), this.afAuth.auth.currentUser.uid).pipe(
       tap(console.log))
       .subscribe(sneaker => {
