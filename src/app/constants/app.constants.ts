@@ -88,4 +88,6 @@ export const Constants = {
   AddToCart: 'Afegir a la cistella',
 
   Size: 'Talla',
+  Articles: 'Artícles',
+  Delete: 'Esborrar',
 };
