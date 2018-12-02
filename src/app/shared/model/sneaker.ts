@@ -13,7 +13,7 @@ export class Sneaker {
     public urlImage: string,
     public sneakerSold: number,
     public like?: boolean,
-    public dateLike?: string,
+    public likedDate?: string,
     ) {
 
   }
@@ -23,8 +23,8 @@ export class Sneaker {
   }
 
   static fromJson({$key, name, description, longDescription, date, price, brand, sizes,
-    categories, sports, urlImage, sneakerSold, like, dateLike}): Sneaker {
+    categories, sports, urlImage, sneakerSold, like, likedDate}): Sneaker {
     return new Sneaker($key, name, description, longDescription, date, price, brand, sizes,
-      categories, sports, urlImage, sneakerSold, like, dateLike);
+      categories, sports, urlImage, sneakerSold, like, likedDate);
   }
 }
