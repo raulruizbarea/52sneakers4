@@ -1,6 +1,6 @@
 .sneaker-quantity {
   margin-bottom: 1%;
-  text-transform: none;
+  text-transform: lowercase;
   font-size: 16px;
 }
 
@@ -15,4 +15,12 @@ ion-button {
   position: absolute; 
   bottom: 0; 
   width: 100%;
+}
+
+ion-list {
+  padding: 0;
+}
+
+.sneaker-delete {
+  font-size: 32px;
 }

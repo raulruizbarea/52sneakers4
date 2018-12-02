@@ -7,23 +7,50 @@
       <ion-list-header color="dark">
         <ion-grid fixed="true">
           <ion-row><ion-col>
-            <p class="sneaker-quantity">3 artícles</p>
+            <p class="sneaker-quantity">{{sneakers?.length}} {{articles}}</p>
           </ion-col></ion-row>
         <ion-row><ion-col text-end>
-          <p class="sneaker-total">TOTAL: 450 eur</p>
+          <p class="sneaker-total">TOTAL: {{total | currency: 'EUR':'symbol':undefined:'es'}}</p>
         </ion-col></ion-row>
       </ion-grid>
       </ion-list-header>
  
     </ion-list>
 
-    <ion-button clear (click)="increment()">
+    <ion-list #dynamicList>
+
+          <ion-item lines="none" *ngIf="!sneakers || sneakers.length === 0">
+              <ion-label>{{ noValues }}</ion-label>
+          </ion-item>
+
+        <ion-item-sliding *ngFor="let sneaker of sneakers">
+          <ion-item href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" >
+            <ion-thumbnail slot="start">
+              <img *ngIf="sneaker?.sneaker?.urlImage" [src]="sneaker?.sneaker?.urlImage" />
+            </ion-thumbnail>
+            <ion-grid fixed="true">
+              <ion-label class="sneaker-title">{{sneaker?.sneaker?.name}}</ion-label>
+              <ion-label float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
+              <ion-label float-right>{{sneaker?.sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+            </ion-grid>
+          </ion-item>
+
+          <ion-item-options side="end">
+            <ion-item-option color="danger" (click)="alert(sneaker)">
+              <ion-icon class="sneaker-delete" name="trash"></ion-icon>{{delete}}
+            </ion-item-option>
+          </ion-item-options>
+
+        </ion-item-sliding>
+    </ion-list>
+
+    <!-- <ion-button clear (click)="increment()">
         <ion-icon name="add-circle" ></ion-icon>
       </ion-button>
       {{quantity}}
       <ion-button clear (click)="decrement()">
         <ion-icon name="remove-circle" ></ion-icon>
-      </ion-button>
+      </ion-button> -->
 
     <ion-button color="dark" padding expand="full">{{ pay }}</ion-button>
   </ion-content>
