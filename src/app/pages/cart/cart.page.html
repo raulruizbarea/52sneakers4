@@ -17,5 +17,13 @@
  
     </ion-list>
 
+    <ion-button clear (click)="increment()">
+        <ion-icon name="add-circle" ></ion-icon>
+      </ion-button>
+      {{quantity}}
+      <ion-button clear (click)="decrement()">
+        <ion-icon name="remove-circle" ></ion-icon>
+      </ion-button>
+
     <ion-button color="dark" padding expand="full">{{ pay }}</ion-button>
   </ion-content>

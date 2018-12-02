@@ -85,4 +85,7 @@ export const Constants = {
   NoValues: 'No s\'ha trobat cap resultat!',
   NoFavourites: 'No tens cap sneaker afegida a favorits!',
   Pay: 'Pagar',
+  AddToCart: 'Afegir a la cistella',
+
+  Size: 'Talla',
 };

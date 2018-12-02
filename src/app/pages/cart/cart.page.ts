@@ -8,6 +8,8 @@ import { Constants } from 'src/app/constants/app.constants';
 })
 export class CartPage implements OnInit {
   pay: string;
+  quantity = 0;
+
   constructor() {
     this.pay = Constants.Pay;
   }
@@ -15,4 +17,11 @@ export class CartPage implements OnInit {
   ngOnInit() {
   }
 
+  increment () {
+    this.quantity++;
+  }
+
+  decrement () {
+    this.quantity--;
+  }
 }
