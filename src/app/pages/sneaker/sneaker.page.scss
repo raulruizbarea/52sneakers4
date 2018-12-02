@@ -17,3 +17,20 @@ ion-fab {
     --border-color: transparent;
     --ripple-color: transparent;
   }
+
+  .sneaker-add {
+    position: absolute; 
+    bottom: 0; 
+    width: 100%;
+  }
+
+  .sneaker-price {
+    font-weight: bold;
+    margin-right: 5%;
+    font-size: 16px;
+  }
+
+  .sneaker-date {
+    font-weight: bold;
+    font-size: 16px;
+  }

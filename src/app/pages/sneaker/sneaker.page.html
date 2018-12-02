@@ -18,12 +18,14 @@
             <ion-col padding><ion-label><h2><b>{{sneaker?.name}}</b></h2></ion-label></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col padding-horizontal><ion-label class="news-author-date" color="medium">{{sneaker?.date | date:'dd/MM/yyyy'}} {{sneaker?.price}}</ion-label></ion-col>
+            <ion-col no-padding>
+              <ion-img *ngIf="sneaker?.urlImage" [src]="sneaker?.urlImage"></ion-img></ion-col>
           </ion-row>
           <ion-row>
-            <ion-col no-padding>
-              <ion-img [src]="sneaker?.urlImage"></ion-img></ion-col>
-          </ion-row>
+              <ion-col padding-horizontal>
+                <ion-label class="sneaker-date" color="medium" float-left>{{sneaker?.date | date:'dd/MM/yyyy'}}</ion-label>
+                <ion-label class="sneaker-price" color="medium" float-right>{{sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label></ion-col>
+            </ion-row>
           <ion-row>
             <ion-col padding text-justify><ion-label class="news-description">{{sneaker?.longDescription}}</ion-label></ion-col>
           </ion-row>
@@ -31,5 +33,17 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
+    <ion-list>
+      <ion-item>
+        <ion-label>{{sizeTitle}}</ion-label>
+        <ion-select (ionChange)="canAdd($event)">
+          <ion-select-option *ngFor="let size of sizes" value="{{size}}">{{size}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    
+    </ion-list>
+  
+    <ion-button class="sneaker-add" disabled="{{disableBtn}}" color="dark" padding expand="full">{{ addToCart }}</ion-button>
   </ion-content>
   
