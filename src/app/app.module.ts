@@ -33,6 +33,7 @@ import { EmailService } from './services/email.service';
 import { SearchPageModule } from './pages/search/search.module';
 import { FilterPageModule } from './pages/filter/filter.module';
 import { LoginGuard } from './shared/security/login.guard';
+import { OrderService } from './services/order.service';
 
 registerLocaleData(localeEs, 'es');
 
@@ -58,6 +59,7 @@ registerLocaleData(localeEs, 'es');
     UsersService,
     SubscriptionsService,
     SneakerService,
+    OrderService,
     AuthService,
     AuthGuard,
     LoginGuard,
