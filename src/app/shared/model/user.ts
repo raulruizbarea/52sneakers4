@@ -3,7 +3,8 @@ export class User {
     public $key: string,
     public name: string,
     public surnames: string,
-    public email: string) {
+    public email: string,
+    public notifications: boolean) {
 
   }
 
@@ -11,7 +12,7 @@ export class User {
     return array.map(User.fromJson);
   }
 
-  static fromJson({$key, name, surnames, email}): User {
-    return new User($key, name, surnames, email);
+  static fromJson({$key, name, surnames, email, notifications}): User {
+    return new User($key, name, surnames, email, notifications);
   }
 }

@@ -47,7 +47,7 @@ export class UsersService {
   }
 
   createNewUser(uid: string, user: any): Observable<any> {
-    const userToSave = Object.assign({}, user);
+    const userToSave = Object.assign({}, user, { notifications: false });
     const dataToSave = {};
 
     dataToSave['users/' + uid] = userToSave;
@@ -72,5 +72,23 @@ export class UsersService {
         );
 
     return subject.asObservable();
+  }
+
+  findNotificationConfigByUser(userKey: string): Observable<boolean> {
+    return this.db.list('users/' + userKey, query => query.orderByKey().equalTo('notifications')).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => c.payload.val()); } ),
+      map(changes => changes[0])
+    );
+  }
+
+  updateNotificationConfigByUser(userKey: string, status: boolean) {
+    this.db.object('users/' + userKey).update({ notifications: status }).then(() => {
+        console.log('Notification of user updated succesfully.');
+    },
+    err => {
+      console.log(`Error changing notification of user`);
+    });
   }
 }

@@ -2,5 +2,17 @@
   <sneaker-modal-header modalTitle="{{modalTitle}}"></sneaker-modal-header>
 </ion-header>
 <ion-content color="primary">
+    <div padding text-center><h1>{{ notificationsQuestion }}</h1></div>
 
+  <form padding [formGroup]="form">
+    <ion-list lines="none" no-padding>
+
+      <ion-item color="primary" lines="none">
+        <ion-label>{{modalTitle}}</ion-label>
+        <ion-toggle color="success" formControlName="notifications" checked="{{hasNotifications}}"></ion-toggle> 
+      </ion-item>
+
+    </ion-list>
+  </form>
+  <ion-button color="light" padding expand="full" (click)="save(form)">{{ saveNotification }}</ion-button>
 </ion-content>

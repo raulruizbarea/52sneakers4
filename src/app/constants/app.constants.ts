@@ -90,4 +90,6 @@ export const Constants = {
   Size: 'Talla',
   Articles: 'Artícles',
   Delete: 'Esborrar',
+  NotificationsQuestion: 'Vols rebre notificacions?',
+  NotificationsChangedSuccess: 'Notificacions configurades correctament!',
 };
