@@ -52,5 +52,5 @@
         <ion-icon name="remove-circle" ></ion-icon>
       </ion-button> -->
 
-    <ion-button color="dark" padding expand="full">{{ pay }}</ion-button>
+    <ion-button disabled="{{!sneakers || sneakers.length === 0}}" color="dark" padding expand="full">{{ pay }}</ion-button>
   </ion-content>
