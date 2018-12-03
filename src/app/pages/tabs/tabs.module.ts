@@ -25,6 +25,8 @@ import { CartPageModule } from '../cart/cart.module';
 import { CartPage } from '../cart/cart.page';
 import { FavouritesPage } from '../favourites/favourites.page';
 import { FavouritesPageModule } from '../favourites/favourites.module';
+import { NotificationPage } from '../notification/notification.page';
+import { NotificationPageModule } from '../notification/notification.module';
 
 const routes: Routes = [
   {
@@ -70,6 +72,11 @@ const routes: Routes = [
             component: SubscriptionPage,
           },
           {
+            path: 'notification',
+            outlet: 'profile',
+            component: NotificationPage,
+          },
+          {
             path: 'contact',
             outlet: 'profile',
             component: ContactPage,
@@ -104,6 +111,7 @@ const routes: Routes = [
     ContactPageModule,
     CartPageModule,
     FavouritesPageModule,
+    NotificationPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]

@@ -7,6 +7,7 @@ import { Constants } from 'src/app/constants/app.constants';
 import { ModalController } from '@ionic/angular';
 import { ContactPage } from '../contact/contact.page';
 import { SubscriptionPage } from '../subscription/subscription.page';
+import { NotificationPage } from '../notification/notification.page';
 
 @Component({
   selector: 'app-profile',
@@ -53,6 +54,10 @@ export class ProfilePage implements OnInit {
 
   navigateToSubscription() {
     this.openModal(SubscriptionPage);
+  }
+
+  navigateToNotification() {
+    this.openModal(NotificationPage);
   }
 
   async openModal(comp) {
