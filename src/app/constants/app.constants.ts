@@ -80,6 +80,7 @@ export const Constants = {
   // Filter
   Filter: 'Filtre',
   Filters: 'Filters',
+  ApplyFilter: 'Filtrar',
 
   // Home
   All: 'Totes',

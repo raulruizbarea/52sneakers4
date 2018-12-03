@@ -9,9 +9,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class FilterPage implements OnInit {
   modalTitle: string;
+  filter: string;
 
   constructor(private modalCtrl: ModalController) {
     this.modalTitle = Constants.Filter;
+    this.filter = Constants.ApplyFilter;
   }
 
   ngOnInit() {
