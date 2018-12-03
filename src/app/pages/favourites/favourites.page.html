@@ -7,14 +7,16 @@
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-  <ion-list>
+  <ion-list #dynamicList lines="none">
     <ion-list-header>
       <ion-label>{{favourite}}</ion-label>
     </ion-list-header>
       <ion-item lines="none" *ngIf="!sspu || sspu.length === 0">
           <ion-label>{{ noValues }}</ion-label>
       </ion-item>
-      <ion-item *ngFor="let sneakerUser of sspu" href="/main/tabs/(home:sneaker/{{sneakerUser?.$key}})" routerDirection="forward" >
+
+      <ion-item-sliding *ngFor="let sneakerUser of sspu">
+      <ion-item lines="full" href="/main/tabs/(home:sneaker/{{sneakerUser?.$key}})" routerDirection="forward" >
         <ion-thumbnail slot="start">
           <img *ngIf="sneakerUser?.sneaker?.urlImage" [src]="sneakerUser?.sneaker?.urlImage" />
         </ion-thumbnail>
@@ -24,5 +26,12 @@
         <ion-label float-right>{{sneakerUser?.sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
       </ion-grid>
       </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="alert(sneakerUser)">
+          <ion-icon class="sneaker-delete" name="trash"></ion-icon>{{delete}}
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
