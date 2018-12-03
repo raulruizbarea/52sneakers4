@@ -34,9 +34,9 @@
       </ion-row>
     </ion-grid>
 
-    <ion-list>
+    <ion-list lines="none">
       <ion-item>
-        <ion-label>{{sizeTitle}}</ion-label>
+        <ion-label class="sneaker-size">{{sizeTitle}}</ion-label>
         <ion-select (ionChange)="canAdd($event)">
           <ion-select-option *ngFor="let size of sizes" value="{{size}}">{{size}}</ion-select-option>
         </ion-select>
