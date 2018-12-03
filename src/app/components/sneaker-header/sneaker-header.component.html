@@ -19,7 +19,7 @@
       </ion-button>
   </ion-buttons>
   <ion-buttons *ngIf="isLoggedIn() && !hideProfileMenu" slot="end">
-      <ion-button>
+      <ion-button href="/main/tabs/(profile:user)" routerDirection="forward">
         <ion-icon slot="icon-only" name="brush"></ion-icon>
       </ion-button>
     </ion-buttons>

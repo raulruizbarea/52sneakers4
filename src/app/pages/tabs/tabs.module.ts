@@ -27,6 +27,8 @@ import { FavouritesPage } from '../favourites/favourites.page';
 import { FavouritesPageModule } from '../favourites/favourites.module';
 import { NotificationPage } from '../notification/notification.page';
 import { NotificationPageModule } from '../notification/notification.module';
+import { UserPage } from '../user/user.page';
+import { UserPageModule } from '../user/user.module';
 
 const routes: Routes = [
   {
@@ -55,6 +57,11 @@ const routes: Routes = [
             path: 'favourites',
             outlet: 'profile',
             component: FavouritesPage,
+          },
+          {
+            path: 'user',
+            outlet: 'profile',
+            component: UserPage,
           },
           {
             path: 'news/:id',
@@ -110,6 +117,7 @@ const routes: Routes = [
     SubscriptionPageModule,
     ContactPageModule,
     CartPageModule,
+    UserPageModule,
     FavouritesPageModule,
     NotificationPageModule,
     RouterModule.forChild(routes)
