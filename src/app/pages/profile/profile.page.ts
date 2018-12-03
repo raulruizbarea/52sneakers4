@@ -38,6 +38,7 @@ export class ProfilePage implements OnInit {
     this.usersService.findUserById(this.afAuth.auth.currentUser.uid)
       .subscribe(
         value => {
+          // console.log(value);
           this.user = value;
           this.completeName = this.user.name + ' ' + this.user.surnames;
         },
