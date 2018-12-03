@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable, Subject } from 'rxjs';
-import { map, tap, filter } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { FirebaseApp } from '@angular/fire';
 import { User } from '../shared/model/user';
 
@@ -90,5 +90,16 @@ export class UsersService {
     err => {
       console.log(`Error changing notification of user`);
     });
+  }
+
+  updateUserByUserId(uid: string, user: any): Observable<any> {
+    const userToSave = Object.assign({}, user);
+    delete(userToSave.$key);
+
+    const dataToSave = {};
+
+    dataToSave['users/' + uid] = userToSave;
+
+    return this.firebaseUpdate(dataToSave);
   }
 }

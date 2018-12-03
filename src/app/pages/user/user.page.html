@@ -3,5 +3,57 @@
 </ion-header>
 
 <ion-content>
-User
+  <form [formGroup]="form">
+    <ion-list>
+        <!-- Nom -->
+        <ion-item>
+          <ion-label position="floating">{{ name }}</ion-label>
+          <ion-input formControlName="name" type="text" value="{{user?.name}}"></ion-input>
+        </ion-item>
+        <div class="field-error-message" *ngIf="isErrorVisible('name','required')">
+          El nom és obligatori.
+        </div>
+        <!-- Cognoms -->
+        <ion-item>
+          <ion-label position="floating">{{ surnames }}</ion-label>
+          <ion-input formControlName="surnames" type="text" value="{{user?.surnames}}"></ion-input>
+        </ion-item>
+        <div class="field-error-message" *ngIf="isErrorVisible('surnames','required')">
+          Els cognoms són obligatoris.
+        </div>
+      
+        <!-- Telefon -->
+        <ion-item>
+          <ion-label position="floating">{{ phone }}</ion-label>
+          <ion-input formControlName="phone" type="tel" inputmode="tel" value="{{user?.phone}}"></ion-input>
+        </ion-item>
+        
+        <!-- Adreça -->
+        <ion-item>
+          <ion-label position="floating">{{ address }}</ion-label>
+          <ion-input formControlName="address" type="text" value="{{user?.address}}"></ion-input>
+        </ion-item>
+
+        <!-- Codi postla -->
+        <ion-item>
+          <ion-label position="floating">{{ postalCode }}</ion-label>
+          <ion-input formControlName="postalCode" type="text" value="{{user?.postalCode}}"></ion-input>
+        </ion-item>
+
+        <!-- Ciutat -->
+        <ion-item>
+          <ion-label position="floating">{{ city }}</ion-label>
+          <ion-input formControlName="city" type="text" value="{{user?.city}}"></ion-input>
+        </ion-item>
+
+        <!-- País -->
+        <ion-item>
+          <ion-label position="floating">{{ country }}</ion-label>
+          <ion-input formControlName="country" type="text" value="{{user?.country}}"></ion-input>
+        </ion-item>
+      
+    </ion-list>
+  </form>
+
+  <ion-button expand="full" color="dark" padding  (click)="presentAlertConfirm()">{{ saveUser }}</ion-button>
 </ion-content>

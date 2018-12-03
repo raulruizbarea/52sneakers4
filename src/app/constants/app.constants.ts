@@ -27,6 +27,11 @@ export const Constants = {
   Name: 'Nom',
   Surnames: 'Cognoms',
   Email: 'Email',
+  Phone: 'Telèfon',
+  Address: 'Adreça',
+  PostalCode: 'Codi postal',
+  City: 'Ciutat',
+  Country: 'País',
 
   // Menu
   Home: 'Home',
@@ -49,6 +54,7 @@ export const Constants = {
   History: 'Historial',
   Configuration: 'Configuration',
   Disconnect: 'Desconnectar',
+  Ok: 'Ok',
   Cancel: 'Cancel·lar',
   Profile: 'Perfil',
 
