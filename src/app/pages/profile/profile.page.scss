@@ -67,3 +67,7 @@ ion-grid {
   --border-color: transparent;
   --ripple-color: transparent;
 }
+
+.ion-color-dark {
+  --ion-color-base-rgb: transparent !important;
+}
