@@ -9,12 +9,20 @@ import { ContactPage } from '../contact/contact.page';
 import { SubscriptionPage } from '../subscription/subscription.page';
 import { NotificationPage } from '../notification/notification.page';
 
+import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  task: AngularFireUploadTask;
+  progress: any;
+  image: string;
+
   user: User;
   completeName: string;
   favourites: string;
@@ -25,7 +33,8 @@ export class ProfilePage implements OnInit {
   notification: string;
 
   constructor(private authService: AuthService, private usersService: UsersService,
-    private afAuth: AngularFireAuth, private modalCtrl: ModalController) {
+    private afAuth: AngularFireAuth, private modalCtrl: ModalController,
+    private storage: AngularFireStorage, private camera: Camera) {
     this.favourites = Constants.Favourites;
     this.disconnect = Constants.Disconnect;
     this.subscription = Constants.Subscription;
@@ -67,5 +76,31 @@ export class ProfilePage implements OnInit {
    });
 
    return await modal.present();
+  }
+
+  async captureImage() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    };
+
+    return await this.camera.getPicture(options);
+  }
+
+  createUploadTask(file: string): void {
+    const filePath = `sneaker_user_profile_${ new Date().getTime() }.jpg`;
+
+    this.image = 'data:image/jpg;base64,' + file;
+    this.task = this.storage.ref(filePath).putString(this.image, 'data_url');
+
+    this.progress = this.task.percentageChanges();
+  }
+
+  async uploadHandler() {
+    const base64 = await this.captureImage();
+    this.createUploadTask(base64);
   }
 }

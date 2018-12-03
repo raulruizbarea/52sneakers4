@@ -34,6 +34,8 @@ import { SearchPageModule } from './pages/search/search.module';
 import { FilterPageModule } from './pages/filter/filter.module';
 import { LoginGuard } from './shared/security/login.guard';
 import { OrderService } from './services/order.service';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { Camera } from '@ionic-native/camera/ngx';
 
 registerLocaleData(localeEs, 'es');
 
@@ -43,6 +45,7 @@ registerLocaleData(localeEs, 'es');
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ComponentsModule,
@@ -68,6 +71,7 @@ registerLocaleData(localeEs, 'es');
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     EmailService,
+    Camera,
   ],
   bootstrap: [AppComponent]
 })

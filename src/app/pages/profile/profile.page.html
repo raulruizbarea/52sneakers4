@@ -7,12 +7,13 @@
     <ion-row align-items-stretch>
       <ion-col align-self-center>
     <ion-avatar>
-      <img src="https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+      <img *ngIf="user?.urlImage" [src]="user?.urlImage">
+      <ion-button color="dark" class="sneaker-profile" fill="clear" (click)="uploadHandler()">
+        <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
     </ion-avatar>
     <h3 text-center>{{completeName}}</h3>
     <p text-center>{{user?.email}}</p>
-    <!-- <ion-button fill="clear" (click)="logout()" text-center expand="full">{{ disconnect }}</ion-button>
-     -->
     </ion-col>
     </ion-row>
   <ion-row align-items-stretch>
