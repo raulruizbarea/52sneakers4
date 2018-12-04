@@ -4,7 +4,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'src/app/shared/model/user';
 import { Constants } from 'src/app/constants/app.constants';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { ContactPage } from '../contact/contact.page';
 import { SubscriptionPage } from '../subscription/subscription.page';
 import { NotificationPage } from '../notification/notification.page';
@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
 
   constructor(private authService: AuthService, private usersService: UsersService,
     private afAuth: AngularFireAuth, private modalCtrl: ModalController,
-    private storage: AngularFireStorage, private camera: Camera) {
+    private storage: AngularFireStorage, private camera: Camera, private alertController: AlertController) {
     this.favourites = Constants.Favourites;
     this.disconnect = Constants.Disconnect;
     this.subscription = Constants.Subscription;
@@ -91,16 +91,52 @@ export class ProfilePage implements OnInit {
   }
 
   createUploadTask(file: string): void {
-    const filePath = `sneaker_user_profile_${ new Date().getTime() }.jpg`;
+    const filePath = '/52sneakers/users/' + this.afAuth.auth.currentUser.uid  + '/profile_photo_' + new Date().getTime() + '.jpg';
 
     this.image = 'data:image/jpg;base64,' + file;
     this.task = this.storage.ref(filePath).putString(this.image, 'data_url');
 
     this.progress = this.task.percentageChanges();
+
+    this.progress.subscribe(value => {
+      if (value === 100) {
+        this.storage.ref(filePath).getDownloadURL().subscribe(url => {
+          if (url) {
+            // console.log(url);
+            this.presentAlertConfirm(url);
+          }
+        });
+      }
+    });
   }
 
   async uploadHandler() {
     const base64 = await this.captureImage();
     this.createUploadTask(base64);
+  }
+
+  async presentAlertConfirm(url) {
+    const alert = await this.alertController.create({
+      header: 'Vas a realitzar modificacions!',
+      message: 'Vols guardar la nova fotografia?',
+      buttons: [
+        {
+          text: Constants.Cancel,
+          role: 'cancel',
+          handler: (cancel) => {
+            // console.log('Confirm Cancel: cancel');
+            this.image = undefined;
+          }
+        }, {
+          text: Constants.Ok,
+          handler: () => {
+            // console.log('Confirm Okay');
+            this.usersService.updateProfilePhotoByUserId(this.afAuth.auth.currentUser.uid, url);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

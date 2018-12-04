@@ -7,7 +7,8 @@
     <ion-row align-items-stretch>
       <ion-col align-self-center>
     <ion-avatar>
-      <img *ngIf="user?.urlImage" [src]="user?.urlImage">
+      <img *ngIf="!image && user?.urlImage" [src]="user?.urlImage">
+      <img *ngIf="image" [src]="image">
       <ion-button color="dark" class="sneaker-profile" fill="clear" (click)="uploadHandler()">
         <ion-icon slot="icon-only" name="camera"></ion-icon>
       </ion-button>

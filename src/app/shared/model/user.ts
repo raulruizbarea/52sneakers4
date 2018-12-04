@@ -10,7 +10,7 @@ export class User {
     public postalCode?: string,
     public city?: string,
     public country?: string,
-    public image?: string,
+    public urlImage?: string,
     ) {
 
   }
@@ -19,7 +19,7 @@ export class User {
     return array.map(User.fromJson);
   }
 
-  static fromJson({$key, name, surnames, email, notifications, phone, address, postalCode, city, country, image}): User {
-    return new User($key, name, surnames, email, notifications, phone, address, postalCode, city, country, image);
+  static fromJson({$key, name, surnames, email, notifications, phone, address, postalCode, city, country, urlImage}): User {
+    return new User($key, name, surnames, email, notifications, phone, address, postalCode, city, country, urlImage);
   }
 }

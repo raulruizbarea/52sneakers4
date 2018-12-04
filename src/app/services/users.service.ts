@@ -102,4 +102,13 @@ export class UsersService {
 
     return this.firebaseUpdate(dataToSave);
   }
+
+  updateProfilePhotoByUserId(uid: string, urlImage: string) {
+    this.db.object('users/' + uid).update({ urlImage: urlImage }).then(() => {
+        console.log('ProfileImage users updated succesfully.');
+    },
+    err => {
+      console.log(`Error updating profileImage users`);
+    });
+  }
 }
