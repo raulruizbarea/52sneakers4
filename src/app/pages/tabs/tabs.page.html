@@ -32,6 +32,7 @@
     <ion-tab-button tab="cart" href="/main/tabs/(cart:cart)">
       <ion-label>{{ cart }}</ion-label>
       <ion-icon name="cart"></ion-icon>
+      <ion-badge *ngIf="total > 0" color="dark">{{total}}</ion-badge>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

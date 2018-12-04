@@ -51,4 +51,8 @@ export class OrderService {
       }),
     );
   }
+
+  countCartByUserKey(userKey: string): Observable<any> {
+    return this.db.list('cartPerUser/' + userKey).snapshotChanges();
+  }
 }
