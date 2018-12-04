@@ -29,6 +29,8 @@ import { NotificationPage } from '../notification/notification.page';
 import { NotificationPageModule } from '../notification/notification.module';
 import { UserPage } from '../user/user.page';
 import { UserPageModule } from '../user/user.module';
+import { ResultsPage } from '../results/results.page';
+import { ResultsPageModule } from '../results/results.module';
 
 const routes: Routes = [
   {
@@ -72,6 +74,11 @@ const routes: Routes = [
             path: 'sneaker/:id',
             outlet: 'home',
             component: SneakerPage
+          },
+          {
+            path: 'results',
+            outlet: 'home',
+            component: ResultsPage
           },
           {
             path: 'subscription',
@@ -120,6 +127,7 @@ const routes: Routes = [
     UserPageModule,
     FavouritesPageModule,
     NotificationPageModule,
+    ResultsPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]
