@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { ModalController, NavController } from '@ionic/angular';
 import { Categories, Sports, Brands } from 'src/app/shared/model/sneaker';
-import { NavigationExtras } from '@angular/router';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -30,7 +30,8 @@ export class FilterPage implements OnInit {
   price: string;
   sliderValue: any;
 
-  constructor(private modalCtrl: ModalController, private navCtrl: NavController) {
+  constructor(private modalCtrl: ModalController, private navCtrl: NavController,
+    private filterService: FilterService) {
     this.modalTitle = Constants.Filter;
     this.filter = Constants.ApplyFilter;
     this.categories = Constants.Categories;
@@ -149,25 +150,14 @@ export class FilterPage implements OnInit {
   }
 
   navigateToResults() {
-    console.log(this.categoriesFilter);
-    console.log(this.sizesFilter);
-    console.log(this.sportsFilter);
-    console.log(this.brandsFilter);
-    console.log(this.sliderValue);
-
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-          'categories': JSON.stringify(this.categoriesFilter),
-          'sizes': JSON.stringify(this.sizesFilter),
-          'sports': JSON.stringify(this.sportsFilter),
-          'brands': JSON.stringify(this.brandsFilter),
-          'price': JSON.stringify(this.sliderValue),
-      }
+    this.filterService.storage = {
+      'categories': this.categoriesFilter,
+      'sizes': this.sizesFilter,
+      'sports': this.sportsFilter,
+      'brands': this.brandsFilter,
+      'price': this.sliderValue,
     };
-
-    console.log(navigationExtras);
-
-    this.navCtrl.navigateForward('/main/tabs/(home:results)', true, navigationExtras);
+    this.navCtrl.navigateForward('/main/tabs/(home:results)');
     this.doCancel();
   }
 }

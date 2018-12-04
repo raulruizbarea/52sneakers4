@@ -3,5 +3,25 @@
   </ion-header>
   
   <ion-content>
-    
+      <ion-chip *ngFor="let category of categoriesFilter" (click)="deleteCategory(category)">
+        <ion-label>{{category}}</ion-label>
+        <ion-icon name="close"></ion-icon>
+      </ion-chip>
+      <ion-chip *ngFor="let size of sizesFilter"  (click)="deleteSize(size)">
+        <ion-label>{{size}}</ion-label>
+        <ion-icon name="close"></ion-icon>
+      </ion-chip>
+      <ion-chip *ngFor="let sport of sportsFilter"  (click)="deleteSport(sport)">
+        <ion-label>{{sport}}</ion-label>
+        <ion-icon name="close"></ion-icon>
+      </ion-chip>
+      <ion-chip *ngFor="let brand of brandsFilter"  (click)="deleteBrand(brand)">
+        <ion-label>{{brand}}</ion-label>
+        <ion-icon name="close"></ion-icon>
+      </ion-chip>
+      <ion-chip *ngIf="sliderValue && (sliderValue.lower != 0 || sliderValue.upper != 200)"  (click)="deletePrice(category)">
+        <ion-label>{{price}}: min: {{sliderValue.lower}} max: {{sliderValue.upper}}</ion-label>
+        <ion-icon name="close"></ion-icon>
+      </ion-chip>
+    <sneaker-cards-list></sneaker-cards-list>
   </ion-content>
