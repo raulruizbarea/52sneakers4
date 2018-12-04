@@ -15,7 +15,7 @@
             
           <img [src]="sneaker?.urlImage" />
           <ion-card-header>
-            <ion-card-subtitle>{{ sneaker.name }}</ion-card-subtitle>
+            <ion-card-subtitle>{{ sneaker.name | slice:0:15}}</ion-card-subtitle>
           </ion-card-header>
           <p text-start class="sneaker-description">{{ sneaker.description }}</p>
           <p text-start float-left class="sneaker-price"><b>{{ sneaker.date  | date:'dd/MM/yyyy' }}</b></p>
