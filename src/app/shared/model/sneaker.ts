@@ -43,3 +43,24 @@ export class SneakersPerUser {
     return new SneakersPerUser($key);
   }
 }
+
+
+export enum Categories {
+  Man = 'Home',
+  Woman = 'Dona',
+  Kid = 'Nen',
+}
+
+export enum Sports {
+  Football = 'Futbol',
+  Basketball = 'Bàsket',
+  Training = 'Training',
+  Running = 'Running',
+}
+
+export enum Brands {
+  Converse = 'Converse',
+  Nike = 'Nike',
+  Adidas = 'Adidas',
+}
+

@@ -2,5 +2,60 @@
   <sneaker-modal-header modalTitle="{{modalTitle}}"></sneaker-modal-header>
 </ion-header>
 <ion-content color="primary">
-    <ion-button expand="full" color="light" padding>{{ filter }}</ion-button>
+<ion-grid>
+  <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{categories}}</h4></ion-col></ion-row>
+  <ion-row>
+    <ion-col class="sneaker-col" *ngFor="let category of categoriesForm">
+      <ion-item color="primary" lines="none">
+        <ion-checkbox [(ngModel)]="category.isChecked" (ionChange)="chkCategories(category)" class="sneaker-filter-cb" slot="start" color="light"></ion-checkbox>
+        <ion-label class="sneaker-label">{{category.val}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{sizes}}</h4></ion-col></ion-row>
+  <ion-row>
+    <ion-col class="sneaker-col" *ngFor="let size of sizesForm">
+      <ion-item color="primary" lines="none">
+        <ion-checkbox [(ngModel)]="size.isChecked" (ionChange)="chkSizes(size)" class="sneaker-filter-cb" slot="start" color="light"></ion-checkbox>
+        <ion-label class="sneaker-label">{{size.val}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{price}}</h4></ion-col></ion-row>
+ 
+  <ion-row>
+      <ion-col>
+          <ion-item color="primary" lines="none">
+            <ion-range [(ngModel)]="sliderValue" color="dark" dualKnobs="true" min="0" max="200" step="5" pin="true">
+                <ion-label class="sneakers-range-lb" text-center slot="start">0</ion-label>
+                <ion-label class="sneakers-range-lb" text-center slot="end">200</ion-label>
+            </ion-range>
+          </ion-item>
+      </ion-col>
+  </ion-row>
+
+  <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{brands}}</h4></ion-col></ion-row>
+  <ion-row>
+    <ion-col class="sneaker-col" *ngFor="let brand of brandsForm">
+      <ion-item color="primary" lines="none">
+        <ion-checkbox [(ngModel)]="brand.isChecked" (ionChange)="chkBrands(brand)" class="sneaker-filter-cb" slot="start" color="light"></ion-checkbox>
+        <ion-label class="sneaker-label">{{brand.val}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{sports}}</h4></ion-col></ion-row>
+  <ion-row>
+    <ion-col class="sneaker-col" *ngFor="let sport of sportsForm">
+      <ion-item color="primary" lines="none">
+        <ion-checkbox [(ngModel)]="sport.isChecked" (ionChange)="chkSports(sport)" class="sneaker-filter-cb" slot="start" color="light"></ion-checkbox>
+        <ion-label class="sneaker-label">{{sport.val}}</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  <ion-button expand="full" color="light" padding (click)="navigateToResults()">{{ filter }}</ion-button>
 </ion-content>

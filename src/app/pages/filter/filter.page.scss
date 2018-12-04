@@ -1,0 +1,32 @@
+.sneaker-filter-subtitle {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sneaker-filter-cb {
+  --height: 16px;
+  --width: 16px;
+  margin-right: 8px;
+}
+
+ion-range {
+  padding: 0;
+  --knob-size: 24px;
+}
+
+.sneakers-range-lb {
+  max-width: 40px;
+  width: 40px;
+  margin: 0 15px 0 15px;
+  font-size: 13px;
+}
+
+.sneaker-label {
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+

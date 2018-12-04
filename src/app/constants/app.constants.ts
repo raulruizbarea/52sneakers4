@@ -81,6 +81,13 @@ export const Constants = {
   Filter: 'Filtre',
   Filters: 'Filters',
   ApplyFilter: 'Filtrar',
+  Categories: 'Categories',
+  Category: 'Categoria',
+  Rating: 'Rating',
+  Price: 'Preu',
+  Prices: 'Preus',
+  Brand: 'Marca',
+  Brands: 'Marques',
 
   // Home
   All: 'Totes',
@@ -95,6 +102,7 @@ export const Constants = {
   AddToCart: 'Afegir a la cistella',
 
   Size: 'Talla',
+  Sizes: 'Talles',
   Articles: 'Artícles',
   Delete: 'Esborrar',
   NotificationsQuestion: 'Vols rebre notificacions?',
