@@ -3,5 +3,67 @@
 </ion-header>
 
 <ion-content>
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-grid fixed="true">
+        <ion-row><ion-col>
+          <p class="sneaker-title">{{whereShipping}}</p>
+        </ion-col></ion-row>
+      <ion-row><ion-col>
+        <p class="sneaker-subtitle">{{shippingAddress}}</p>
+      </ion-col></ion-row>
+    </ion-grid>
+    </ion-list-header>
+
+  </ion-list>
+
+  <form [formGroup]="form">
+      <ion-list>
+          <!-- Adreça -->
+          <ion-item>
+            <ion-label position="floating">{{ address }}</ion-label>
+            <ion-input formControlName="address" type="text" value="{{user?.address}}"></ion-input>
+          </ion-item>
+          <div class="field-error-message" *ngIf="isErrorVisible('address','required')">
+            L'adreça és obligatoria.
+          </div>
   
+          <!-- Codi postla -->
+          <ion-item>
+            <ion-label position="floating">{{ postalCode }}</ion-label>
+            <ion-input formControlName="postalCode" type="text" value="{{user?.postalCode}}"></ion-input>
+          </ion-item>
+          <div class="field-error-message" *ngIf="isErrorVisible('postalCode','required')">
+              El codi postal és obligatori.
+            </div>
+  
+          <!-- Ciutat -->
+          <ion-item>
+            <ion-label position="floating">{{ city }}</ion-label>
+            <ion-input formControlName="city" type="text" value="{{user?.city}}"></ion-input>
+          </ion-item>
+          <div class="field-error-message" *ngIf="isErrorVisible('city','required')">
+              La ciutat és obligatoria.
+            </div>
+  
+          <!-- País -->
+          <ion-item>
+            <ion-label position="floating">{{ country }}</ion-label>
+            <ion-input formControlName="country" type="text" value="{{user?.country}}"></ion-input>
+          </ion-item>
+          <div class="field-error-message" *ngIf="isErrorVisible('country','required')">
+              El país és obligatori.
+            </div>
+
+          <!-- Telefon -->
+          <ion-item>
+            <ion-label position="floating">{{ phone }}</ion-label>
+            <ion-input formControlName="phone" type="tel" inputmode="tel" value="{{user?.phone}}"></ion-input>
+          </ion-item>
+        
+      </ion-list>
+    </form>
+    <p class="sneaker-shipping">{{shippingInfo}}</p>
+
+  <ion-button (click)="save()" color="dark" padding expand="full">{{ continuePayment }}</ion-button>
 </ion-content>
