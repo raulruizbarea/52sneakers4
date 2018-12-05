@@ -16,6 +16,7 @@ export class CartPage implements OnInit, AfterContentChecked {
   sneakers: CartPerUser[];
   sizeTitle: string;
   total: number;
+  numItems: number;
   articles: string;
   delete: string;
 
@@ -26,6 +27,7 @@ export class CartPage implements OnInit, AfterContentChecked {
     this.articles = Constants.Articles;
     this.delete = Constants.Delete;
     this.total = 0;
+    this.numItems = 0;
   }
 
   ngOnInit() {
@@ -39,7 +41,10 @@ export class CartPage implements OnInit, AfterContentChecked {
   ngAfterContentChecked() {
     // this.sneakers.forEach(value => this.quantity += parseFloat(value.sneaker.price));
     if (this.sneakers !== undefined) {
-      this.total = this.sneakers.reduce((acc, val) => val.sneaker !== undefined ? acc + parseFloat(val.sneaker.price) : 0, 0);
+      this.total = this.sneakers.reduce((acc, val) =>
+        val.sneaker !== undefined ? acc + (parseFloat(val.sneaker.price) * val.quantity) : 0, 0);
+      this.numItems = this.sneakers.reduce((acc, val) =>
+        val.sneaker !== undefined ? acc + val.quantity : 0, 0);
     }
   }
 
@@ -47,5 +52,17 @@ export class CartPage implements OnInit, AfterContentChecked {
     // console.log(item);
     this.dynamicList.closeSlidingItems();
     this.orderService.deleteSneakerToCart(item.$key, this.afAuth.auth.currentUser.uid);
+  }
+
+  increment(cart: CartPerUser) {
+     this.orderService.incrementCartPerUserSneakerQuantityByUserKey(this.afAuth.auth.currentUser.uid,
+       cart.$key, cart.quantity + 1);
+  }
+
+  decrement(cart: CartPerUser) {
+    if (cart.quantity - 1 !== 0) {
+      this.orderService.decrementCartPerUserSneakerQuantityByUserKey(this.afAuth.auth.currentUser.uid,
+        cart.$key, cart.quantity - 1);
+    }
   }
 }

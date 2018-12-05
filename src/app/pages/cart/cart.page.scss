@@ -32,4 +32,12 @@ ion-list {
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 5px;
+  --box-shadow: transparent;
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --border-color: transparent;
+  --ripple-color: transparent;
+  --color-focused: transparent;
+  --color-activated: transparent;
 }
