@@ -51,5 +51,5 @@
         </ion-item-sliding>
     </ion-list>
 
-    <ion-button disabled="{{!sneakers || sneakers.length === 0}}" color="dark" padding expand="full">{{ pay }}</ion-button>
+    <ion-button href="/main/tabs/(cart:shipping)" routerDirection="forward" disabled="{{!sneakers || sneakers.length === 0}}" color="dark" padding expand="full">{{ pay }}</ion-button>
   </ion-content>

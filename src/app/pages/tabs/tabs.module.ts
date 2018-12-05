@@ -31,6 +31,16 @@ import { UserPage } from '../user/user.page';
 import { UserPageModule } from '../user/user.module';
 import { ResultsPage } from '../results/results.page';
 import { ResultsPageModule } from '../results/results.module';
+import { OrderPage } from '../order/order.page';
+import { ConfirmationPage } from '../confirmation/confirmation.page';
+import { HistoryPage } from '../history/history.page';
+import { PaymentPage } from '../payment/payment.page';
+import { ShippingPage } from '../shipping/shipping.page';
+import { ConfirmationPageModule } from '../confirmation/confirmation.module';
+import { HistoryPageModule } from '../history/history.module';
+import { OrderPageModule } from '../order/order.module';
+import { PaymentPageModule } from '../payment/payment.module';
+import { ShippingPageModule } from '../shipping/shipping.module';
 
 const routes: Routes = [
   {
@@ -101,6 +111,31 @@ const routes: Routes = [
             component: CartPage,
             loadChildren: './../cart/cart.module#CartPageModule'
           },
+          {
+            path: 'order',
+            outlet: 'profile',
+            component: OrderPage,
+          },
+          {
+            path: 'confirmation',
+            outlet: 'cart',
+            component: ConfirmationPage,
+          },
+          {
+            path: 'history',
+            outlet: 'profile',
+            component: HistoryPage,
+          },
+          {
+            path: 'payment',
+            outlet: 'cart',
+            component: PaymentPage,
+          },
+          {
+            path: 'shipping',
+            outlet: 'cart',
+            component: ShippingPage,
+          },
       ]
   },
   {
@@ -128,6 +163,11 @@ const routes: Routes = [
     FavouritesPageModule,
     NotificationPageModule,
     ResultsPageModule,
+    ConfirmationPageModule,
+    HistoryPageModule,
+    OrderPageModule,
+    PaymentPageModule,
+    ShippingPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [TabsPage]
