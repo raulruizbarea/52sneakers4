@@ -116,4 +116,13 @@ export const Constants = {
   PhoneNumber: 'Número de telèfon',
   ShippingInfo: 'Només utilitzarem el seu número per informar sobre l\'entrega.',
   ContinueShipping: 'Continuar',
+
+  SelectPaymentMethod: 'Seleccionar mode de pagament',
+  Card: 'Tarjeta',
+  Paypal: 'Paypal',
+
+  OrderSummary: 'Resum de la comanda',
+  Total: 'Total',
+  ShippingCost: 'Cost de l\'enviament',
+  OrderConfirm: 'Confirmar comanda',
 };

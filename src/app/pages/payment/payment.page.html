@@ -3,5 +3,27 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-grid fixed="true">
+      <ion-row><ion-col>
+        <p class="sneaker-subtitle">{{selectPaymentMethod}}</p>
+      </ion-col></ion-row>
+    </ion-grid>
+    </ion-list-header>
+  </ion-list>
+
+  <ion-radio-group>
+    <ion-item>
+      <ion-label>Tarjeta</ion-label>
+      <ion-radio color="dark" slot="start" value="card"></ion-radio>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>Paypal</ion-label>
+      <ion-radio color="dark" slot="start" value="paypal"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+
+  <ion-button (click)="save()" color="dark" padding expand="full">{{ orderConfirm }}</ion-button>
 </ion-content>
