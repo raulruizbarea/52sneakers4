@@ -30,3 +30,19 @@ ion-range {
   padding: 0;
 }
 
+.sneaker-col > ion-item {
+  height: 30px;
+  --min-height: 25px; 
+}
+
+
+.sneaker-rang {
+  font-size: 14px;
+  height: 25px;
+  --min-height: 25px;
+}
+
+.sneaker-rang ion-label {
+  margin: 0;
+  padding: 0;
+}
