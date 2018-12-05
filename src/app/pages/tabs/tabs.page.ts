@@ -25,8 +25,15 @@ export class TabsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.orderService.countCartByUserKey(this.afAuth.auth.currentUser.uid).subscribe(values => {
+    /* this.orderService.countCartByUserKey(this.afAuth.auth.currentUser.uid).subscribe(values => {
       this.total = values.length;
+    }); */
+    this.orderService.findAllSneakersCartByUserKey(this.afAuth.auth.currentUser.uid)
+    .subscribe(values => {
+      this.total = 0;
+      values.forEach(value => {
+        this.total += value.quantity;
+      });
     });
   }
 }
