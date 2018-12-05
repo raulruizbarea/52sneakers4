@@ -109,4 +109,11 @@ export const Constants = {
   Delete: 'Esborrar',
   NotificationsQuestion: 'Vols rebre notificacions?',
   NotificationsChangedSuccess: 'Notificacions configurades correctament!',
+
+  WhereAreYouGoingToShip: 'Indica a continuació la seva adreça d’entrega.',
+  ShippingAddres: 'Adreça d\'entrega',
+  EditShipping: 'Editar adreça',
+  PhoneNumber: 'Número de telèfon',
+  ShippingInfo: 'Només utilitzarem el seu número per informar sobre l\'entrega.',
+  ContinueShipping: 'Continuar',
 };
