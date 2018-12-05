@@ -18,7 +18,7 @@ export class OrderService {
 
   addSneakerToCart(sneakerKey: string, userKey: string, data: any) {
     this.db.object('cartPerUser/' + userKey + '/' + sneakerKey)
-      .update({ sizes: data }).then(() => {
+      .update({ sizes: data, quantity: 1 }).then(() => {
         console.log('cartPerUser created succesfully.');
     },
     err => {

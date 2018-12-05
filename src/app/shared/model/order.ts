@@ -22,12 +22,13 @@ export class CartPerUser {
   constructor(
     public $key: string,
     public size: string,
+    public quantity: number,
     public sneaker?: Sneaker,
     ) {
 
   }
 
-  static fromJson({$key, size}): CartPerUser {
-    return new CartPerUser($key, size);
+  static fromJson({$key, size, quantity}): CartPerUser {
+    return new CartPerUser($key, size, quantity);
   }
 }
