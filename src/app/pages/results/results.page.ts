@@ -52,30 +52,59 @@ export class ResultsPage implements OnInit {
       .subscribe(sneakers => {
          this.allSneakers = sneakers;
          this.filtered = this.allSneakers.slice();
-         // this.filtered = this.allSneakers.slice();
          this.applyFilters();
       });
   }
 
   applyFilters() {
-    // this.searched = this.allSneakers.filter(sneaker => sneaker.name.toLowerCase()
-    // .includes(this.searchTerm.toLowerCase()) );
-    if (this.categoriesFilter) {
-      console.log(this.categoriesFilter);
-      console.log('lol');
+    this.filtered = this.allSneakers.slice();
+    if (this.filtered) {
+      let foundCategories = true;
+      let foundSizes = true;
+      let foundPrices = true;
+      let foundBrands = true;
+      let foundSports = true;
+
       this.filtered.slice(0).forEach((sneaker) => {
-        const found = Object.keys(sneaker.categories).some(r => {
-          return this.categoriesFilter.includes(r);
-        });
-        console.log(found);
-        if (!found) {
+        if (this.categoriesFilter && this.categoriesFilter.length > 0) {
+          foundCategories = Object.keys(sneaker.categories).some(r => {
+            return this.categoriesFilter.includes(r);
+          });
+        }
+
+        if (this.sliderValue && (this.sliderValue.lower !== 0 || this.sliderValue.upper !== 200)) {
+          if (sneaker.price <= this.sliderValue.lower || sneaker.price >= this.sliderValue.upper) {
+            foundPrices = false;
+          }
+        }
+
+        if (this.sizesFilter && this.sizesFilter.length > 0) {
+          foundSizes = Object.keys(sneaker.sizes).some(r => {
+            return this.sizesFilter.includes(Number(r));
+          });
+        }
+
+        if (this.brandsFilter  && this.brandsFilter.length > 0) {
+          foundBrands = this.brandsFilter.includes(sneaker.brand);
+        }
+
+        if (this.sportsFilter && this.sportsFilter.length > 0) {
+          foundSports = Object.keys(sneaker.sports).some(r => {
+            return this.sportsFilter.includes(r);
+          });
+        }
+
+        if (!foundCategories || !foundBrands || !foundPrices || !foundSizes || !foundSports) {
           this.filtered.splice(this.filtered.indexOf(sneaker), 1);
         }
       });
 
-      if (this.filtered.length === 0) {
-        this.filtered = this.allSneakers;
-        // this.allSneakers = this.filtered;
+      if (this.categoriesFilter && this.categoriesFilter.length === 0
+        &&  this.brandsFilter && this.brandsFilter.length === 0
+        && this.sportsFilter && this.sportsFilter.length === 0
+        && this.sliderValue && this.sliderValue.lower === 0 && this.sliderValue.upper === 200
+        && this.sizesFilter && this.sizesFilter.length === 0) {
+        this.filtered = this.allSneakers.slice();
       }
     }
   }
@@ -99,7 +128,8 @@ export class ResultsPage implements OnInit {
   }
 
   deletePrice(price) {
-    this.sliderValue = undefined;
+    this.sliderValue.lower = 0;
+    this.sliderValue.upper = 200;
     this.applyFilters();
   }
 
