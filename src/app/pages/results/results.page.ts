@@ -76,8 +76,10 @@ export class ResultsPage implements OnInit {
         }
 
         if (this.sliderValue && (this.sliderValue.lower !== 0 || this.sliderValue.upper !== 200)) {
-          if (sneaker.price <= this.sliderValue.lower || sneaker.price >= this.sliderValue.upper) {
+          if (parseFloat(sneaker.price) < parseFloat(this.sliderValue.lower) || parseFloat(sneaker.price) > parseFloat(this.sliderValue.upper)) {
             foundPrices = false;
+          } else {
+            foundPrices = true;
           }
         }
 
