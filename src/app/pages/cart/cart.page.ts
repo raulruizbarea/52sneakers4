@@ -22,7 +22,7 @@ export class CartPage implements OnInit, AfterContentChecked {
 
   constructor(private orderService: OrderService, private afAuth: AngularFireAuth) {
     this.pay = Constants.Pay;
-    this.noValues = Constants.NoValues;
+    this.noValues = Constants.NoCart;
     this.sizeTitle = Constants.Size;
     this.articles = Constants.Articles;
     this.delete = Constants.Delete;
