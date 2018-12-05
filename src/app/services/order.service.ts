@@ -55,4 +55,22 @@ export class OrderService {
   countCartByUserKey(userKey: string): Observable<any> {
     return this.db.list('cartPerUser/' + userKey).snapshotChanges();
   }
+
+  incrementCartPerUserSneakerQuantityByUserKey(userKey: string, sneakerKey: string, quantity: number) {
+    this.db.object('cartPerUser/' + userKey + '/' + sneakerKey).update({ quantity: quantity }).then(() => {
+      console.log('Quantity cartPerUser updated succesfully.');
+    },
+    err => {
+      console.log(`Error updating quantity cartPerUser`);
+    });
+  }
+
+  decrementCartPerUserSneakerQuantityByUserKey(userKey: string, sneakerKey: string, quantity: number) {
+    this.db.object('cartPerUser/' + userKey + '/' + sneakerKey).update({ quantity: quantity }).then(() => {
+      console.log('Quantity cartPerUser updated succesfully.');
+    },
+    err => {
+      console.log(`Error updating quantity cartPerUser`);
+    });
+  }
 }
