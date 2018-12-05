@@ -24,14 +24,21 @@
           </ion-item>
 
         <ion-item-sliding *ngFor="let sneaker of sneakers">
-          <ion-item href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" lines="full">
-            <ion-thumbnail slot="start">
+          <ion-item lines="full">
+            <ion-thumbnail href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" slot="start">
               <img *ngIf="sneaker?.sneaker?.urlImage" [src]="sneaker?.sneaker?.urlImage" />
             </ion-thumbnail>
             <ion-grid fixed="true">
-              <ion-label class="sneaker-title">{{sneaker?.sneaker?.name}}</ion-label>
-              <ion-label float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
-              <ion-label float-right>{{sneaker?.sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+              <ion-label href="/main/tabs/(home:sneaker/{{sneaker?.$key}})" routerDirection="forward" class="sneaker-title">{{sneaker?.sneaker?.name}}</ion-label>
+              <ion-label class="sneaker-data" float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
+              <ion-button no-padding no-margin class="sneaker-btn-quantity" fill="clear" color="dark">
+                <ion-icon name="remove-circle" ></ion-icon>
+              </ion-button>
+              <p class="sneaker-quantity">{{sneaker?.quantity}}</p>
+              <ion-button no-padding no-margin class="sneaker-btn-quantity" fill="clear" color="dark">
+                <ion-icon name="add-circle" ></ion-icon>
+              </ion-button>
+              <ion-label class="sneaker-data" float-right>{{sneaker?.sneaker?.price | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
             </ion-grid>
           </ion-item>
 
@@ -44,13 +51,7 @@
         </ion-item-sliding>
     </ion-list>
 
-    <!-- <ion-button clear (click)="increment()">
-        <ion-icon name="add-circle" ></ion-icon>
-      </ion-button>
-      {{quantity}}
-      <ion-button clear (click)="decrement()">
-        <ion-icon name="remove-circle" ></ion-icon>
-      </ion-button> -->
+    <!--  -->
 
     <ion-button disabled="{{!sneakers || sneakers.length === 0}}" color="dark" padding expand="full">{{ pay }}</ion-button>
   </ion-content>
