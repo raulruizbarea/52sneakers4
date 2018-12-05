@@ -4,6 +4,7 @@ import { Sneaker } from 'src/app/shared/model/sneaker';
 import { SneakerService } from 'src/app/services/sneaker.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Constants } from 'src/app/constants/app.constants';
+import { tap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-results',
@@ -24,7 +25,6 @@ export class ResultsPage implements OnInit {
   constructor(private filterService: FilterService, private sneakerService: SneakerService,
     private afAuth: AngularFireAuth) {
     this.price = Constants.Price;
-    // console.log(this.filterService.storage.sizes);
     if (this.filterService.storage) {
       if (this.filterService.storage.categories) {
         this.categoriesFilter = this.filterService.storage.categories;
@@ -45,9 +45,40 @@ export class ResultsPage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.sneakerService.findAllSneakersWithLike(this.afAuth.auth.currentUser.uid).pipe(
+      tap(console.log))
+      .pipe(
+        map(sneakers => sneakers.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
+      .subscribe(sneakers => {
+         this.allSneakers = sneakers;
+         this.filtered = this.allSneakers.slice();
+         // this.filtered = this.allSneakers.slice();
+         this.applyFilters();
+      });
   }
 
+  applyFilters() {
+    // this.searched = this.allSneakers.filter(sneaker => sneaker.name.toLowerCase()
+    // .includes(this.searchTerm.toLowerCase()) );
+    if (this.categoriesFilter) {
+      console.log(this.categoriesFilter);
+      console.log('lol');
+      this.filtered.slice(0).forEach((sneaker) => {
+        const found = Object.keys(sneaker.categories).some(r => {
+          return this.categoriesFilter.includes(r);
+        });
+        console.log(found);
+        if (!found) {
+          this.filtered.splice(this.filtered.indexOf(sneaker), 1);
+        }
+      });
+
+      if (this.filtered.length === 0) {
+        this.filtered = this.allSneakers;
+        // this.allSneakers = this.filtered;
+      }
+    }
+  }
 
   deleteCategory(category) {
     this.categoriesFilter.forEach((item, index) => {
@@ -55,6 +86,7 @@ export class ResultsPage implements OnInit {
         this.categoriesFilter.splice(index, 1);
       }
     });
+    this.applyFilters();
   }
 
   deleteSize(size) {
@@ -63,10 +95,12 @@ export class ResultsPage implements OnInit {
         this.sizesFilter.splice(index, 1);
       }
     });
+    this.applyFilters();
   }
 
   deletePrice(price) {
     this.sliderValue = undefined;
+    this.applyFilters();
   }
 
   deleteBrand(brand) {
@@ -75,6 +109,7 @@ export class ResultsPage implements OnInit {
         this.brandsFilter.splice(index, 1);
       }
     });
+    this.applyFilters();
   }
 
   deleteSport(sport) {
@@ -83,5 +118,6 @@ export class ResultsPage implements OnInit {
         this.sportsFilter.splice(index, 1);
       }
     });
+    this.applyFilters();
   }
 }
