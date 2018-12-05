@@ -81,6 +81,7 @@ export const Constants = {
   Filter: 'Filtre',
   Filters: 'Filters',
   ApplyFilter: 'Filtrar',
+  AppliedFilters: 'Filtres aplicats',
   Categories: 'Categories',
   Category: 'Categoria',
   Rating: 'Rating',

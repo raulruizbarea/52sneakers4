@@ -3,6 +3,11 @@
   </ion-header>
   
   <ion-content>
+    <ion-label *ngIf="categoriesFilter && categoriesFilter.length > 0 ||
+        sizesFilter && sizesFilter.length > 0 ||
+        sportsFilter && sportsFilter.length > 0 ||
+        brandsFilter && brandsFilter.length > 0 ||
+        sliderValue && (sliderValue.lower != 0 || sliderValue.upper != 200)" class="sneaker-filters">{{appliedFilters}}:</ion-label>
     <ion-chip *ngFor="let category of categoriesFilter" (click)="deleteCategory(category)">
       <ion-label>{{category}}</ion-label>
       <ion-icon name="close"></ion-icon>

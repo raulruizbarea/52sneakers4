@@ -18,6 +18,7 @@ export class ResultsPage implements OnInit {
   brandsFilter: string[];
   sliderValue: any;
   price: string;
+  appliedFilters: string;
 
   allSneakers: Sneaker[];
   filtered: Sneaker[];
@@ -25,6 +26,8 @@ export class ResultsPage implements OnInit {
   constructor(private filterService: FilterService, private sneakerService: SneakerService,
     private afAuth: AngularFireAuth) {
     this.price = Constants.Price;
+    this.appliedFilters = Constants.AppliedFilters;
+
     if (this.filterService.storage) {
       if (this.filterService.storage.categories) {
         this.categoriesFilter = this.filterService.storage.categories;
