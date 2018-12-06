@@ -11,6 +11,7 @@ import { CartPerUser } from '../shared/model/order';
 })
 export class OrderService {
   sdkDb: any;
+  public storage: any;
 
   constructor(private db: AngularFireDatabase, @Inject(FirebaseApp) fb: FirebaseApp) {
     this.sdkDb = fb.database();
@@ -80,6 +81,8 @@ export class OrderService {
     const newOrderKey = this.sdkDb.ref().child('orders').push().key;
 
     dataToSave['orders/' + newOrderKey] = orderToSave;
+
+    this.storage = newOrderKey;
 
     this.createNewOrderPerUser(userKey, newOrderKey, order);
 

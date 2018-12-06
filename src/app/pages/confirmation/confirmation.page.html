@@ -3,5 +3,25 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-list lines="none">
+    <ion-list-header>
+      <ion-grid fixed="true">
+      <ion-row><ion-col>
+        <p class="sneaker-subtitle">{{orderDone}}</p>
+      </ion-col></ion-row>
+    </ion-grid>
+    </ion-list-header>
+  </ion-list>
+
+  <h3 text-center>{{thanksForShopping}}</h3>
+
+  <ion-list lines="none">
+    <ion-item lines="full" text-center detail="false">
+      <ion-label class="sneaker-details">{{queryOrderDetails}}</ion-label>
+    </ion-item>
+    <ion-item lines="none" text-center href="/main/tabs/(home:home)" detail="false">
+      <ion-label class="sneaker-continue">{{continueShopping}}</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

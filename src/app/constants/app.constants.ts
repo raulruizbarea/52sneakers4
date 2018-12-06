@@ -125,4 +125,10 @@ export const Constants = {
   Total: 'Total',
   ShippingCost: 'Cost de l\'enviament',
   OrderConfirm: 'Confirmar comanda',
+
+  OrderDone: 'Comanda realitzada',
+  QueryOrderDetails: 'Pots consultar els detalls aquí.',
+  ContinueShopping: 'Continuar les compres',
+
+  ThanksForShopping: 'Gràcies per realitzar la compra!!',
 };

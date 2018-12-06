@@ -5,7 +5,7 @@ import { CartPerUser, PaymentMethod, Status } from 'src/app/shared/model/order';
 import { OrderService } from 'src/app/services/order.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { formatDate } from '@angular/common';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -27,7 +27,7 @@ export class PaymentPage implements OnInit, AfterContentChecked {
   shipping: number;
 
   constructor(private fb: FormBuilder, private orderService: OrderService, private afAuth: AngularFireAuth,
-    private navCtrl: NavController) {
+    private router: Router) {
     this.selectPaymentMethod = Constants.SelectPaymentMethod;
     this.orderConfirm = Constants.OrderConfirm;
     this.orderSummary = Constants.OrderSummary;
@@ -77,7 +77,7 @@ export class PaymentPage implements OnInit, AfterContentChecked {
         total: this.total
       }, this.sneakers).subscribe((values) => {
         this.orderService.deleteCartPerUserId(this.afAuth.auth.currentUser.uid);
-        this.navCtrl.navigateForward('/main/tabs/(cart:confirmation)');
+        this.router.navigateByUrl('/main/tabs/(cart:confirmation)');
       });
 
     } else {
