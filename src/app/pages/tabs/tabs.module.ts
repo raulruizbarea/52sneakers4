@@ -112,7 +112,7 @@ const routes: Routes = [
             loadChildren: './../cart/cart.module#CartPageModule'
           },
           {
-            path: 'order',
+            path: 'order/:id',
             outlet: 'profile',
             component: OrderPage,
           },

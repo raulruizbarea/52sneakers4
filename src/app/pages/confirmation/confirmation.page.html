@@ -16,12 +16,15 @@
   <h3 text-center>{{thanksForShopping}}</h3>
 
   <ion-list lines="none">
-    <ion-item lines="full" text-center detail="false">
+    <ion-item lines="full" text-center (click)="navigateToOrderDetail()" detail="false">
       <ion-label class="sneaker-details">{{queryOrderDetails}}</ion-label>
     </ion-item>
-    <ion-item lines="none" text-center href="/main/tabs/(home:home)" detail="false">
+    <ion-item lines="full" text-center (click)="navigateToHome()" detail="false">
       <ion-label class="sneaker-continue">{{continueShopping}}</ion-label>
     </ion-item>
+    <ion-item lines="none" text-center (click)="navigateToCart()" detail="false">
+        <ion-label class="sneaker-continue">{{returnToCart}}</ion-label>
+      </ion-item>
   </ion-list>
 
 </ion-content>

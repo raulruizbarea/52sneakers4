@@ -129,6 +129,7 @@ export const Constants = {
   OrderDone: 'Comanda realitzada',
   QueryOrderDetails: 'Pots consultar els detalls aquí.',
   ContinueShopping: 'Continuar les compres',
+  ReturnToCart: 'Torna a la cistella',
 
   ThanksForShopping: 'Gràcies per realitzar la compra!!',
 };
