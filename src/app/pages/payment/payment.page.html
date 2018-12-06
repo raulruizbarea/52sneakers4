@@ -13,17 +13,44 @@
     </ion-list-header>
   </ion-list>
 
-  <ion-radio-group>
-    <ion-item>
-      <ion-label>Tarjeta</ion-label>
-      <ion-radio color="dark" slot="start" value="card"></ion-radio>
-    </ion-item>
+  <form [formGroup]="form">
+    <ion-radio-group formControlName="catchPaymentMethod">
+      <ion-item>
+        <ion-label>Tarjeta</ion-label>
+        <ion-radio mode="md" color="dark" slot="start" value="card"></ion-radio>
+      </ion-item>
 
-    <ion-item lines="none">
-      <ion-label>Paypal</ion-label>
-      <ion-radio color="dark" slot="start" value="paypal"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
+      <ion-item lines="none">
+        <ion-label>Paypal</ion-label>
+        <ion-radio mode="md" color="dark" slot="start" value="paypal"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <div class="field-error-message" *ngIf="isErrorVisible('catchPaymentMethod','required')">
+      El mètode de pagament és obligatori.
+    </div>
+  </form>
+  <h6>{{orderSummary}}</h6>
+  <div class="sneaker-summary">
+
+    <ion-list lines="none">
+      <ion-item *ngFor="let sneaker of sneakers" lines="full">
+        <ion-thumbnail slot="start">
+          <img *ngIf="sneaker?.sneaker?.urlImage" [src]="sneaker?.sneaker?.urlImage" />
+        </ion-thumbnail>
+        <ion-grid fixed="true">
+          <ion-label class="sneaker-title">{{sneaker?.sneaker?.name}}</ion-label>
+          <ion-label class="sneaker-data" float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
+          <ion-label class="sneaker-data-articles">{{sneaker?.quantity}} {{articles}}</ion-label>
+          <ion-label class="sneaker-data" float-right>{{sneaker?.sneaker?.price * sneaker?.quantity | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+        </ion-grid>
+      </ion-item>
+      <ion-item lines="none">
+          <ion-label class="sneaker-shipping" float-left>{{shippingCost}}</ion-label>
+          <ion-label class="sneaker-shipping" text-end float-right>{{shipping | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <p class="sneaker-total" text-center>TOTAL: {{total + shipping | currency: 'EUR':'symbol':undefined:'es'}}</p>
+  </div>
 
   <ion-button (click)="save()" color="dark" padding expand="full">{{ orderConfirm }}</ion-button>
 </ion-content>
