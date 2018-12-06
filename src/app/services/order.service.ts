@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseApp } from '@angular/fire';
-import {Observable} from 'rxjs/Rx';
+import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { tap, map } from 'rxjs/operators';
 import { CartPerUser } from '../shared/model/order';
@@ -72,5 +72,60 @@ export class OrderService {
     err => {
       console.log(`Error updating quantity cartPerUser`);
     });
+  }
+
+  createNewOrder(userKey: string, order: any, sneakers: any): Observable<any> {
+    const orderToSave = Object.assign({}, order);
+    const dataToSave = {};
+    const newOrderKey = this.sdkDb.ref().child('orders').push().key;
+
+    dataToSave['orders/' + newOrderKey] = orderToSave;
+
+    this.createNewOrderPerUser(userKey, newOrderKey, order);
+
+    this.createNewSneakersPerOrder(newOrderKey, sneakers);
+
+    return this.firebaseUpdate(dataToSave);
+  }
+
+  createNewOrderPerUser(userKey: string, orderKey: string, order: any): Observable<any> {
+    const orderToSave = Object.assign({}, order);
+    const dataToSave = {};
+
+    dataToSave['ordersPerUser/' + userKey + '/' + orderKey] = orderToSave;
+
+    return this.firebaseUpdate(dataToSave);
+  }
+
+  createNewSneakersPerOrder(orderKey: string, sneakers: CartPerUser[]): Observable<any> {
+    const dataToSave = {};
+
+    sneakers.forEach(sneaker => {
+      dataToSave['sneakersPerOrder/' + orderKey + '/' + sneaker.$key] = {
+        quantity: sneaker.quantity,
+        sizes: sneaker.sizes
+      };
+    });
+
+    return this.firebaseUpdate(dataToSave);
+  }
+
+  firebaseUpdate(dataToSave) {
+    const subject = new Subject();
+
+    this.sdkDb.ref().update(dataToSave)
+        .then(
+            val => {
+                subject.next(val);
+                subject.complete();
+
+            },
+            err => {
+                subject.error(err);
+                subject.complete();
+            }
+        );
+
+    return subject.asObservable();
   }
 }
