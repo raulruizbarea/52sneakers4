@@ -1,9 +1,11 @@
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { Constants } from 'src/app/constants/app.constants';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CartPerUser } from 'src/app/shared/model/order';
+import { CartPerUser, PaymentMethod, Status } from 'src/app/shared/model/order';
 import { OrderService } from 'src/app/services/order.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { formatDate } from '@angular/common';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-payment',
@@ -24,7 +26,8 @@ export class PaymentPage implements OnInit, AfterContentChecked {
   shippingCost: string;
   shipping: number;
 
-  constructor(private fb: FormBuilder, private orderService: OrderService, private afAuth: AngularFireAuth) {
+  constructor(private fb: FormBuilder, private orderService: OrderService, private afAuth: AngularFireAuth,
+    private navCtrl: NavController) {
     this.selectPaymentMethod = Constants.SelectPaymentMethod;
     this.orderConfirm = Constants.OrderConfirm;
     this.orderSummary = Constants.OrderSummary;
@@ -43,7 +46,7 @@ export class PaymentPage implements OnInit, AfterContentChecked {
   ngOnInit() {
     this.orderService.findAllSneakersCartByUserKey(this.afAuth.auth.currentUser.uid)
     .subscribe(values => {
-      console.log(values);
+      // console.log(values);
       this.sneakers = values;
     });
   }
@@ -58,7 +61,25 @@ export class PaymentPage implements OnInit, AfterContentChecked {
 
   save() {
     if (this.form.valid) {
-      console.log(this.form.controls['catchPaymentMethod'].value);
+      // console.log(this.form.controls['catchPaymentMethod'].value);
+      let payment = 0;
+      if ( this.form.controls['catchPaymentMethod'].value === 'card') {
+        payment = PaymentMethod.Card;
+      } else if (this.form.controls['catchPaymentMethod'].value === 'paypal') {
+        payment = PaymentMethod.Paypal;
+      }
+
+      this.orderService.createNewOrder(this.afAuth.auth.currentUser.uid, {
+        date: formatDate(new Date(), 'MM/dd/yyyy', 'en').toString(),
+        paymentMethod: payment,
+        shipping: this.shipping,
+        status: Status.Confirmed,
+        total: this.total
+      }, this.sneakers).subscribe((values) => {
+        this.orderService.deleteCartPerUserId(this.afAuth.auth.currentUser.uid);
+        this.navCtrl.navigateForward('/main/tabs/(cart:confirmation)');
+      });
+
     } else {
       console.log('error');
       Object.keys(this.form.controls).forEach(field => {

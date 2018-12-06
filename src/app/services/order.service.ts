@@ -110,6 +110,15 @@ export class OrderService {
     return this.firebaseUpdate(dataToSave);
   }
 
+  deleteCartPerUserId(userKey: string) {
+    this.db.object('cartPerUser/' + userKey).remove().then(() => {
+      console.log('cartPerUser deleted succesfully.');
+    },
+    err => {
+      console.log(`Error deleting cartPerUser`);
+    });
+  }
+
   firebaseUpdate(dataToSave) {
     const subject = new Subject();
 
