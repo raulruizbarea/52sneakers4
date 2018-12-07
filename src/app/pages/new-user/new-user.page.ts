@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthService } from 'src/app/shared/security/auth.service';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-new-user',
@@ -20,9 +21,8 @@ export class NewUserPage implements OnInit {
   email: string;
   createAccount: string;
 
-  constructor(private router: Router,
-              private fb: FormBuilder,
-              private authService: AuthService,
+  constructor(private router: Router, private alertController: AlertController,
+              private fb: FormBuilder, private authService: AuthService,
               private usersService: UsersService) {
     this.password = Constants.Password;
     this.passwordRepeat = Constants.PasswordRepeat;
@@ -66,6 +66,7 @@ export class NewUserPage implements OnInit {
                 },
                 err => {
                   console.log(`Firebase: Error creating user ${err}`);
+                  this.presentAlert();
                   this.addPasswordAndConfirm();
                 }
             );
@@ -103,5 +104,18 @@ export class NewUserPage implements OnInit {
     return this.form.controls[field].dirty
             && this.form.controls[field].errors &&
             this.form.controls[field].errors[error];
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'S\'ha produït un error en crear l\'usuari',
+      message: 'L\'adreça de correu electrònic ja està en ús per un altre compte.',
+      buttons: [{ text: 'Ok',
+        handler: () => {
+        // console.log('Confirm Ok');
+      }}]
+    });
+
+    await alert.present();
   }
 }
