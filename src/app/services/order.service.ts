@@ -4,7 +4,7 @@ import { FirebaseApp } from '@angular/fire';
 import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { tap, map } from 'rxjs/operators';
-import { CartPerUser } from '../shared/model/order';
+import { CartPerUser, Order, SneakersPerOrder } from '../shared/model/order';
 
 @Injectable({
   providedIn: 'root'
@@ -139,5 +139,35 @@ export class OrderService {
         );
 
     return subject.asObservable();
+  }
+
+  findAllOrdersByUserKey(userKey: string): Observable<Order[]> {
+    return this.db.list('ordersPerUser/' + userKey).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => {
+          const data = c.payload.val() as Order;
+          data.$key = c.payload.key;
+          return data;
+        });
+      }),
+    );
+  }
+
+  findAllSneakersByOrderKey(orderKey: string): Observable<SneakersPerOrder[]> {
+    return this.db.list('sneakersPerOrder/' + orderKey).snapshotChanges().pipe(
+      tap(console.log),
+      map(changes => {
+        return changes.map(c => {
+          const data = c.payload.val() as SneakersPerOrder;
+          data.$key = c.payload.key;
+          this.sdkDb.ref('sneakers/' + data.$key).once('value')
+            .then(function(snapshot) {
+              data.sneaker = snapshot.val();
+            });
+          return data;
+        });
+      }),
+    );
   }
 }
