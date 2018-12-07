@@ -56,7 +56,19 @@ ion-grid {
   }
 }
 
-.sneaker-profile {
+.sneaker-camera {
+  position: absolute;
+  top: 0;
+  right: 22%;
+  --box-shadow: transparent;
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --border-color: transparent;
+  --ripple-color: transparent;
+}
+
+.sneaker-gallery {
   position: absolute;
   top: 0;
   right: 15%;
@@ -68,6 +80,14 @@ ion-grid {
   --ripple-color: transparent;
 }
 
+.sneaker-gallery-icon {
+  font-size: 24px;
+}
+
 .ion-color-dark {
   --ion-color-base-rgb: transparent !important;
+}
+
+.sneaker-maxim {
+  font-size: 12px;
 }

@@ -9,7 +9,7 @@ import { ContactPage } from '../contact/contact.page';
 import { SubscriptionPage } from '../subscription/subscription.page';
 import { NotificationPage } from '../notification/notification.page';
 
-import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 
@@ -110,8 +110,25 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  async galleryImage() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+    };
+
+    return await this.camera.getPicture(options);
+  }
+
   async uploadHandler() {
     const base64 = await this.captureImage();
+    this.createUploadTask(base64);
+  }
+
+  async galleryHandler() {
+    const base64 = await this.galleryImage();
     this.createUploadTask(base64);
   }
 

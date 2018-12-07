@@ -6,11 +6,15 @@
   <ion-grid no-padding>
     <ion-row align-items-stretch>
       <ion-col align-self-center>
-    <ion-avatar>
+      <p class="sneaker-maxim" text-center>màxim 250kb</p>
+      <ion-avatar>
       <img *ngIf="!image && user?.urlImage" [src]="user?.urlImage">
       <img *ngIf="image" [src]="image">
-      <ion-button color="dark" class="sneaker-profile" fill="clear" (click)="uploadHandler()">
+      <ion-button no-padding no-margin color="dark" class="sneaker-camera" fill="clear" (click)="uploadHandler()">
         <ion-icon slot="icon-only" name="camera"></ion-icon>
+      </ion-button>
+      <ion-button no-padding no-margin color="dark" class="sneaker-gallery" fill="clear" (click)="galleryHandler()">
+        <ion-icon class="sneaker-gallery-icon" slot="icon-only" name="image"></ion-icon>
       </ion-button>
     </ion-avatar>
     <h3 text-center>{{completeName}}</h3>
