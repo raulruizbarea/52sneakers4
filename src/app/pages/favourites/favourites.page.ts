@@ -26,7 +26,7 @@ export class FavouritesPage implements OnInit {
     this.sneakerService.findAllSneakersLikedByUserKey(this.afAuth.auth.currentUser.uid)
     .map(sneakers => sneakers.sort((a, b) => new Date(b.likedDate).getTime() - new Date(a.likedDate).getTime()))
     .subscribe(values => {
-      console.log(values);
+      // console.log(values);
       this.sspu = values;
     });
   }

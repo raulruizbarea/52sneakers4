@@ -52,6 +52,7 @@ export const Constants = {
   Favourites: 'Favorits',
   FavouritesList: 'Llista de favorits',
   History: 'Historial',
+  HistoryList: 'Historial de comandes',
   Configuration: 'Configuration',
   Disconnect: 'Desconnectar',
   Ok: 'Ok',
@@ -100,6 +101,7 @@ export const Constants = {
   NoValues: 'No s\'ha trobat cap resultat!',
   NoCart: 'No tens cap sneaker a la cistella!',
   NoFavourites: 'No tens cap sneaker afegida a favorits!',
+  NoOrders: 'No has realitzat cap comanda!',
   Pay: 'Pagar',
   AddToCart: 'Afegir a la cistella',
 
