@@ -170,4 +170,16 @@ export class OrderService {
       }),
     );
   }
+
+
+  findOrderByOrderKey(orderKey: string): Observable<Order> {
+    return this.db.list('orders', ref => ref.orderByKey().equalTo(orderKey)).snapshotChanges().pipe(
+      // map(changes => changes[0]),
+      tap(console.log),
+      // filter(changes => changes && changes.length > 0),
+      map(changes => {
+        return changes.map(c => ({$key: c.payload.key, ...c.payload.val()})); } ),
+      map(changes => changes[0])
+    );
+  }
 }

@@ -1,0 +1,51 @@
+.sneaker-summary {
+  border: 1px black solid;
+  margin: 10px;
+}
+
+ion-list-header {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid black;
+}
+
+ion-list {
+  margin: 0;
+}
+
+ion-item {
+  font-size: 14px;
+  --height: 30px;
+  --min-height: 30px;
+}
+
+h6 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.sneaker-data-articles {
+  display: inline-flex;
+  text-transform: lowercase;
+}
+
+.sneaker-total {
+  background-color: black;
+  margin: 0;
+  padding: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.sneaker-shipping {
+  color: gray;
+  font-size: 12px;
+}
+
+.sneaker-title, .sneaker-data, .sneaker-data-articles {
+  font-size: 12px !important;
+}
+
+.sneaker-history {
+  margin: 5px;
+}

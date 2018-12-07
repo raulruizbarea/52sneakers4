@@ -130,6 +130,7 @@ export const Constants = {
   SelectPaymentMethod: 'Seleccionar mode de pagament',
   Card: 'Tarjeta',
   Paypal: 'Paypal',
+  PaymentMethod: 'Mètode de pagament',
 
   OrderSummary: 'Resum de la comanda',
   Total: 'Total',
