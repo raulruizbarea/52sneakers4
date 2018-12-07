@@ -58,6 +58,14 @@ export const Constants = {
   Ok: 'Ok',
   Cancel: 'Cancel·lar',
   Profile: 'Perfil',
+  OrderId: 'Comanda',
+  Status: 'Estat',
+  Date: 'Data',
+
+  Confirmed: 'Confirmat',
+  InProgress: 'En progrés',
+  Delivered: 'Enviat',
+  Finished: 'Acabat',
 
   //  Search
   Search: 'Cerca',

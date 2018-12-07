@@ -1,3 +1,14 @@
 ion-list-header {
   font-size: 20px;
 }
+
+.sneaker-history, .sneaker-total {
+  font-size: 13px;
+  margin: 5px !important;
+  --height: 20px;
+  --min-height: 20px;
+}
+
+.sneaker-total {
+  font-weight: bold;
+}

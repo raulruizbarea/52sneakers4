@@ -15,8 +15,24 @@
         <ion-label>{{ noValues }}</ion-label>
     </ion-item>
 
-    <ion-item *ngFor="let order of orders" lines="full">
-      
+    <ion-item *ngFor="let order of orders" lines="full" href="/main/tabs/(profile:order/{{order?.$key}})" routerDirection="forward">
+      <ion-grid fixed="true">
+        <ion-row>
+          <ion-label class="sneaker-history" float-left>{{orderId}}:</ion-label>
+          <ion-label class="sneaker-history" float-right>{{order?.$key}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label *ngIf="order?.status == statusOrder.Confirmed" class="sneaker-history" float-left>{{status}}: {{confirmed}}</ion-label>
+          <ion-label *ngIf="order?.status == statusOrder.InProgress" class="sneaker-history" float-left>{{status}}: {{inProgress}}</ion-label>
+          <ion-label *ngIf="order?.status == statusOrder.Delivered" class="sneaker-history" float-left>{{status}}: {{delivered}}</ion-label>
+          <ion-label *ngIf="order?.status == statusOrder.Finished" class="sneaker-history" float-left>{{status}}: {{finished}}</ion-label>
+          <ion-label class="sneaker-history" float-right text-end>{{date}}: {{order?.date | date:'dd/MM/yyyy'}}</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-label class="sneaker-total" float-left>{{total}}:</ion-label>
+          <ion-label class="sneaker-total" text-end float-right>{{order?.total + order?.shipping | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+        </ion-row>
+      </ion-grid>
     </ion-item>
   </ion-list>
 </ion-content>
