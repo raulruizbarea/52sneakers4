@@ -28,8 +28,8 @@
         <ion-label class="sneaker-history" float-right text-end>{{date}}: {{order?.date | date:'dd/MM/yyyy'}}</ion-label>
     </ion-row>
     <ion-row>
-      <ion-label *ngIf="order?.paymentMethod == paymentOrder.Card" class="sneaker-history">{{method}}: {{paypal}}</ion-label>
-      <ion-label *ngIf="order?.paymentMethod == paymentOrder.Paypal" class="sneaker-history">{{method}}: {{card}}</ion-label>
+      <ion-label *ngIf="order?.paymentMethod == paymentOrder.Card" class="sneaker-history">{{method}}: {{card}}</ion-label>
+      <ion-label *ngIf="order?.paymentMethod == paymentOrder.Paypal" class="sneaker-history">{{method}}: {{paypal}}</ion-label>
       </ion-row>
   </ion-grid>
   
