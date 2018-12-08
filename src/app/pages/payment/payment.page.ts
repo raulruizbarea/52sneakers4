@@ -73,7 +73,8 @@ export class PaymentPage implements OnInit, AfterContentChecked {
         date: formatDate(new Date(), 'MM/dd/yyyy', 'en').toString(),
         paymentMethod: payment,
         shipping: this.shipping,
-        status: Status.Confirmed,
+        // status: Status.Confirmed, mientras no hay parte administrador los marco como finalizado
+        status: Status.Finished,
         total: this.total
       }, this.sneakers).subscribe((values) => {
         this.orderService.deleteCartPerUserId(this.afAuth.auth.currentUser.uid);
