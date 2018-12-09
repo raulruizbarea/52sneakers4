@@ -114,6 +114,7 @@ export const Constants = {
   AddToCart: 'Afegir a la cistella',
 
   Size: 'Talla',
+  ChooseSize: 'Escollir talla',
   Sizes: 'Talles',
   Articles: 'Artícles',
   Delete: 'Esborrar',

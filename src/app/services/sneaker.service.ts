@@ -126,7 +126,7 @@ export class SneakerService {
 
   calculateRating(sneakerKey: string, rating: number, newRating: number, votes: number) {
     console.log(rating + ' ' + newRating + ' ' + votes);
-    const rate = (rating + newRating) / votes;
+    const rate = Math.round((rating + newRating) / votes);
     this.db.object('sneakers/' + sneakerKey).update({ rating: rate }).then(() => {
       console.log('Rating updated succesfully.');
     },

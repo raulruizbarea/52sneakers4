@@ -21,12 +21,14 @@ export class SneakerPage implements OnInit {
   sizes: string[];
   disableBtn: boolean;
   sizeSneaker: string;
+  categoriesFilter: string[];
+  sportsFilter: string[];
 
   constructor(private route: ActivatedRoute, private orderService: OrderService,
     private afAuth: AngularFireAuth, private sneakerService: SneakerService, private navCtrl: NavController) {
     // console.log(this.route.snapshot.paramMap.get('id'));
     this.addToCart = Constants.AddToCart;
-    this.sizeTitle = Constants.Size;
+    this.sizeTitle = Constants.ChooseSize;
     this.disableBtn = true;
    }
 
@@ -39,6 +41,8 @@ export class SneakerPage implements OnInit {
          this.sneaker = sneaker;
          // console.log(this.sneaker.sizes);
          this.sizes = Object.keys(this.sneaker.sizes);
+         this.sportsFilter = Object.keys(this.sneaker.sports);
+         this.categoriesFilter = Object.keys(this.sneaker.categories);
       });
   }
 
