@@ -123,4 +123,24 @@ export class SneakerService {
       }),
     );
   }
+
+  calculateRating(sneakerKey: string, rating: number, newRating: number, votes: number) {
+    console.log(rating + ' ' + newRating + ' ' + votes);
+    const rate = (rating + newRating) / votes;
+    this.db.object('sneakers/' + sneakerKey).update({ rating: rate }).then(() => {
+      console.log('Rating updated succesfully.');
+    },
+    err => {
+      console.log(`Error updating rating`);
+    });
+  }
+
+  updateVotes(sneakerKey: string, votes: number) {
+    this.db.object('sneakers/' + sneakerKey).update({ votes: votes }).then(() => {
+      console.log('Increase votes sneaker updated succesfully.');
+    },
+    err => {
+      console.log(`Error increasing votes sneaker`);
+    });
+  }
 }

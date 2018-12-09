@@ -3,6 +3,8 @@ import { OrderService } from 'src/app/services/order.service';
 import { SneakersPerOrder, Order, Status, PaymentMethod } from 'src/app/shared/model/order';
 import { ActivatedRoute } from '@angular/router';
 import { Constants } from 'src/app/constants/app.constants';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { SneakerService } from 'src/app/services/sneaker.service';
 
 @Component({
   selector: 'app-order',
@@ -32,8 +34,11 @@ export class OrderPage implements OnInit {
   card: string;
   paypal: string;
   paymentOrder = PaymentMethod;
+  ratingClicked: number;
+  rate: string;
 
-  constructor(private orderService: OrderService, private route: ActivatedRoute) {
+  constructor(private orderService: OrderService, private route: ActivatedRoute,
+    private afAuth: AngularFireAuth, private sneakerService: SneakerService) {
     this.orderConfirm = Constants.OrderConfirm;
     this.orderSummary = Constants.OrderSummary;
     this.sizeTitle = Constants.Size;
@@ -50,6 +55,7 @@ export class OrderPage implements OnInit {
     this.card = Constants.Card;
     this.method = Constants.PaymentMethod;
     this.paypal = Constants.Paypal;
+    this.rate = Constants.Rate;
    }
 
   ngOnInit() {
@@ -66,4 +72,29 @@ export class OrderPage implements OnInit {
     });
   }
 
+  ratingComponentClick(clickObj: any): void {
+    const item = this.sneakers.find(((i: any) => i.$key === clickObj.itemId));
+    if (!!item) {
+      // this.ratingClicked = clickObj.rating;
+      // calculate rating
+      item.sneaker.newRating = clickObj.rating;
+    }
+  }
+
+  doRate() {
+    // sneaker add vote
+    // sneaker calculate rating;
+    this.sneakers.forEach(element => {
+      // console.log(element.$key + ' - ' + element.sneaker.newRating);
+      if (element.sneaker.newRating) {
+        this.sneakerService.calculateRating(element.$key, element.sneaker.rating, element.sneaker.newRating, element.sneaker.votes + 1);
+      } else {
+        this.sneakerService.calculateRating(element.$key, element.sneaker.rating, 0, element.sneaker.votes + 1);
+      }
+      this.sneakerService.updateVotes(element.$key, element.sneaker.votes + 1);
+    });
+
+    // order rated = true
+    this.orderService.updateRated(this.order.$key, this.afAuth.auth.currentUser.uid);
+  }
 }

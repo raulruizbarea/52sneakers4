@@ -14,6 +14,7 @@ export class Sneaker {
     public sneakerSold: number,
     public rating: number,
     public votes: number,
+    public newRating?: number,
     public like?: boolean,
     public likedDate?: string,
     ) {

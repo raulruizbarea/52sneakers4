@@ -182,4 +182,19 @@ export class OrderService {
       map(changes => changes[0])
     );
   }
+
+  updateRated(orderKey: string, userKey: string) {
+    this.db.object('orders/' + orderKey).update({ rated: true }).then(() => {
+        console.log('Rated orders updated succesfully.');
+    },
+    err => {
+      console.log(`Error updating rated orders`);
+    });
+    this.db.object('ordersPerUser/' + userKey + '/' + orderKey).update({ rated: true }).then(() => {
+      console.log('Rated ordersPerUser updated succesfully.');
+    },
+    err => {
+      console.log(`Error updating rated ordersPerUser`);
+    });
+  }
 }

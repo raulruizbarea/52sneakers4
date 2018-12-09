@@ -44,8 +44,9 @@
           <ion-label class="sneaker-data" float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
           <ion-label class="sneaker-data-articles">{{sneaker?.quantity}} {{articles}}</ion-label>
           <ion-label class="sneaker-data" float-right>{{sneaker?.sneaker?.price * sneaker?.quantity | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
+          <rating *ngIf="order?.status == statusOrder.Finished && order?.rated == false" [itemId]='sneaker?.$key' (ratingClick)='ratingComponentClick($event)'></rating>
         </ion-grid>
-      </ion-item>
+       </ion-item>
       <ion-item lines="none">
           <ion-label class="sneaker-shipping" float-left>{{shippingCost}}</ion-label>
           <ion-label class="sneaker-shipping" text-end float-right>{{order?.shipping | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
@@ -53,4 +54,6 @@
     </ion-list>
     <p class="sneaker-total" text-center>TOTAL: {{order?.total + order?.shipping | currency: 'EUR':'symbol':undefined:'es'}}</p>
   </div>
+  <p *ngIf="order?.status == statusOrder.Finished && order?.rated == true" text-center>Ja valorat</p>
+  <ion-button *ngIf="order?.status == statusOrder.Finished && order?.rated == false" (click)="doRate()" color="dark" padding expand="full">{{ rate }}</ion-button>
 </ion-content>
