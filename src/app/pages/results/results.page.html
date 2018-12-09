@@ -7,7 +7,8 @@
         sizesFilter && sizesFilter.length > 0 ||
         sportsFilter && sportsFilter.length > 0 ||
         brandsFilter && brandsFilter.length > 0 ||
-        sliderValue && (sliderValue.lower != 0 || sliderValue.upper != 200)" class="sneaker-filters">{{appliedFilters}}:</ion-label>
+        sliderValue && (sliderValue.lower != 0 || sliderValue.upper != 200) ||
+        ratingFilter && ratingFilter != -1" class="sneaker-filters">{{appliedFilters}}:</ion-label>
     <ion-chip *ngFor="let category of categoriesFilter" (click)="deleteCategory(category)">
       <ion-label>{{category}}</ion-label>
       <ion-icon name="close"></ion-icon>
@@ -26,6 +27,10 @@
     </ion-chip>
     <ion-chip *ngIf="sliderValue && (sliderValue.lower != 0 || sliderValue.upper != 200)"  (click)="deletePrice(category)">
       <ion-label>{{price}}: min: {{sliderValue.lower}} max: {{sliderValue.upper}}</ion-label>
+      <ion-icon name="close"></ion-icon>
+    </ion-chip>
+    <ion-chip *ngIf="ratingFilter && ratingFilter != -1"  (click)="deleteRating(rating)">
+      <ion-label>{{ratingFilter}} o més estrelles</ion-label>
       <ion-icon name="close"></ion-icon>
     </ion-chip>
     

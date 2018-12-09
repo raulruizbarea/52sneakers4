@@ -19,6 +19,8 @@ export class FilterPage implements OnInit {
   sizes: string;
   sports: string;
   brands: string;
+  rating: string;
+  ratingFilter: number;
   categoriesForm: any;
   categoriesFilter: string[];
   sizesForm: any;
@@ -42,11 +44,13 @@ export class FilterPage implements OnInit {
     this.sports = Constants.Sports;
     this.brands = Constants.Brands;
     this.price = Constants.Price;
+    this.rating = Constants.Rating;
 
     this.categoriesFilter = [];
     this.sizesFilter = [];
     this.sportsFilter = [];
     this.brandsFilter = [];
+    this.ratingFilter = -1;
 
     this.sliderValue = {
       lower: 0,
@@ -149,6 +153,17 @@ export class FilterPage implements OnInit {
     // console.log(this.sizesFilter);
   }
 
+  ratingComponentClick(clickObj: any): void {
+    // const item = this.sneakers.find(((i: any) => i.$key === clickObj.itemId));
+    // if (!!item) {
+      // this.ratingClicked = clickObj.rating;
+      // calculate rating
+      // item.sneaker.newRating = clickObj.rating;
+    // }
+    // console.log(clickObj.rating);
+    this.ratingFilter = clickObj.rating;
+  }
+
   navigateToResults() {
     this.filterService.storage = {
       'categories': this.categoriesFilter,
@@ -156,6 +171,7 @@ export class FilterPage implements OnInit {
       'sports': this.sportsFilter,
       'brands': this.brandsFilter,
       'price': this.sliderValue,
+      'rating': this.ratingFilter,
     };
     this.navCtrl.navigateForward('/main/tabs/(home:results)');
     this.doCancel();

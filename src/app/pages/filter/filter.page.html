@@ -23,6 +23,13 @@
     </ion-col>
   </ion-row>
 
+  <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{rating}}</h4></ion-col></ion-row>
+  <ion-row>
+    <ion-col class="sneaker-col">
+      <rating [rating]='ratingFilter' (ratingClick)='ratingComponentClick($event)'></rating>
+    </ion-col>
+  </ion-row>
+
   <ion-row class="sneaker-row-title"><ion-col><h4 class="sneaker-filter-subtitle">{{price}}</h4></ion-col></ion-row>
  
   <ion-row>

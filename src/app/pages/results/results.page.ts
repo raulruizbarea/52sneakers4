@@ -17,6 +17,7 @@ export class ResultsPage implements OnInit {
   sportsFilter: string[];
   brandsFilter: string[];
   sliderValue: any;
+  ratingFilter: number;
   price: string;
   appliedFilters: string;
 
@@ -44,6 +45,9 @@ export class ResultsPage implements OnInit {
       if (this.filterService.storage.price) {
         this.sliderValue = this.filterService.storage.price;
       }
+      if (this.filterService.storage.rating) {
+        this.ratingFilter = this.filterService.storage.rating;
+      }
     }
   }
 
@@ -67,6 +71,7 @@ export class ResultsPage implements OnInit {
       let foundPrices = true;
       let foundBrands = true;
       let foundSports = true;
+      let foundRating = true;
 
       this.filtered.slice(0).forEach((sneaker) => {
         if (this.categoriesFilter && this.categoriesFilter.length > 0) {
@@ -89,6 +94,15 @@ export class ResultsPage implements OnInit {
           });
         }
 
+        if (this.ratingFilter && this.ratingFilter !== -1) {
+          // console.log(this.ratingFilter + ' - ' + sneaker.rating);
+          if (sneaker.rating < this.ratingFilter) {
+            foundRating = false;
+          } else {
+            foundRating = true;
+          }
+        }
+
         if (this.brandsFilter  && this.brandsFilter.length > 0) {
           foundBrands = this.brandsFilter.includes(sneaker.brand);
         }
@@ -99,7 +113,7 @@ export class ResultsPage implements OnInit {
           });
         }
 
-        if (!foundCategories || !foundBrands || !foundPrices || !foundSizes || !foundSports) {
+        if (!foundCategories || !foundBrands || !foundPrices || !foundSizes || !foundSports || !foundRating) {
           this.filtered.splice(this.filtered.indexOf(sneaker), 1);
         }
       });
@@ -108,7 +122,8 @@ export class ResultsPage implements OnInit {
         &&  this.brandsFilter && this.brandsFilter.length === 0
         && this.sportsFilter && this.sportsFilter.length === 0
         && this.sliderValue && this.sliderValue.lower === 0 && this.sliderValue.upper === 200
-        && this.sizesFilter && this.sizesFilter.length === 0) {
+        && this.sizesFilter && this.sizesFilter.length === 0
+        && this.ratingFilter && this.ratingFilter === -1) {
         this.filtered = this.allSneakers.slice();
       }
     }
@@ -153,6 +168,11 @@ export class ResultsPage implements OnInit {
         this.sportsFilter.splice(index, 1);
       }
     });
+    this.applyFilters();
+  }
+
+  deleteRating(rating) {
+    this.ratingFilter = -1;
     this.applyFilters();
   }
 }
