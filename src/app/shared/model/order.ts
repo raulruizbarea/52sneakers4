@@ -8,6 +8,7 @@ export class Order {
     public total: number,
     public paymentMethod: number,
     public shipping: number,
+    public rated: boolean,
     ) {
 
   }
@@ -16,8 +17,8 @@ export class Order {
     return array.map(Order.fromJson);
   }
 
-  static fromJson({$key, status, date, total, paymentMethod, shipping}): Order {
-    return new Order($key, status, date, total, paymentMethod, shipping);
+  static fromJson({$key, status, date, total, paymentMethod, shipping, rated}): Order {
+    return new Order($key, status, date, total, paymentMethod, shipping, rated);
   }
 }
 

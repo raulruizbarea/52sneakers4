@@ -75,7 +75,8 @@ export class PaymentPage implements OnInit, AfterContentChecked {
         shipping: this.shipping,
         // status: Status.Confirmed, mientras no hay parte administrador los marco como finalizado
         status: Status.Finished,
-        total: this.total
+        total: this.total,
+        rated: false,
       }, this.sneakers).subscribe((values) => {
         this.orderService.deleteCartPerUserId(this.afAuth.auth.currentUser.uid);
         this.router.navigateByUrl('/main/tabs/(cart:confirmation)');
