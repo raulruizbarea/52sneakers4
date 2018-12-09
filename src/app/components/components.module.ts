@@ -8,6 +8,7 @@ import { SneakerModalHeaderComponent } from './sneaker-modal-header/sneaker-moda
 import { SliderComponent } from './slider/slider.component';
 import { SneakerCardsListComponent } from './sneaker-cards-list/sneaker-cards-list.component';
 import { FormsModule } from '@angular/forms';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     SideMenuComponent,
     SliderComponent,
     SneakerCardsListComponent,
+    RatingComponent,
   ],
   imports: [
     IonicModule,
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     SneakerFooterComponent,
     SliderComponent,
     SideMenuComponent,
-    SneakerCardsListComponent]
+    SneakerCardsListComponent,
+    RatingComponent]
 })
 export class ComponentsModule {}
