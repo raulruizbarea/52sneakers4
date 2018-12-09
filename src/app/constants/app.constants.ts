@@ -143,4 +143,6 @@ export const Constants = {
   ReturnToCart: 'Torna a la cistella',
 
   ThanksForShopping: 'Gràcies per realitzar la compra!!',
+
+  Rate: 'Valorar',
 };
