@@ -12,6 +12,8 @@ export class Sneaker {
     public sports: string,
     public urlImage: string,
     public sneakerSold: number,
+    public rating: number,
+    public votes: number,
     public like?: boolean,
     public likedDate?: string,
     ) {
@@ -23,9 +25,9 @@ export class Sneaker {
   }
 
   static fromJson({$key, name, description, longDescription, date, price, brand, sizes,
-    categories, sports, urlImage, sneakerSold}): Sneaker {
+    categories, sports, urlImage, sneakerSold, rating, votes}): Sneaker {
     return new Sneaker($key, name, description, longDescription, date, price, brand, sizes,
-      categories, sports, urlImage, sneakerSold);
+      categories, sports, urlImage, sneakerSold, rating, votes);
   }
 }
 
