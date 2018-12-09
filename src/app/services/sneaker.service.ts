@@ -143,4 +143,13 @@ export class SneakerService {
       console.log(`Error increasing votes sneaker`);
     });
   }
+
+  updateSold(sneakerKey: string, sneakerSold: number) {
+    this.db.object('sneakers/' + sneakerKey).update({ sneakerSold: sneakerSold }).then(() => {
+      console.log('Increase sneaker sold updated succesfully.');
+    },
+    err => {
+      console.log(`Error increasing sneaker sold`);
+    });
+  }
 }

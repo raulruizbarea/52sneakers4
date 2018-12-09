@@ -5,6 +5,7 @@ import {Observable, Subject} from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { tap, map } from 'rxjs/operators';
 import { CartPerUser, Order, SneakersPerOrder } from '../shared/model/order';
+import { SneakerService } from './sneaker.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class OrderService {
   sdkDb: any;
   public storage: any;
 
-  constructor(private db: AngularFireDatabase, @Inject(FirebaseApp) fb: FirebaseApp) {
+  constructor(private db: AngularFireDatabase, @Inject(FirebaseApp) fb: FirebaseApp,
+  private sneakerService: SneakerService) {
     this.sdkDb = fb.database();
   }
 
@@ -87,6 +89,11 @@ export class OrderService {
     this.createNewOrderPerUser(userKey, newOrderKey, order);
 
     this.createNewSneakersPerOrder(newOrderKey, sneakers);
+
+    sneakers.forEach(sneaker => {
+      console.log(sneaker.$key + ' - ' + sneaker.sneaker.sneakerSold + ' - ' + sneaker.quantity);
+      this.sneakerService.updateSold(sneaker.$key, sneaker.sneaker.sneakerSold + sneaker.quantity);
+    });
 
     return this.firebaseUpdate(dataToSave);
   }
