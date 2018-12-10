@@ -28,8 +28,8 @@ p {
 }
 
 ion-list {
-  bottom: 0;
-  position: absolute;
+  /* bottom: 0;
+  position: absolute; */
   width: 100%;
 }
 
@@ -48,13 +48,13 @@ ion-item ion-icon {
   margin: 10px;
 }
 
-ion-grid {
+/* ion-grid {
   height: 100%;
 
   ion-row {
     height: 50%;
   }
-}
+} */
 
 .sneaker-camera {
   position: absolute;
