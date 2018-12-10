@@ -86,10 +86,10 @@ export class SubscriptionPage implements OnInit {
   async presentToast() {
     const toast = await this.toastCtrl.create({
       message: Constants.EmailSent,
-      // duration: 2000,
+      duration: 2000,
       showCloseButton: true,
       // position: 'top',
-      closeButtonText: 'OK'
+      // closeButtonText: 'OK'
     });
 
     toast.onDidDismiss().then(() => {

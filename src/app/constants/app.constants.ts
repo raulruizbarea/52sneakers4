@@ -76,7 +76,7 @@ export const Constants = {
   // Modal
   SubscribeUnsubscribe: 'Subscriu',
   SampleEmail: 'example@gmail.com',
-  EmailSent: 'Email enviat correctament.',
+  EmailSent: 'Email enviat!',
   SubscriptionsOffers: 'T\'enviarem extraordinaries ofertes i noves sneakers cada setmana!',
   WhichEmail: 'Quin és el teu email?',
   Send: 'Enviar',
@@ -119,7 +119,7 @@ export const Constants = {
   Articles: 'Artícles',
   Delete: 'Esborrar',
   NotificationsQuestion: 'Vols rebre notificacions?',
-  NotificationsChangedSuccess: 'Notificacions configurades correctament!',
+  NotificationsChangedSuccess: 'Notificacions configurades!',
 
   WhereAreYouGoingToShip: 'Indica a continuació la seva adreça d’entrega.',
   ShippingAddres: 'Adreça d\'entrega',
