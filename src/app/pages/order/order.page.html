@@ -42,7 +42,7 @@
         <ion-grid fixed="true">
           <ion-label class="sneaker-title">{{sneaker?.sneaker?.name}}</ion-label>
           <ion-label class="sneaker-data" float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
-          <ion-label class="sneaker-data-articles">{{sneaker?.quantity}} {{articles}}</ion-label>
+          <ion-label class="sneaker-data-articles" text-end>{{sneaker?.quantity}} {{articles}}</ion-label>
           <ion-label class="sneaker-data" float-right>{{sneaker?.sneaker?.price * sneaker?.quantity | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
           <rating *ngIf="order?.status == statusOrder.Finished && order?.rated == false" [itemId]='sneaker?.$key' (ratingClick)='ratingComponentClick($event)'></rating>
         </ion-grid>

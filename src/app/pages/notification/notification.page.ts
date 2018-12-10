@@ -51,7 +51,7 @@ export class NotificationPage implements OnInit {
     const toast = await this.toastCtrl.create({
       message: Constants.NotificationsChangedSuccess,
       duration: 2000,
-      showCloseButton: true,
+      showCloseButton: false,
       // position: 'top',
     });
 

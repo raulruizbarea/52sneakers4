@@ -40,7 +40,7 @@
         <ion-grid fixed="true">
           <ion-label class="sneaker-title">{{sneaker?.sneaker?.name}}</ion-label>
           <ion-label class="sneaker-data" float-left>{{sizeTitle}}: {{sneaker?.sizes}}</ion-label>
-          <ion-label class="sneaker-data-articles">{{sneaker?.quantity}} {{articles}}</ion-label>
+          <ion-label class="sneaker-data-articles" text-end>{{sneaker?.quantity}} {{articles}}</ion-label>
           <ion-label class="sneaker-data" float-right>{{sneaker?.sneaker?.price * sneaker?.quantity | currency: 'EUR':'symbol':undefined:'es'}}</ion-label>
         </ion-grid>
       </ion-item>
@@ -52,5 +52,5 @@
     <p class="sneaker-total" text-center>TOTAL: {{total + shipping | currency: 'EUR':'symbol':undefined:'es'}}</p>
   </div>
 
-  <ion-button (click)="save()" color="dark" padding expand="full">{{ orderConfirm }}</ion-button>
+  <ion-button disabled="{{!sneakers || sneakers.length === 0}}" (click)="save()" color="dark" padding expand="full">{{ orderConfirm }}</ion-button>
 </ion-content>
