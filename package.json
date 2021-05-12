@@ -50,7 +50,7 @@
     "core-js": "^2.5.4",
     "firebase": "^5.5.9",
     "firebase-queue": "^1.5.0",
-    "grpc": "^1.16.1",
+    "grpc": "^1.24.9",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.3.3",
     "ts-md5": "^1.2.4",
